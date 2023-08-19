@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup Label="GlobalUsings">
+    <Using Remove="System.Net.Http" />
+
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    
+    <Using Include="CommunityToolkit.Mvvm.Input" />
+    <Using Include="CommunityToolkit.Mvvm.ComponentModel" />
+    
+    <Using Include="Mvvm.Navigation" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
+  </ItemGroup>
+
+</Project>

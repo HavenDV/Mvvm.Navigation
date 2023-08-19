@@ -1,0 +1,42 @@
+<UserControl
+  x:Class="Mvvm.Apps.Views.FileInteractionsView"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:viewModels="using:Mvvm.Apps.ViewModels"
+  xmlns:views="using:Mvvm.Apps.Views"
+  mc:Ignorable="d"
+  d:DesignWidth="800"
+  d:DesignHeight="450"
+  >
+  <Grid>
+    <StackPanel Orientation="Horizontal">
+      <StackPanel>
+        <Button Content="OpenFolder" Command="{Binding OpenFolderCommand}"/>
+        <Button Content="OpenFile" Command="{Binding OpenFileCommand}"/>
+        <Button Content="OpenFiles" Command="{Binding OpenFilesCommand}"/>
+        <Button Content="SaveFile" Command="{Binding SaveFileCommand}"/>
+        <Button Content="SaveFileAs" Command="{Binding SaveFileAsCommand}"/>
+        <Button Content="CreateTemporaryFileAndLaunch" Command="{Binding CreateTemporaryFileAndLaunchCommand}"/>
+      </StackPanel>
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Current File:"/>
+          <TextBlock Text="{Binding SelectedFile.FileName}"/>
+        </StackPanel>
+        <TextBox
+            TextWrapping="Wrap"
+            AcceptsReturn="True"
+            Width="400"
+            Height="400"
+            Text="{Binding Content, Mode=TwoWay}"
+                    />
+      </StackPanel>
+
+      <views:PreviewDropView
+        DataContext="{Binding PreviewDropViewModel}"
+        />
+    </StackPanel>
+  </Grid>
+</UserControl>

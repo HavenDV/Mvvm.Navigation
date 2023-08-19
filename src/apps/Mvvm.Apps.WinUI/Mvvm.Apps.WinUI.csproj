@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows10.0.18362.0</TargetFramework>
+    <Platforms>x86;x64;arm64</Platforms>
+    <UseWinUI>true</UseWinUI>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <DefineConstants>$(DefineConstants);HAS_WINUI</DefineConstants>
+    <!--<WindowsPackageType>None</WindowsPackageType>-->
+    <NoWarn>$(NoWarn);CS8785</NoWarn>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+       Tools extension to be activated for this project even if the Windows App SDK Nuget
+       package has not yet been restored -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.25267-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ViewBaseGenerator" Version="1.14.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ViewBaseGenerator_Namespace>Mvvm.Apps.Views</ViewBaseGenerator_Namespace>
+  </PropertyGroup>
+
+  <ItemGroup Label="View Base">
+    <AdditionalFiles Include="..\Mvvm.Apps.Uno.Shared\Views\**\*.xaml" ViewBaseGenerator_GenerateViewBase="True" ViewBaseGenerator_BaseClass="UserControl" ViewBaseGenerator_ViewModelNamespace="Mvvm.Apps.ViewModels" ViewBaseGenerator_AddViewModelDependencyProperty="true" Visible="False" />
+    <AdditionalFiles Update="..\Mvvm.Apps.Uno.Shared\Views\MainView.xaml" ViewBaseGenerator_BaseClass="Page" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
+    <ProjectReference Include="..\..\libs\Mvvm.Navigation.WinUI\Mvvm.Navigation.WinUI.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems" Label="Shared" />
+  <Import Project="..\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems" Label="Shared" />
+
+</Project>

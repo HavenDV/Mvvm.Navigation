@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
+    <TargetFrameworks>net6.0-windows;net4.7.2</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <DefineConstants>$(DefineConstants);HAS_WINUI</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Label="AssemblyInfo">
+    <AssemblyAttribute Include="System.Windows.ThemeInfo">
+      <_Parameter1>System.Windows.ResourceDictionaryLocation.None</_Parameter1>
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+      <_Parameter2>System.Windows.ResourceDictionaryLocation.SourceAssembly</_Parameter2>
+      <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Uno.WinUI.Skia.Wpf" Version="4.7.44" />
+    <PackageReference Include="Uno.WinUI.RemoteControl" Version="4.7.44" Condition="'$(Configuration)'=='Debug'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mvvm.Apps.Uno.Core\Mvvm.Apps.Uno.Core.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems" Label="Shared" />
+
+</Project>

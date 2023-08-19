@@ -1,0 +1,30 @@
+﻿<views:MessageInteractionsViewBase
+    x:Class="Mvvm.Apps.Views.MessageInteractionsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Mvvm.Apps.ViewModels"
+    xmlns:views="using:Mvvm.Apps.Views"
+    mc:Ignorable="d"
+    d:RequestedTheme="Dark"
+    >
+    <StackPanel>
+        <Button
+            Content="Message"
+            Command="{x:Bind ViewModel.ShowMessageCommand, Mode=OneTime}"
+            />
+        <Button
+            Content="Warning"
+            Command="{x:Bind ViewModel.ShowWarningCommand, Mode=OneTime}"
+            />
+        <Button
+            Content="Exception"
+            Command="{x:Bind ViewModel.ShowExceptionCommand, Mode=OneTime}"
+            />
+        <Button
+            Content="Question"
+            Command="{x:Bind ViewModel.ShowQuestionCommand, Mode=OneTime}"
+            />
+    </StackPanel>
+</views:MessageInteractionsViewBase>

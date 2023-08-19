@@ -1,0 +1,25 @@
+<Window
+  x:Class="Mvvm.Apps.Views.MainView"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:views="using:Mvvm.Apps.Views"
+  Icon="/Assets/avalonia-logo.ico"
+  Title="Mvvm.Apps.Avalonia"
+  mc:Ignorable="d"
+  d:DesignWidth="800"
+  d:DesignHeight="450"
+  >
+  <TabControl>
+    <TabItem Header="File">
+      <views:FileInteractionsView DataContext="{Binding FileInteractions}"/>
+    </TabItem>
+    <TabItem Header="Message">
+      <views:MessageInteractionsView DataContext="{Binding MessageInteractions}"/>
+    </TabItem>
+    <TabItem Header="Web">
+      <views:WebInteractionsView DataContext="{Binding WebInteractions}"/>
+    </TabItem>
+  </TabControl>
+</Window>

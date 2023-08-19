@@ -1,0 +1,52 @@
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
+    x:Class="Mvvm.Apps.Maui.FileInteractionsPage"
+    x:DataType="{x:Type viewModels:FileInteractionsViewModel}"
+    Title="File Interactions"
+    >
+
+    <Grid>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout>
+                <Button
+                    Text="OpenFolder"
+                    Command="{Binding OpenFolderCommand, Mode=OneWay}"
+                    />
+                <Button
+                    Text="OpenFile"
+                    Command="{Binding OpenFileCommand, Mode=OneWay}"
+                    />
+                <Button
+                    Text="OpenFiles"
+                    Command="{Binding OpenFilesCommand, Mode=OneWay}"
+                    />
+                <Button
+                    Text="SaveFile"
+                    Command="{Binding SaveFileCommand, Mode=OneWay}"
+                    />
+                <Button
+                    Text="SaveFileAs"
+                    Command="{Binding SaveFileAsCommand, Mode=OneWay}"
+                    />
+                <Button
+                    Text="CreateTemporaryFileAndLaunch"
+                    Command="{Binding CreateTemporaryFileAndLaunchCommand, Mode=OneWay}"
+                    />
+            </StackLayout>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Current File:" />
+                    <Label Text="{Binding SelectedFile.FileName, Mode=OneWay}" />
+                </StackLayout>
+                <Editor
+                    WidthRequest="400"
+                    HeightRequest="400"
+                    Text="{Binding Content, Mode=TwoWay}"
+                    />
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

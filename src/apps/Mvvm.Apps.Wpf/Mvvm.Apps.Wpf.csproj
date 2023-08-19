@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net7.0-windows;net4.8</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <DefineConstants>$(DefineConstants);HAS_WPF</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ViewBaseGenerator" Version="1.14.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ViewBaseGenerator_Namespace>Mvvm.Apps.Views</ViewBaseGenerator_Namespace>
+  </PropertyGroup>
+
+  <ItemGroup Label="View Base">
+    <AdditionalFiles Include="..\Mvvm.Apps.Uno.Shared\Views\**\*.xaml" ViewBaseGenerator_GenerateViewBase="True" ViewBaseGenerator_BaseClass="UserControl" ViewBaseGenerator_ViewModelNamespace="Mvvm.Apps.ViewModels" ViewBaseGenerator_AddViewModelDependencyProperty="true" ViewBaseGenerator_IsAbstract="false" Visible="False" />
+    <AdditionalFiles Update="..\Mvvm.Apps.Uno.Shared\Views\MainView.xaml" ViewBaseGenerator_BaseClass="System.Windows.Window" />
+  </ItemGroup>
+
+  <Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">
+    <!-- Work around https://github.com/dotnet/wpf/issues/6792 -->
+
+    <ItemGroup>
+      <FilteredAnalyzer Include="@(Analyzer-&gt;Distinct())" />
+      <Analyzer Remove="@(Analyzer)" />
+      <Analyzer Include="@(FilteredAnalyzer)" />
+    </ItemGroup>
+  </Target>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
+    <ProjectReference Include="..\..\libs\Mvvm.Navigation.Wpf\Mvvm.Navigation.Wpf.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems" Label="Shared" />
+
+</Project>

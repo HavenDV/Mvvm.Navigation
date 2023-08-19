@@ -1,0 +1,36 @@
+﻿<views:MainViewBase
+    x:Class="Mvvm.Apps.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:views="using:Mvvm.Apps.Views"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    d:RequestedTheme="Dark"
+    >
+    <muxc:TabView
+        IsAddTabButtonVisible="False"
+        d:SelectedIndex="0"
+        >
+        <muxc:TabViewItem
+            Header="File"
+            IsClosable="False"
+            >
+            <views:FileInteractionsView ViewModel="{x:Bind ViewModel.FileInteractions, Mode=OneTime}" />
+        </muxc:TabViewItem>
+        <muxc:TabViewItem
+            Header="Message"
+            IsClosable="False"
+            >
+            <views:MessageInteractionsView ViewModel="{x:Bind ViewModel.MessageInteractions, Mode=OneTime}" />
+        </muxc:TabViewItem>
+        <muxc:TabViewItem
+            Header="Web"
+            IsClosable="False"
+            >
+            <views:WebInteractionsView ViewModel="{x:Bind ViewModel.WebInteractions, Mode=OneTime}" />
+        </muxc:TabViewItem>
+    </muxc:TabView>
+</views:MainViewBase>
