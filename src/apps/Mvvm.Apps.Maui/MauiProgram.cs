@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Mvvm.Apps.ViewModels;
 using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Maui;
@@ -14,7 +13,8 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .UseMauiCommunityToolkit()
-            .UseMvvmCommonInteractions()
+            .AddMvvmNavigation()
+            .AddViewsAndViewModels()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -25,17 +25,12 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-        builder.Services
-            .AddSingleton<MainViewModel>()
-            .AddSingleton<FileInteractionsViewModel>()
-            .AddSingleton<MessageInteractionsViewModel>()
-            .AddSingleton<WebInteractionsViewModel>()
-            ;
-        
 		var app = builder.Build();
         
         Ioc.Default.ConfigureServices(app.Services);
 
-        return app;
+        return app
+            .UseMvvmNavigation()
+            ;
     }
 }

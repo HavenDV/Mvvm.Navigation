@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mvvm.Apps.ViewModels;
@@ -23,27 +24,26 @@ public class App : Application
             .CreateDefaultBuilder()
             .ConfigureServices(static services =>
             {
-                services.AddSingleton<IFileInteractions, FileInteractions>();
-                services.AddSingleton<IMessageInteractions, MessageInteractions>();
-                services.AddSingleton<IWebInteractions, WebInteractions>();
+                services
+                    .AddMvvmNavigation()
+                    .AddViewsAndViewModels()
+                    ;
             })
             .Build();
 
+        Ioc.Default.ConfigureServices(AppHost.Services);
+        
         AvaloniaXamlLoader.Load(this);
-
-        AppHost.Services.GetRequiredService<IMessageInteractions>().CatchUnhandledExceptions(this);
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var view = new MainView
+            desktop.MainWindow = new MainView
             {
-                DataContext = new MainViewModel(AppHost?.Services ?? throw new InvalidOperationException(nameof(AppHost.Services))),
+                DataContext = AppHost?.Services.GetRequiredService<MainViewModel>(),
             };
-            desktop.MainWindow = view;
-            FileInteractions.Window = view;
         }
 
         base.OnFrameworkInitializationCompleted();

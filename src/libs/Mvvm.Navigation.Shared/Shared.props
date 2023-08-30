@@ -1,0 +1,56 @@
+<Project>
+
+    <ItemGroup Label="Shared">
+        <Compile Include="$(MSBuildThisFileDirectory)**\*.cs" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(UseMaui)' != 'true'">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\**\*.maui.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\**\*.maui.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\maui\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\maui\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net7.0-ios')) != true AND $(TargetFramework.StartsWith('net7.0-maccatalyst')) != true ">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\**\*.ios.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\**\*.ios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\ios\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\ios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true ">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\*.macos.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\*.macos.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\macos\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\macos\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true AND $(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net7.0-ios')) != true AND $(TargetFramework.StartsWith('net7.0-maccatalyst')) != true">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\*.macios.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\*.macios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\macios\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\macios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid')) != true AND $(TargetFramework.StartsWith('net7.0-android')) != true ">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\**\*.android.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\android\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\*.windows.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\*.windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\windows\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.Contains('-tizen')) != true ">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\*.tizen.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\*.tizen.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\tizen\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\tizen\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+    <ItemGroup Condition="!($(TargetFramework.StartsWith('net')) == true AND $(TargetFramework.EndsWith('.0')) == true AND $(TargetFramework.Contains('-')) != true)"> <!-- e.g net6.0 or net7.0 -->
+        <Compile Remove="$(MSBuildThisFileDirectory)**\*.net.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\*.net.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\net\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\net\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+
+</Project>

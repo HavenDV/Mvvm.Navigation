@@ -38,7 +38,7 @@ public sealed partial class App
             .ConfigureServices(static services =>
             {
                 // Add all available interactions
-                services.AddCommonInteractions();
+                services.AddMvvmNavigation();
                 
                 // or add only what you need
                 services.AddSingleton<IFileInteractions, FileInteractions>();

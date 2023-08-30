@@ -8,37 +8,17 @@
     <DefineConstants>$(DefineConstants);HAS_WPF</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ViewBaseGenerator" Version="1.14.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <PropertyGroup>
-    <ViewBaseGenerator_Namespace>Mvvm.Apps.Views</ViewBaseGenerator_Namespace>
-  </PropertyGroup>
-
-  <ItemGroup Label="View Base">
-    <AdditionalFiles Include="..\Mvvm.Apps.Uno.Shared\Views\**\*.xaml" ViewBaseGenerator_GenerateViewBase="True" ViewBaseGenerator_BaseClass="UserControl" ViewBaseGenerator_ViewModelNamespace="Mvvm.Apps.ViewModels" ViewBaseGenerator_AddViewModelDependencyProperty="true" ViewBaseGenerator_IsAbstract="false" Visible="False" />
-    <AdditionalFiles Update="..\Mvvm.Apps.Uno.Shared\Views\MainView.xaml" ViewBaseGenerator_BaseClass="System.Windows.Window" />
-  </ItemGroup>
-
-  <Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">
-    <!-- Work around https://github.com/dotnet/wpf/issues/6792 -->
-
-    <ItemGroup>
-      <FilteredAnalyzer Include="@(Analyzer-&gt;Distinct())" />
-      <Analyzer Remove="@(Analyzer)" />
-      <Analyzer Include="@(FilteredAnalyzer)" />
-    </ItemGroup>
-  </Target>
+  <Import Project="../../libs/Mvvm.Navigation.Wpf/Mvvm.Navigation.Wpf.props" />
   
   <ItemGroup>
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
+                      OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
     <ProjectReference Include="..\..\libs\Mvvm.Navigation.Wpf\Mvvm.Navigation.Wpf.csproj" />
   </ItemGroup>
 
-  <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems" Label="Shared" />
+  <ItemGroup Label="Shared">
+    <Compile Include="..\Mvvm.Apps.Shared\**\*.cs" />
+  </ItemGroup>
 
 </Project>

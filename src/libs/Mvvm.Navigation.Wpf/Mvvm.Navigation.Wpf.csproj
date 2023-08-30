@@ -3,15 +3,26 @@
   <PropertyGroup>
     <TargetFrameworks>net4.6.2;net6.0-windows;net7.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <!-- For FolderBrowserDialog -->
-    <UseWindowsForms>true</UseWindowsForms>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <DefineConstants>$(DefineConstants);HAS_WPF</DefineConstants>
-    <NoWarn>$(NoWarn);CA5394;CA1822</NoWarn>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1031</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup Label="Usings">
-    <Using Remove="System.Windows.Forms" />
+  <ItemGroup Label="AssemblyInfo">
+    <AssemblyAttribute Include="System.Windows.ThemeInfo">
+      <_Parameter1>System.Windows.ResourceDictionaryLocation.None</_Parameter1>
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+      <_Parameter2>System.Windows.ResourceDictionaryLocation.SourceAssembly</_Parameter2>
+      <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Windows.Markup.XmlnsPrefix">
+      <_Parameter1>https://navigation.mvvm/</_Parameter1>
+      <_Parameter2>mvvm</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Windows.Markup.XmlnsDefinition">
+      <_Parameter1>https://navigation.mvvm/</_Parameter1>
+      <_Parameter2>Mvvm.Navigation</_Parameter2>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <ItemGroup>
@@ -19,13 +30,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
   </ItemGroup>
 
-  <Import Project="..\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems" Label="Shared" />
-
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" ReferenceOutputAssembly="false" PackAsAnalyzer="true" />
+    <None Include="..\..\analyzers\Mvvm.Navigation.Generators\bin\$(Configuration)\netstandard2.0\H.Generators.Extensions.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
+  </ItemGroup>
+  
+  <Import Project="..\Mvvm.Navigation.Shared\Shared.props" />
+  
 </Project>

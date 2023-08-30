@@ -5,36 +5,39 @@
     <TargetFrameworks Condition="'$(TF_BUILD)' == 'true'">$(TargetFrameworks);net7.0-tizen</TargetFrameworks>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <UseMaui>true</UseMaui>
-    <SingleProject>true</SingleProject>
     <SignAssembly>false</SignAssembly>
     <DefineConstants>$(DefineConstants);HAS_MAUI</DefineConstants>
-    <NoWarn>$(NoWarn);CA5394;CA1822</NoWarn>
-
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
-
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1724;CA1031</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup Label="AssemblyInfo">
+    <AssemblyAttribute Include="Microsoft.Maui.Controls.XmlnsPrefix">
+      <_Parameter1>https://navigation.mvvm/</_Parameter1>
+      <_Parameter2>mvvm</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="Microsoft.Maui.Controls.XmlnsDefinition">
+      <_Parameter1>https://navigation.mvvm/</_Parameter1>
+      <_Parameter2>Mvvm.Navigation</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DependencyPropertyGenerator" Version="1.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-    <PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup Label="Shared">
-    <Compile Include="..\Mvvm.Navigation.Shared\**\*.cs" />
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" ReferenceOutputAssembly="false" PackAsAnalyzer="true" />
+    <None Include="..\..\analyzers\Mvvm.Navigation.Generators\bin\$(Configuration)\netstandard2.0\H.Generators.Extensions.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
   </ItemGroup>
+
+  <Import Project="..\Mvvm.Navigation.Shared\Shared.props" />
 
 </Project>

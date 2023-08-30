@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Mvvm.Apps.Views;
@@ -34,12 +36,15 @@ public sealed partial class App : Application
             })
             .ConfigureServices(static services =>
             {
-                services.AddCommonInteractions();
+                services
+                    .AddMvvmNavigation()
+                    .AddViewsAndViewModels()
+                    ;
             })
             .Build();
 
-        AppHost.Services.GetRequiredService<IMessageInteractions>().CatchUnhandledExceptions(this);
-
+        Ioc.Default.ConfigureServices(AppHost.Services);
+        
 #if !HAS_WPF
         InitializeComponent();
 #endif
@@ -55,7 +60,7 @@ public sealed partial class App : Application
     {
         new MainView
         {
-            ViewModel = new MainViewModel(AppHost.Services),
+            DataContext = AppHost.Services.GetRequiredService<MainViewModel>(),
         }.Show();
     }
 

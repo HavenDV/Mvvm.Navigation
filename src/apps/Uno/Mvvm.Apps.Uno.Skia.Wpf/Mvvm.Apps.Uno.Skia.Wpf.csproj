@@ -30,7 +30,21 @@
     <ProjectReference Include="..\Mvvm.Apps.Uno.Core\Mvvm.Apps.Uno.Core.csproj" />
   </ItemGroup>
 
-  <Import Project="..\..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems" Label="Shared" />
-  <Import Project="..\..\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems" Label="Shared" />
+  <ItemGroup Label="Shared">
+    <Compile Include="..\..\Mvvm.Apps.Shared\**\*.cs" />
+    <Compile Include="..\Mvvm.Apps.Uno.Shared\**\*.cs" />
+    <ApplicationDefinition Include="..\Mvvm.Apps.Uno.Shared\App.xaml">
+      <XamlRuntime>WinUI</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="..\Mvvm.Apps.Uno.Shared\**\*.xaml">
+      <XamlRuntime>WinUI</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <UpToDateCheckInput Include="..\Mvvm.Apps.Uno.Shared\**\*.xaml" />
+    <Content Include="..\Mvvm.Apps.Uno.Shared\**\*.png" />
+  </ItemGroup>
 
 </Project>

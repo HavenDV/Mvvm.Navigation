@@ -1,25 +1,10 @@
 ﻿namespace Mvvm.Apps.ViewModels;
 
-public class MainViewModel : ObservableObject
+public partial class MainViewModel(Navigator<ObservableObject> navigator) : ObservableObject
 {
     #region Properties
 
-    public FileInteractionsViewModel FileInteractions { get; }
-    public MessageInteractionsViewModel MessageInteractions { get; }
-    public WebInteractionsViewModel WebInteractions { get; }
-
-    #endregion
-
-    #region Constructors
-
-    public MainViewModel(IServiceProvider serviceProvider)
-    {
-        serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-
-        FileInteractions = new FileInteractionsViewModel(serviceProvider.GetRequiredService<IFileInteractions>());
-        MessageInteractions = new MessageInteractionsViewModel(serviceProvider.GetRequiredService<IMessageInteractions>());
-        WebInteractions = new WebInteractionsViewModel(serviceProvider.GetRequiredService<IWebInteractions>());
-    }
+    public Navigator<ObservableObject> Navigator { get; } = navigator ?? throw new ArgumentNullException(nameof(navigator));
 
     #endregion
 }

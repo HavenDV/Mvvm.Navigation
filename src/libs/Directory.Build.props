@@ -1,5 +1,7 @@
 <Project>
 
+  <Sdk Name="ViHo.PackAsAnalyzer" Version="1.0.1" />
+
   <Import Project="..\Directory.Build.props" />
 
   <ItemGroup Label="CLSCompliant">
@@ -14,12 +16,12 @@
   </PropertyGroup>
   
   <PropertyGroup Label="NuGet">
-    <Description>Common MVVM Level Interactions(like open/save file) for WPF/UWP/WinUI/Uno/Avalonia platforms</Description>
+    <Description>Provides platform independent navigation at the MVVM level and a Source Generator that automatically binds view and view models and registers this in your DI container</Description>
     <Description>
 $(Description)
 $(PACKAGE_RELEASE_NOTES)
     </Description>
-    <PackageTags>mvvm;dialogs;common;interactions;openfile;savefile;openfiledialog;savefiledialog;messages;drag-and-drop;uwp;uno;wpf;winui;avalonia</PackageTags>
+    <PackageTags>mvvm;navigation;uwp;uno;wpf;winui;avalonia;maui;source;generator;di</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Label="Nuget">
@@ -34,8 +36,8 @@ $(PACKAGE_RELEASE_NOTES)
   </PropertyGroup>
 
   <ItemGroup Label="Nuget">
-    <None Include="$(SolutionDir)assets\nuget_icon.png" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)../../assets/nuget_icon.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
   
   <ItemGroup Label="Source Link">

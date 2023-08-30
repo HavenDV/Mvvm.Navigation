@@ -3,7 +3,6 @@ global using System;
 global using System.Linq;
 
 global using Mvvm;
-global using Mvvm.Converters;
 global using Mvvm.Navigation;
 
 global using Mvvm.Apps.ViewModels;

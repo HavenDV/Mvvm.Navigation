@@ -1,7 +1,7 @@
 ﻿namespace Mvvm.Apps.Views;
 
+[ViewFor<MainViewModel>]
 public partial class MainView
-    : MainViewBase
 {
     #region Constructors
 

@@ -1,12 +1,8 @@
 ﻿<Application
+    Startup="OnStartup"
     x:Class="Mvvm.Apps.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Startup="OnStartup"
-    xmlns:hconverters="clr-namespace:Mvvm.Converters;assembly=Mvvm.Navigation.Wpf"
-    >
-    <Application.Resources>
-        <hconverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    </Application.Resources>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources />
 </Application>
 

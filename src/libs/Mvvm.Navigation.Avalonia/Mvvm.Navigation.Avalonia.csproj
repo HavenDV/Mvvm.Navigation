@@ -3,25 +3,38 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net4.6.1;net6.0;net7.0</TargetFrameworks>
     <DefineConstants>$(DefineConstants);HAS_AVALONIA</DefineConstants>
-    <NoWarn>$(NoWarn);CA5394;CA1822</NoWarn>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1031</NoWarn>
   </PropertyGroup>
 
+  <ItemGroup Label="AssemblyInfo">
+    <AssemblyAttribute Include="Avalonia.Metadata.XmlnsPrefix">
+      <_Parameter1>https://navigation.mvvm/</_Parameter1>
+      <_Parameter2>mvvm</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="Avalonia.Metadata.XmlnsDefinition">
+      <_Parameter1>https://navigation.mvvm/</_Parameter1>
+      <_Parameter2>Mvvm.Navigation</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.18" />
-    <PackageReference Include="MessageBox.Avalonia" Version="2.1.0" />
-    <PackageReference Include="DependencyPropertyGenerator" Version="1.1.5">
+    <PackageReference Include="Avalonia" Version="11.0.4" />
+    <PackageReference Include="DependencyPropertyGenerator" Version="1.2.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup Label="Shared">
-    <Compile Include="..\Mvvm.Navigation.Shared\**\*.cs" />
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" ReferenceOutputAssembly="false" PackAsAnalyzer="true" />
+    <None Include="..\..\analyzers\Mvvm.Navigation.Generators\bin\$(Configuration)\netstandard2.0\H.Generators.Extensions.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
   </ItemGroup>
+
+  <Import Project="..\Mvvm.Navigation.Shared\Shared.props" />
 
 </Project>

@@ -1,9 +1,12 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Mvvm.Apps.ViewModels;
+using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Views;
 
+[ViewFor<MainViewModel>]
 public partial class MainView : Window
 {
     public MainView()

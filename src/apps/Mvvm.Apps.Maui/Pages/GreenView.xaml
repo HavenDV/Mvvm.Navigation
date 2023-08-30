@@ -1,0 +1,28 @@
+﻿<ContentView
+    BackgroundColor="Green"
+    x:Class="Mvvm.Apps.Maui.GreenView"
+    x:DataType="{x:Type viewModels:GreenViewModel}"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- <StackLayout> -->
+    <!--  <Button  -->
+    <!--  Text="Message"  -->
+    <!--  Command="{Binding ShowMessageCommand, Mode=OneWay}"  -->
+    <!--  />  -->
+    <!--  <Button  -->
+    <!--  Text="Warning"  -->
+    <!--  Command="{Binding ShowWarningCommand, Mode=OneWay}"  -->
+    <!--  />  -->
+    <!--  <Button  -->
+    <!--  Text="Exception"  -->
+    <!--  Command="{Binding ShowExceptionCommand, Mode=OneWay}"  -->
+    <!--  />  -->
+    <!--  <Button  -->
+    <!--  Text="Question"  -->
+    <!--  Command="{Binding ShowQuestionCommand, Mode=OneWay}"  -->
+    <!--  />  -->
+    <!-- </StackLayout> -->
+
+</ContentView>

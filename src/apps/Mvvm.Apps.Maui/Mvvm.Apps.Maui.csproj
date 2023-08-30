@@ -52,36 +52,13 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<Import Project="../../libs/Mvvm.Navigation.Maui/Mvvm.Navigation.Maui.props" />
+
 	<ItemGroup>
+		<ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
+						  OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
 		<ProjectReference Include="..\..\libs\Mvvm.Navigation.Maui\Mvvm.Navigation.Maui.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="FileInteractionsPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="MessageInteractionsPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="WebInteractionsPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="FileInteractionsPage.xaml.cs">
-	    <DependentUpon>FileInteractionsPage.xaml</DependentUpon>
-	    <SubType>Code</SubType>
-	  </Compile>
-	  <Compile Update="MessageInteractionsPage.xaml.cs">
-	    <DependentUpon>MessageInteractionsPage.xaml</DependentUpon>
-	    <SubType>Code</SubType>
-	  </Compile>
-	  <Compile Update="WebInteractionsPage.xaml.cs">
-	    <DependentUpon>WebInteractionsPage.xaml</DependentUpon>
-	    <SubType>Code</SubType>
-	  </Compile>
 	</ItemGroup>
 
 </Project>
