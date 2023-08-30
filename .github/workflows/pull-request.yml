@@ -1,16 +1,16 @@
-﻿name: Build, test and publish
+﻿name: Build and test
 on:
   pull_request:
     branches:
       - main
 
 jobs:
-  build-test-publish:
-    name: Build, test and publish
+  build-test:
+    name: Build abd test
     uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
     with:
       os: windows-2022
-      project-path: 
+      project-path:
         /target:libs\Mvvm_Navigation_Core
         /target:libs\Mvvm_Navigation_Uno
         /target:libs\Mvvm_Navigation_Uno_WinUI
@@ -20,18 +20,8 @@ jobs:
         /target:libs\Mvvm_Navigation_Maui
         /target:libs\Mvvm_Navigation_Avalonia
       use-msbuild: true
-      workloads: maui
+      workloads: maui android ios maccatalyst macos
       install-tizen: true
       windows-sdk-version: 18362
-    secrets:
-      nuget-key: ${{ secrets.NUGET_KEY }}
-
-  WebAssembly:
-    uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
-    with:
-      os: windows-2022
-      project-path: src/apps/Uno/Mvvm.Apps.Uno.WebAssembly
-      additional-dotnet-version: 6.0.x
-      deploy-web-assembly-path: src/apps/Uno/Mvvm.Apps.Uno.WebAssembly/bin/Release/net6.0/dist
       generate-build-number: false
-      workloads: android ios maccatalyst macos
+      conventional-commits-publish-conditions: false
