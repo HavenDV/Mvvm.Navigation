@@ -12,10 +12,6 @@
     <Using Remove="System.Net.Http" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net4.6.2' ">
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="IsExternalInit" Version="1.0.3">
@@ -26,11 +22,11 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net4.6.2' ">
-    <PackageReference Include="IndexRange" Version="1.0.2" />
+    <PackageReference Include="IndexRange" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="IndexRange" Version="1.0.2" />
+    <PackageReference Include="IndexRange" Version="1.0.3" />
   </ItemGroup>
 
 </Project>
