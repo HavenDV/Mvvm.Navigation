@@ -1,0 +1,41 @@
+﻿<Page
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    d:RequestedTheme="Dark"
+    mc:Ignorable="d"
+    x:Class="Mvvm.Apps.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="clr-namespace:Mvvm.Navigation;assembly=Mvvm.Navigation.Uno.WinUI"
+    xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <Button
+                    Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
+                    CommandParameter="{x:Type viewModels:BlueViewModel}"
+                    Content="File"
+                    />
+                <Button
+                    Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
+                    CommandParameter="{x:Type viewModels:RedViewModel}"
+                    Content="Message"
+                    />
+                <Button
+                    Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
+                    CommandParameter="{x:Type viewModels:GreenViewModel}"
+                    Content="Web"
+                    />
+            </StackPanel>
+        </StackPanel>
+        <Frame
+            Height="555"
+            Width="555"
+            mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
+            />
+    </Grid>
+
+</Page>

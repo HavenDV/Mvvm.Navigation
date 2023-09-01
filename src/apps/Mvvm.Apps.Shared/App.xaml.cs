@@ -93,7 +93,7 @@ public sealed partial class App : Application
         {
             frame.Content = new MainView
             {
-                ViewModel = new MainViewModel(AppHost.Services),
+                ViewModel = AppHost.Services.GetRequiredService<MainViewModel>(),
             };
         }
 
@@ -156,8 +156,8 @@ public sealed partial class App : Application
         });
 
 #if HAS_UNO
-        global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = factory;
-        global::Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
+        //global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = factory;
+        //global::Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
 #endif
     }
 

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+	"Mvvm.Apps.Uno.Windows (Package)": {
+	  "commandName": "MsixPackage"
+	},
+	"Mvvm.Apps.Uno.Windows (Unpackaged)": {
+	  "commandName": "Project"
+	}
+  }
+}

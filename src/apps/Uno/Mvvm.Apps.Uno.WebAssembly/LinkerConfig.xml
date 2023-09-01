@@ -1,16 +1,11 @@
-﻿<linker>
-  <assembly fullname="Mvvm.Apps.Uno.WebAssembly" />
-  <assembly fullname="Mvvm.Apps.Core" />
-  <assembly fullname="Mvvm.Navigation.Uno" />
-  <assembly fullname="Uno.UI" />
-  <assembly fullname="Microsoft.Extensions.Options" />
+<linker>
+	<assembly fullname="Mvvm.Apps.Uno" />
+	<assembly fullname="Mvvm.Apps.Uno.Wasm" />
 
-  <assembly fullname="DynamicData" />
-  <assembly fullname="ReactiveUI" />
-  <assembly fullname="ReactiveUI.Uno" />
-  
-  <!-- This is required by ReactiveUI and any expression.Compile caller. -->
+	<!--
+  Uncomment this section when using JSON.NET
   <assembly fullname="System.Core">
-    <type fullname="System.Linq.Expressions*" />
+	  <type fullname="System.Linq.Expressions*" />
   </assembly>
+   -->
 </linker>

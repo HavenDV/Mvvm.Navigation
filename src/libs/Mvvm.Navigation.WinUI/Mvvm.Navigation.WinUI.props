@@ -1,0 +1,19 @@
+﻿<Project>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="RecognizeFramework_DefineConstants" />
+        <CompilerVisibleProperty Include="UseWPF" />
+        <CompilerVisibleProperty Include="UseWinUI" />
+        <CompilerVisibleProperty Include="UseMaui" />
+    </ItemGroup>
+
+    <Target Name="CreateDefineConstants"
+            BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun;GenerateMSBuildEditorConfigFileCore">
+
+        <PropertyGroup>
+            <RecognizeFramework_DefineConstants>$(DefineConstants.Replace(';',','))</RecognizeFramework_DefineConstants>
+        </PropertyGroup>
+
+    </Target>
+
+</Project>

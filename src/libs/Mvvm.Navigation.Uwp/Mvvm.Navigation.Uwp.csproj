@@ -1,9 +1,9 @@
-<Project Sdk="MSBuild.Sdk.Extras">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
 
   <PropertyGroup>
     <TargetFrameworks>uap10.0.18362</TargetFrameworks>
     <DefineConstants>$(DefineConstants);HAS_UWP</DefineConstants>
-    <NoWarn>$(NoWarn);CA1822</NoWarn>
+    <NoWarn>$(NoWarn);CA1822;CA1052;CA1031</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,13 +11,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
   </ItemGroup>
 
-  <Import Project="..\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" ReferenceOutputAssembly="false" PackAsAnalyzer="true" />
+    <None Include="..\..\analyzers\Mvvm.Navigation.Generators\bin\$(Configuration)\netstandard2.0\H.Generators.Extensions.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
+  </ItemGroup>
+
+  <Import Project="..\Mvvm.Navigation.Shared\Shared.props" />
 
 </Project>

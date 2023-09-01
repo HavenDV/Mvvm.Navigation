@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows10.0.17763.0;net7.0-windows10.0.17763.0;</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows10.0.17763.0;net7.0-windows10.0.17763.0</TargetFrameworks>
     <UseWinUI>true</UseWinUI>
-    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <DefineConstants>$(DefineConstants);HAS_WINUI</DefineConstants>
-    <NoWarn>$(NoWarn);CA5394;CA1822</NoWarn>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1052;CA1031</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,13 +14,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
   </ItemGroup>
 
-  <Import Project="..\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" ReferenceOutputAssembly="false" PackAsAnalyzer="true" />
+    <None Include="..\..\analyzers\Mvvm.Navigation.Generators\bin\$(Configuration)\netstandard2.0\H.Generators.Extensions.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
+  </ItemGroup>
+
+  <Import Project="..\Mvvm.Navigation.Shared\Shared.props" />
 
 </Project>

@@ -1,14 +1,11 @@
-<Project Sdk="MSBuild.Sdk.Extras">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <TargetFrameworks>$(TargetFrameworks);MonoAndroid12.0;xamarinios10;xamarinmac20</TargetFrameworks>
-    <SignAssembly>false</SignAssembly>
+    <TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041</TargetFrameworks>
     <DefineConstants>$(DefineConstants);HAS_UNO;HAS_WINUI</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'MonoAndroid11.0'">$(DefineConstants);HAS_UNO_MOBILE</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'xamarinios10'">$(DefineConstants);HAS_UNO_MOBILE</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'xamarinmac20'">$(DefineConstants);HAS_UNO_MOBILE</DefineConstants>
-    <NoWarn>$(NoWarn);CA5394;CA1822</NoWarn>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <SignAssembly>false</SignAssembly>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1052;CA1031</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,13 +14,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
   </ItemGroup>
 
-  <Import Project="..\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" ReferenceOutputAssembly="false" PackAsAnalyzer="true" />
+    <None Include="..\..\analyzers\Mvvm.Navigation.Generators\bin\$(Configuration)\netstandard2.0\H.Generators.Extensions.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
+  </ItemGroup>
+
+  <Import Project="..\Mvvm.Navigation.Shared\Shared.props" />
 
 </Project>

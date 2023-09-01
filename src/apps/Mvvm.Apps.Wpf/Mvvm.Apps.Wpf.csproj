@@ -17,8 +17,6 @@
     <ProjectReference Include="..\..\libs\Mvvm.Navigation.Wpf\Mvvm.Navigation.Wpf.csproj" />
   </ItemGroup>
 
-  <ItemGroup Label="Shared">
-    <Compile Include="..\Mvvm.Apps.Shared\**\*.cs" />
-  </ItemGroup>
+  <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.props" />
 
 </Project>

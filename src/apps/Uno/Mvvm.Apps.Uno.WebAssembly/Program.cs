@@ -1,6 +1,13 @@
-﻿using Mvvm.Apps;
+namespace Mvvm.Apps.Uno.Wasm;
 
-Application.Start(callback =>
+public class Program
 {
-    _ = new App();
-});
+	private static App? _app;
+
+	public static int Main(string[] args)
+	{
+		Microsoft.UI.Xaml.Application.Start(_ => _app = new AppHead());
+
+		return 0;
+	}
+}

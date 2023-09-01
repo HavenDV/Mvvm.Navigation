@@ -147,9 +147,12 @@
       <Project>{16a17957-6de3-4874-b0b6-08404c23fbbe}</Project>
       <Name>Mvvm.Navigation.Uwp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
+                      OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
-  <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems" Label="Shared" />
-  <Import Project="..\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems" Label="Shared" />
+  <Import Project="../../libs/Mvvm.Navigation.Uwp/Mvvm.Navigation.Uwp.props" />
+  <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.props" />
+  <Import Project="..\Mvvm.Apps.WinUI.Shared\Mvvm.Apps.WinUI.Shared.props" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

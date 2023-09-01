@@ -1,0 +1,10 @@
+<Project>
+
+    <ItemGroup Label="Shared">
+        <Page Include="$(MSBuildThisFileDirectory)*\*.xaml" XamlRuntime="WinUI" />
+        <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml" XamlRuntime="WinUI" />
+        <UpToDateCheckInput Include="$(MSBuildThisFileDirectory)**\*.xaml" />
+        <Content Include="$(MSBuildThisFileDirectory)Assets\**\*.*" LinkBase="Assets" />
+    </ItemGroup>
+
+</Project>
