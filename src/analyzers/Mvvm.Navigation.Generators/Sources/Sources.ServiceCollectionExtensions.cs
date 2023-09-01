@@ -4,7 +4,30 @@ namespace H.Generators;
 
 internal static partial class Sources
 {
-    public static string GenerateServiceCollectionExtensions(IReadOnlyCollection<ViewForData> views)
+    public static string GenerateServiceCollectionExtensionsDeclaration()
+    {
+        return @" 
+#nullable enable
+
+namespace Mvvm.Navigation
+{
+    public static partial class ServiceCollectionExtensions
+    {
+        static partial void AddViewsAndViewModelsInternal(
+            global::Microsoft.Extensions.DependencyInjection.IServiceCollection services);
+
+        public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection AddViewsAndViewModels(
+            this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
+        {
+            AddViewsAndViewModelsInternal(services);
+
+            return services;
+        }
+    }
+}".RemoveBlankLinesWhereOnlyWhitespaces();
+    }
+    
+    public static string GenerateServiceCollectionExtensionsImplementation(IReadOnlyCollection<ViewForData> views)
     {
         return @$" 
 using Microsoft.Extensions.DependencyInjection;
@@ -13,11 +36,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Mvvm.Navigation
 {{
-    public static class ServiceCollectionExtensions
+    public static partial class ServiceCollectionExtensions
     {{
-        public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection AddViewsAndViewModels(this global::Microsoft.Extensions.DependencyInjection.IServiceCollection collection)
+        static partial void AddViewsAndViewModelsInternal(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {{
-            return collection
+            _ = services
 {views.Select(property => @$"
                     .AddSingleton<{property.ViewModelType}>()
                     .AddTransient<IViewFor<{property.ViewModelType}>, {property.ViewType}>()

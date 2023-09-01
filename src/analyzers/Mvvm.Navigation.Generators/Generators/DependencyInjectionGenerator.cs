@@ -18,6 +18,13 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        context.RegisterPostInitializationOutput(static context =>
+        {
+            context.AddSource(
+                hintName: "ServiceCollectionExtensions.d.g.cs",
+                source: Sources.GenerateServiceCollectionExtensionsDeclaration());
+        });
+        
         var framework = context.DetectFramework();
 
         context.SyntaxProvider
@@ -60,8 +67,8 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
 
         var files = new List<FileWithName>
         {
-            new(Name: "ServiceCollectionExtensions.g.cs",
-                Text: Sources.GenerateServiceCollectionExtensions(values.AsImmutableArray()))
+            new(Name: "ServiceCollectionExtensions.i.g.cs",
+                Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray())),
         };
         if (values.First().Framework is Framework.Maui)
         {

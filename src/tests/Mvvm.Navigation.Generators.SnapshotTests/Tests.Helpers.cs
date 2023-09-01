@@ -112,23 +112,31 @@ namespace H.Generators.IntegrationTests;
                 .Add(MetadataReference.CreateFromFile(
                     typeof(Mvvm.Navigation.ViewForAttribute<>).Assembly.Location)),
             options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+        
         var generator = new T();
         GeneratorDriver driver = additionalGenerators.Any()
-            ? CSharpGeneratorDriver.Create(new IIncrementalGenerator[] { generator }.Concat(additionalGenerators)
-                .ToArray())
-            : CSharpGeneratorDriver.Create(generator);
+            ? CSharpGeneratorDriver.Create(
+                generators: new IIncrementalGenerator[] { generator }
+                    .Concat(additionalGenerators)
+                    .Select(Microsoft.CodeAnalysis.GeneratorExtensions.AsSourceGenerator)
+                    .ToArray(),
+                parseOptions: CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.Preview))
+            : CSharpGeneratorDriver.Create(
+                generators: new []{ generator.AsSourceGenerator() },
+                parseOptions: CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.Preview));
         driver = driver
             .WithUpdatedAnalyzerConfigOptions(new DictionaryAnalyzerConfigOptionsProvider(GetGlobalOptions(framework)))
-            .RunGeneratorsAndUpdateCompilation(LanguageVersion.Preview, compilation, out compilation, out _,
-                cancellationToken);
+            .RunGeneratorsAndUpdateCompilation(compilation, out compilation, out _, cancellationToken);
         var diagnostics = compilation.GetDiagnostics(cancellationToken);
 
         await Task.WhenAll(
             Verify(diagnostics.NormalizeLocations())
                 .UseDirectory("Snapshots")
+                //.AutoVerify()
                 .UseTextForParameters($"{framework}_Diagnostics"),
             Verify(driver)
                 .UseDirectory("Snapshots")
+                //.AutoVerify()
                 .UseTextForParameters($"{framework}"));
     }
 }
