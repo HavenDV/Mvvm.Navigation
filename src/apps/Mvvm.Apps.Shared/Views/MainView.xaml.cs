@@ -3,7 +3,7 @@
 namespace Mvvm.Apps.Views;
 
 [ViewFor<MainViewModel>]
-public partial class MainView : Page
+public partial class MainView
 {
     public MainViewModel ViewModel
     {
