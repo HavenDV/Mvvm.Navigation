@@ -16,12 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9972D12E-4770-4883-AE5D-98412271DE83}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\dependabot.yml = .github\dependabot.yml
 		src\Directory.Build.props = src\Directory.Build.props
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		LICENSE = LICENSE
-		README.md = README.md
 		.github\workflows\pull-request.yml = .github\workflows\pull-request.yml
-		.github\dependabot.yml = .github\dependabot.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Uwp", "src\libs\Mvvm.Navigation.Uwp\Mvvm.Navigation.Uwp.csproj", "{16A17957-6DE3-4874-B0B6-08404C23FBBE}"
@@ -50,40 +50,40 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.WinUI", "src\apps
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Wpf", "src\apps\Mvvm.Apps.Wpf\Mvvm.Apps.Wpf.csproj", "{E84AFC6C-DF9C-44C6-8878-52560A351EC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Navigation.Maui", "src\libs\Mvvm.Navigation.Maui\Mvvm.Navigation.Maui.csproj", "{41636DB3-9F07-47F0-9C4E-44C5DECE1119}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Maui", "src\libs\Mvvm.Navigation.Maui\Mvvm.Navigation.Maui.csproj", "{41636DB3-9F07-47F0-9C4E-44C5DECE1119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Maui", "src\apps\Mvvm.Apps.Maui\Mvvm.Apps.Maui.csproj", "{2B9BACA3-7166-4276-BC84-BF38536F6165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Maui", "src\apps\Mvvm.Apps.Maui\Mvvm.Apps.Maui.csproj", "{2B9BACA3-7166-4276-BC84-BF38536F6165}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyzers", "analyzers", "{A2E06CAF-95FD-4CA1-A5DC-40E6F7BE0544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Navigation.Generators", "src\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj", "{F9B19604-7CC7-4CB0-97A2-93C3F12F9F0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Generators", "src\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj", "{F9B19604-7CC7-4CB0-97A2-93C3F12F9F0B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D973995E-E7ED-4FBD-BFE2-9E8E212E2675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Navigation.Generators.SnapshotTests", "src\tests\Mvvm.Navigation.Generators.SnapshotTests\Mvvm.Navigation.Generators.SnapshotTests.csproj", "{E047566D-8DC9-4434-A493-EC2A8DC81F1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Generators.SnapshotTests", "src\tests\Mvvm.Navigation.Generators.SnapshotTests\Mvvm.Navigation.Generators.SnapshotTests.csproj", "{E047566D-8DC9-4434-A493-EC2A8DC81F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Navigation.Generators.IntegrationTests", "src\tests\Mvvm.Navigation.Generators.IntegrationTests\Mvvm.Navigation.Generators.IntegrationTests.csproj", "{3814EC98-30A2-4384-A261-F37F5B25C190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Generators.IntegrationTests", "src\tests\Mvvm.Navigation.Generators.IntegrationTests\Mvvm.Navigation.Generators.IntegrationTests.csproj", "{3814EC98-30A2-4384-A261-F37F5B25C190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Uno.WebAssembly", "src\apps\Mvvm.Apps.Uno.WebAssembly\Mvvm.Apps.Uno.WebAssembly.csproj", "{D9D594D3-F028-40E9-BAB8-1D32865F8D59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno.WebAssembly", "src\apps\Mvvm.Apps.Uno.WebAssembly\Mvvm.Apps.Uno.WebAssembly.csproj", "{D9D594D3-F028-40E9-BAB8-1D32865F8D59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Uno", "Uno", "{E0DB62E9-38FB-4706-8E05-10CF403CDD1A}"
 	ProjectSection(SolutionItems) = preProject
+		src\apps\Uno\Mvvm.Apps.Uno.Base\base.props = src\apps\Uno\Mvvm.Apps.Uno.Base\base.props
 		src\apps\Uno\Directory.Build.props = src\apps\Uno\Directory.Build.props
 		src\apps\Uno\Directory.Build.targets = src\apps\Uno\Directory.Build.targets
-		src\apps\Uno\Mvvm.Apps.Uno.Base\base.props = src\apps\Uno\Mvvm.Apps.Uno.Base\base.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Uno", "src\apps\Uno\Mvvm.Apps.Uno\Mvvm.Apps.Uno.csproj", "{D7D29B49-E040-4BBA-B43D-5A249CC25103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno", "src\apps\Uno\Mvvm.Apps.Uno\Mvvm.Apps.Uno.csproj", "{D7D29B49-E040-4BBA-B43D-5A249CC25103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Uno.Mobile", "src\apps\Uno\Mvvm.Apps.Uno.Mobile\Mvvm.Apps.Uno.Mobile.csproj", "{FC9783AA-472E-4A07-B346-6A6B17DDBE0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno.Mobile", "src\apps\Uno\Mvvm.Apps.Uno.Mobile\Mvvm.Apps.Uno.Mobile.csproj", "{FC9783AA-472E-4A07-B346-6A6B17DDBE0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Uno.Windows", "src\apps\Uno\Mvvm.Apps.Uno.Windows\Mvvm.Apps.Uno.Windows.csproj", "{D361E916-6DD4-49AE-9F96-28B3BA4A37DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno.Windows", "src\apps\Uno\Mvvm.Apps.Uno.Windows\Mvvm.Apps.Uno.Windows.csproj", "{D361E916-6DD4-49AE-9F96-28B3BA4A37DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Uno.Skia.Gtk", "src\apps\Uno\Mvvm.Apps.Uno.Skia.Gtk\Mvvm.Apps.Uno.Skia.Gtk.csproj", "{C2B1E27D-79C9-4DF7-9847-29922B4981C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno.Skia.Gtk", "src\apps\Uno\Mvvm.Apps.Uno.Skia.Gtk\Mvvm.Apps.Uno.Skia.Gtk.csproj", "{C2B1E27D-79C9-4DF7-9847-29922B4981C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Uno.WebAssembly", "src\apps\Uno\Mvvm.Apps.Uno.WebAssembly\Mvvm.Apps.Uno.WebAssembly.csproj", "{0DE9F79C-3E96-4961-BDC8-3CA2B60BF051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno.WebAssembly", "src\apps\Uno\Mvvm.Apps.Uno.WebAssembly\Mvvm.Apps.Uno.WebAssembly.csproj", "{0DE9F79C-3E96-4961-BDC8-3CA2B60BF051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm.Apps.Core.DesignTime", "src\apps\Mvvm.Apps.Core.DesignTime\Mvvm.Apps.Core.DesignTime.csproj", "{FF1F222C-1F08-46F9-BA48-41FEAE01CBCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Core.DesignTime", "src\apps\Mvvm.Apps.Core.DesignTime\Mvvm.Apps.Core.DesignTime.csproj", "{FF1F222C-1F08-46F9-BA48-41FEAE01CBCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -609,23 +609,14 @@ Global
 		SolutionGuid = {6AF160D8-AC25-4835-84D4-A42A72264F88}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\apps\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems*{1674f114-4bb0-4a0c-814f-336ef6638a22}*SharedItemsImports = 5
-		src\apps\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems*{1674f114-4bb0-4a0c-814f-336ef6638a22}*SharedItemsImports = 5
 		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{16a17957-6de3-4874-b0b6-08404c23fbbe}*SharedItemsImports = 5
-		src\apps\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems*{2b65e186-b9e6-4cef-9ae6-478c6de59bc4}*SharedItemsImports = 4
-		src\apps\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems*{2b65e186-b9e6-4cef-9ae6-478c6de59bc4}*SharedItemsImports = 4
-		src\apps\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems*{418d1399-62c8-481b-a954-517b189eca70}*SharedItemsImports = 13
-		src\apps\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems*{50ccae34-90b0-44d9-975b-f892edcff9f1}*SharedItemsImports = 5
-		src\apps\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems*{50ccae34-90b0-44d9-975b-f892edcff9f1}*SharedItemsImports = 5
 		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{612c6672-9991-4daa-ae72-1fd2194528cd}*SharedItemsImports = 5
 		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{65786107-e646-452e-b899-edd26d09e401}*SharedItemsImports = 5
 		src\apps\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems*{70b22142-13ed-444f-b6a7-4583505ec8db}*SharedItemsImports = 5
 		src\apps\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.projitems*{70b22142-13ed-444f-b6a7-4583505ec8db}*SharedItemsImports = 5
 		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{74ccd32d-dbcd-43c6-9de1-7148d09b4ecf}*SharedItemsImports = 5
 		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{a7ed566d-2e7e-4a3c-8a91-874b4dfab115}*SharedItemsImports = 5
-		src\apps\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems*{b2c9a032-9670-421e-a413-7c7f504f5b55}*SharedItemsImports = 13
 		src\apps\Mvvm.Apps.Shared\Mvvm.Apps.Shared.projitems*{e84afc6c-df9c-44c6-8878-52560a351ec3}*SharedItemsImports = 5
-		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{f497b163-e46e-4ea6-9e41-bb0c25ca6272}*SharedItemsImports = 13
 		src\libs\Mvvm.Navigation.Shared\Mvvm.Navigation.Shared.projitems*{f5eb3a73-1d93-42f7-9757-26b486d74592}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

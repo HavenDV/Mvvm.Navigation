@@ -9,12 +9,15 @@
   </PropertyGroup>
 
   <Import Project="../../libs/Mvvm.Navigation.Wpf/Mvvm.Navigation.Wpf.props" />
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+  </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
-                      OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
+    <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\..\libs\Mvvm.Navigation.Wpf\Mvvm.Navigation.Wpf.csproj" />
+    <ProjectReference Include="..\Mvvm.Apps.Core.DesignTime\Mvvm.Apps.Core.DesignTime.csproj" />
   </ItemGroup>
 
   <Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.props" />

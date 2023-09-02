@@ -5,35 +5,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
+    xmlns:designTime="clr-namespace:Mvvm.Apps.ViewModels.DesignTime;assembly=Mvvm.Apps.Core.DesignTime"
     xmlns:mvvm="clr-namespace:Mvvm.Navigation;assembly=Mvvm.Navigation.Wpf"
     Title="MainWindow"
     Width="800"
     Height="600"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+    Background="{StaticResource MaterialDesignPaper}"
+    d:DataContext="{d:DesignInstance {x:Type designTime:MainViewModel}, IsDesignTimeCreatable=True}"
     >
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel>
-                <Button
-                    Command="{Binding Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:BlueViewModel}"
-                    Content="File"
-                    />
-                <Button
-                    Command="{Binding Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:RedViewModel}"
-                    Content="Message"
-                    />
-                <Button
-                    Command="{Binding Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:GreenViewModel}"
-                    Content="Web"
-                    />
-            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Margin="10" Orientation="Vertical">
+            <Button
+                Command="{Binding Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:BlueViewModel}"
+                Content="File"
+                Margin="0,0,0,5"
+                />
+            <Button
+                Command="{Binding Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:RedViewModel}"
+                Content="Message"
+                Margin="0,0,0,5"
+                />
+            <Button
+                Command="{Binding Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:GreenViewModel}"
+                Content="Web"
+                Margin="0,0,0,5"
+                />
         </StackPanel>
-        <ContentControl mvvm:Properties.Navigator="{Binding Navigator}" />
+        <ContentControl Grid.Column="1" mvvm:Properties.Navigator="{Binding Navigator}">
+            <TextBlock
+                Text="Select color"
+                Foreground="{StaticResource MaterialDesignBody}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                />
+        </ContentControl>
     </Grid>
 
 </Window>
