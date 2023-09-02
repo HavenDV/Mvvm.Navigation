@@ -57,6 +57,13 @@ public static class MyServiceCollectionExtensions
         return builder.AddMvvmNavigation();
     }" : string.Empty)}
 }}
+
+public partial class MainPage
+{{
+    private void InitializeComponent()
+    {{
+    }}
+}}
 ";
     }
 

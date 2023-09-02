@@ -5,9 +5,9 @@ namespace H.Generators.IntegrationTests
 {
     public partial class MainPage
     {
-        public global::H.Generators.IntegrationTests.MainViewModel? ViewModel
+        public global::H.Generators.IntegrationTests.MainViewModel ViewModel
         {
-            get => (global::H.Generators.IntegrationTests.MainViewModel?)DataContext;
+            get => (global::H.Generators.IntegrationTests.MainViewModel)DataContext;
             set => DataContext = value;
         }
     }
