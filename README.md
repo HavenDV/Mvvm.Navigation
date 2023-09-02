@@ -2,7 +2,13 @@
 Provides platform independent navigation at the MVVM level and 
 a Source Generator that automatically binds view and view models and 
 registers this in your DI container.  
-Uses DI to resolve your view from view model.
+Features:
+- Uses DI to resolve your view from view model.
+- Generates an extension method for you with all your Views and ViewModels to register them in DI.
+- Supports automatic mapping between View and ViewModel based on a global attribute
+- Allows case-by-case, attribute-based control for Views
+- Does not contain custom controls, everything happens based on the attached dependency property and does not limit the user.
+- Allows forward/backward navigation like in Chrome
 
 ### NuGet
 
