@@ -14,7 +14,6 @@ jobs:
         /target:libs\Mvvm_Navigation_Core
         /target:libs\Mvvm_Navigation_Uno
         /target:libs\Mvvm_Navigation_Uno_WinUI
-        /target:libs\Mvvm_Navigation_WinUI
         /target:libs\Mvvm_Navigation_Wpf
         /target:libs\Mvvm_Navigation_Maui
         /target:libs\Mvvm_Navigation_Avalonia
@@ -29,6 +28,7 @@ jobs:
     with:
       os: windows-latest
       project-path:
+        /target:libs\Mvvm_Navigation_WinUI
         /target:libs\Mvvm_Navigation_Uwp
       use-msbuild: true
       workloads: maui android ios maccatalyst macos
