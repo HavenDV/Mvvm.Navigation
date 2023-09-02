@@ -1,8 +1,22 @@
 # [Mvvm.Navigation](https://github.com/HavenDV/Mvvm.Navigation/) 
+
+[![CI/CD](https://github.com/HavenDV/Mvvm.Navigation/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/HavenDV/Mvvm.Navigation/actions/workflows/main.yml)
+[![License: MIT](https://img.shields.io/github/license/HavenDV/Mvvm.Navigation)](https://github.com/HavenDV/Mvvm.Navigation/blob/main/LICENSE.txt)
+[![Discord](https://img.shields.io/discord/988253265550532680?label=Discord&logo=discord&logoColor=white&color=d82679)](https://discord.gg/g8u2t9dKgE)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Core.svg?style=flat-square&label=Mvvm.Navigation.Core)](https://www.nuget.org/packages/Mvvm.Navigation.Core/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Wpf.svg?style=flat-square&label=Mvvm.Navigation.Wpf)](https://www.nuget.org/packages/Mvvm.Navigation.Wpf/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Uno.svg?style=flat-square&label=Mvvm.Navigation.Uno)](https://www.nuget.org/packages/Mvvm.Navigation.Uno/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Uno.WinUI.svg?style=flat-square&label=Mvvm.Navigation.Uno.WinUI)](https://www.nuget.org/packages/Mvvm.Navigation.Uno/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Uwp.svg?style=flat-square&label=Mvvm.Navigation.Uwp)](https://www.nuget.org/packages/Mvvm.Navigation.Uwp/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.WinUI.svg?style=flat-square&label=Mvvm.Navigation.WinUI)](https://www.nuget.org/packages/Mvvm.Navigation.WinUI/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Avalonia.svg?style=flat-square&label=Mvvm.Navigation.Avalonia)](https://www.nuget.org/packages/Mvvm.Navigation.Avalonia/)
+[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Maui.svg?style=flat-square&label=Mvvm.Navigation.Maui)](https://www.nuget.org/packages/Mvvm.Navigation.Maui/)
+
 Provides platform independent navigation at the MVVM level and 
 a Source Generator that automatically binds view and view models and 
 registers this in your DI container.  
-Features:
+  
+## 🔥Features🔥
 - Uses DI to resolve your view from view model.
 - Generates an extension method for you with all your Views and ViewModels to register them in DI.
 - Supports automatic mapping between View and ViewModel based on a global attribute
@@ -10,107 +24,44 @@ Features:
 - Does not contain custom controls, everything happens based on the attached dependency property and does not limit the user.
 - Allows forward/backward navigation like in Chrome
 
-### NuGet
-
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Core.svg?style=flat-square&label=Mvvm.Navigation.Core)](https://www.nuget.org/packages/Mvvm.Navigation.Core/)
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Wpf.svg?style=flat-square&label=Mvvm.Navigation.Wpf)](https://www.nuget.org/packages/Mvvm.Navigation.Wpf/)
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Uno.svg?style=flat-square&label=Mvvm.Navigation.Uno)](https://www.nuget.org/packages/Mvvm.Navigation.Uno/)
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Uwp.svg?style=flat-square&label=Mvvm.Navigation.Uwp)](https://www.nuget.org/packages/Mvvm.Navigation.Uwp/)
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.WinUI.svg?style=flat-square&label=Mvvm.Navigation.WinUI)](https://www.nuget.org/packages/Mvvm.Navigation.WinUI/)
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Avalonia.svg?style=flat-square&label=Mvvm.Navigation.Avalonia)](https://www.nuget.org/packages/Mvvm.Navigation.Avalonia/)
-[![NuGet](https://img.shields.io/nuget/dt/Mvvm.Navigation.Maui.svg?style=flat-square&label=Mvvm.Navigation.Maui)](https://www.nuget.org/packages/Mvvm.Navigation.Maui/)
-
-```
-Install-Package Mvvm.Navigation.Core
-Install-Package Mvvm.Navigation.Wpf
-Install-Package Mvvm.Navigation.Uno
-Install-Package Mvvm.Navigation.Uwp
-Install-Package Mvvm.Navigation.WinUI
-Install-Package Mvvm.Navigation.Avalonia
-Install-Package Mvvm.Navigation.Maui
-```
-
 ## Usage
-Add to your App constructors:
+Add `.AddMvvmNavigation()` call to your Host builder:
 ```cs
-
 public sealed partial class App
 {
-    private IHost AppHost { get; }
-
     public App()
     {
         AppHost = Host
             .CreateDefaultBuilder()
-            .ConfigureServices(static services =>
-            {
-                // Add all available interactions
-                services.AddMvvmNavigation();
-                
-                // or add only what you need
-                services.AddSingleton<IFileInteractions, FileInteractions>();
-                services.AddSingleton<IMessageInteractions, MessageInteractions>();
-                services.AddSingleton<IWebInteractions, WebInteractions>();
-            })
+            .AddMvvmNavigation()
             .Build();
-
-        // Optional. Displays unhandled exceptions using MessageInteractions.Exception.
-        AppHost.Services.GetRequiredService<IMessageInteractions>().CatchUnhandledExceptions(this);
-
-        // your code
     }
 }
 ```
-
-### FileInteractions
+Add ViewFor attribute:
 ```cs
-// Open
-var file = await FileInteractions.OpenFileAsync(new OpenFileArguments
-{
-    SuggestedFileName = "my.txt",
-    Extensions = new[] { ".txt" },
-    FilterName = "My txt files",
-});
-if (file == null)
-{
-    return;
-}
-var text = await file.ReadTextAsync().ConfigureAwait(true);
+using Mvvm.Navigation;
 
-// Save (if you need to save file from previuos step)
-await file.WriteTextAsync(text).ConfigureAwait(false);
-
-// Save As
-var file = await FileInteractions.SaveFileAsync(new SaveFileArguments(".txt")
-{
-    SuggestedFileName = "my.txt",
-    FilterName = "My txt files",
-});
-if (file == null)
-{
-    return;
-}
-await file.WriteTextAsync(text).ConfigureAwait(false);
+[ViewFor<MainViewModel>]
+public partial class MainPage : UserControl;
+```
+Add Navigator to your ViewModel:
+```csharp
+public Navigator<ObservableObject> Navigator { get; }
+```
+Add commands to your views(or just use Navigator from ViewModel):
+```xml
+<Grid>
+    <Button
+        Command="{Binding Navigator.NavigateByTypeCommand}"
+        CommandParameter="{x:Type viewModels:BlueViewModel}"
+        />
+    <ContentControl mvvm:Properties.Navigator="{Binding Navigator}"/>
+</Grid>
 ```
 
-### MessageInteractions
-```cs
-await MessageInteractions.ShowMessageAsync("Message");
-await MessageInteractions.ShowWarningAsync("Warning");
-await MessageInteractions.ShowExceptionAsync(new InvalidOperationException("Exception"));
-bool question = await MessageInteractions.ShowQuestionAsync(new QuestionData("Are you sure?"));
-```
-
-WinUI requires a window to display the ContentDialog, so you'll need to set it explicitly in your App.OnLaunched:
-```cs
-protected override void OnLaunched(LaunchActivatedEventArgs args)
-{
-#if HAS_WINUI
-    var window = new Window();
-    MessageInteractions.Window = window;
-#endif
-}
-```
-
-## Contacts
-* [mail](mailto:havendv@gmail.com)
+## Support
+Priority place for bugs: https://github.com/HavenDV/Mvvm.Navigation/issues  
+Priority place for ideas and general questions: https://github.com/HavenDV/Mvvm.Navigation/discussions  
+I also have a Discord support channel:  
+https://discord.gg/g8u2t9dKgE
