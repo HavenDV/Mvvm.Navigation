@@ -35,6 +35,8 @@ using Mvvm.Navigation;
 
 #nullable {(nullable ? "enable" : "disable")}
 
+//[assembly:MapViews(viewsNamespace: nameof(H.Generators.IntegrationTests), viewModelsNamespace: nameof(H.Generators.IntegrationTests))]
+
 namespace H.Generators.IntegrationTests;
 ";
     }
@@ -127,6 +129,7 @@ namespace H.Generators.IntegrationTests;
                         new ConstructorGenerator(),
                         new DependencyInjectionGenerator(),
                         new ViewModelGenerator(),
+                        new GlobalGenerator(),
                     }
                     .Select(GeneratorExtensions.AsSourceGenerator)
                     .ToArray(),
