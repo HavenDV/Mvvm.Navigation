@@ -1,7 +1,8 @@
 # [Mvvm.Navigation](https://github.com/HavenDV/Mvvm.Navigation/) 
 Provides platform independent navigation at the MVVM level and 
 a Source Generator that automatically binds view and view models and 
-registers this in your DI container
+registers this in your DI container.  
+Uses DI to resolve your view from view model.
 
 ### NuGet
 

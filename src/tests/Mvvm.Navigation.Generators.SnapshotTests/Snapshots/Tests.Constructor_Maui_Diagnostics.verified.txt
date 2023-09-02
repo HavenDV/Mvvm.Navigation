@@ -1,0 +1,19 @@
+﻿[
+  {
+    Id: CS0103,
+    Title: ,
+    Severity: Error,
+    WarningLevel: 0,
+    Location: Mvvm.Navigation.Generators/H.Generators.ConstructorGenerator/H.Generators.IntegrationTests.MainPage.Constructor.g.cs: (8,12)-(8,31),
+    Description: ,
+    HelpLink: https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0103),
+    MessageFormat: The name '{0}' does not exist in the current context,
+    Message: The name 'InitializeComponent' does not exist in the current context,
+    Category: Compiler,
+    CustomTags: [
+      Compiler,
+      Telemetry,
+      NotConfigurable
+    ]
+  }
+]

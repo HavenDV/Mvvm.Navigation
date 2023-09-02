@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Mvvm.Navigation;
 
@@ -12,7 +11,6 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-            .UseMauiCommunityToolkit()
             .AddMvvmNavigation()
             .AddViewsAndViewModels()
 			.ConfigureFonts(fonts =>

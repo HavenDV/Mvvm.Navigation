@@ -45,7 +45,7 @@ public static class CommonSteps
                 .Where(x =>
                 {
                     var classSyntax = (ClassDeclarationSyntax)context.TargetNode;
-                    var attributeSyntax = classSyntax.TryFindAttributeSyntax(x);
+                    var attributeSyntax = classSyntax.AttributeLists.FirstOrDefault()?.Attributes.FirstOrDefault();
 
                     return attributeSyntax != null;
                 })

@@ -17,6 +17,16 @@ public class ViewForAttribute : Attribute
     public Type Type { get; }
 
     /// <summary>
+    /// Will generate you a constructor with a call to InitializeComponent inside.
+    /// </summary>
+    public bool Constructor { get; set; }
+
+    /// <summary>
+    /// Will generate you a ViewModel property with the type of your ViewModel, which will refer to the BindingContext/DataContext.
+    /// </summary>
+    public bool ViewModel { get; set; }
+
+    /// <summary>
     /// 
     /// </summary>
     public ServiceLifetime ViewLifetime { get; set; } = ServiceLifetime.Singleton;

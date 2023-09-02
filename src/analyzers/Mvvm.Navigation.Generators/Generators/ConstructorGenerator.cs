@@ -1,15 +1,14 @@
-﻿using H.Generators.Extensions;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace H.Generators;
 
 [Generator]
-public class InterfaceGenerator : IIncrementalGenerator
+public class ConstructorGenerator : IIncrementalGenerator
 {
     #region Constants
 
-    private const string Id = "IG";
+    private const string Id = "CG";
 
     #endregion
 
@@ -18,7 +17,7 @@ public class InterfaceGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var framework = context.DetectFramework();
-
+        
         context.SyntaxProvider
             .ForAttributeWithMetadataName("Mvvm.Navigation.ViewForAttribute")
             .SelectManyAllAttributesOfCurrentClassSyntax()
@@ -44,15 +43,21 @@ public class InterfaceGenerator : IIncrementalGenerator
     {
         var (_, attribute, _, classSymbol) = tuple;
 
-        return attribute.GetViewForData(framework, classSymbol);
+        var data = attribute.GetViewForData(framework, classSymbol);
+        if (!data.Constructor)
+        {
+            return null;
+        }
+        
+        return data;
     }
 
     private static FileWithName GetSourceCode(
         ViewForData data)
     {
         return new FileWithName(
-            Name: $"{data.ViewFullName}.IViewFor.{data.ShortViewModelType}.g.cs",
-            Text: Sources.GenerateIViewFor(data));
+            Name: $"{data.ViewFullName}.Constructor.g.cs",
+            Text: Sources.GenerateConstructor(data));
     }
 
     #endregion

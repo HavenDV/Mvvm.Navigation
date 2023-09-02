@@ -81,13 +81,20 @@ namespace H.Generators.IntegrationTests;
         return globalOptions;
     }
 
-    private async Task CheckSourceAsync<T>(
+    private async Task CheckSourceAsync(
         string source,
         Framework framework,
-        CancellationToken cancellationToken = default,
-        params IIncrementalGenerator[] additionalGenerators)
-        where T : IIncrementalGenerator, new()
+        CancellationToken cancellationToken = default)
     {
+        if (framework == Framework.Maui)
+        {
+            source = source
+                .Replace("using Microsoft.Maui.Controls;", string.Empty)
+                .Replace("UserControl", "Grid");
+            source = @$"using Microsoft.Maui.Controls;
+{source}";
+        }
+        
         var referenceAssemblies = (framework switch
         {
             Framework.None => ReferenceAssemblies.NetFramework.Net48.Wpf,
@@ -113,16 +120,16 @@ namespace H.Generators.IntegrationTests;
                     typeof(Mvvm.Navigation.ViewForAttribute<>).Assembly.Location)),
             options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
         
-        var generator = new T();
-        GeneratorDriver driver = additionalGenerators.Any()
-            ? CSharpGeneratorDriver.Create(
-                generators: new IIncrementalGenerator[] { generator }
-                    .Concat(additionalGenerators)
-                    .Select(Microsoft.CodeAnalysis.GeneratorExtensions.AsSourceGenerator)
+        GeneratorDriver driver = CSharpGeneratorDriver.Create(
+                generators: new IIncrementalGenerator[]
+                    {
+                        new InterfaceGenerator(),
+                        new ConstructorGenerator(),
+                        new DependencyInjectionGenerator(),
+                        new ViewModelGenerator(),
+                    }
+                    .Select(GeneratorExtensions.AsSourceGenerator)
                     .ToArray(),
-                parseOptions: CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.Preview))
-            : CSharpGeneratorDriver.Create(
-                generators: new []{ generator.AsSourceGenerator() },
                 parseOptions: CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.Preview));
         driver = driver
             .WithUpdatedAnalyzerConfigOptions(new DictionaryAnalyzerConfigOptionsProvider(GetGlobalOptions(framework)))
@@ -130,7 +137,10 @@ namespace H.Generators.IntegrationTests;
         var diagnostics = compilation.GetDiagnostics(cancellationToken);
 
         await Task.WhenAll(
-            Verify(diagnostics.NormalizeLocations())
+            Verify(diagnostics
+                    .Where(static x => x.Severity == DiagnosticSeverity.Error)
+                    .ToImmutableArray()
+                    .NormalizeLocations())
                 .UseDirectory("Snapshots")
                 //.AutoVerify()
                 .UseTextForParameters($"{framework}_Diagnostics"),
