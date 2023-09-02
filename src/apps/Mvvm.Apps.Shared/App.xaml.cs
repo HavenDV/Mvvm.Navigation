@@ -36,10 +36,7 @@ public sealed partial class App : Application
             })
             .ConfigureServices(static services =>
             {
-                services
-                    .AddMvvmNavigation()
-                    .AddViewsAndViewModels()
-                    ;
+                services.AddMvvmNavigation();
             })
             .Build();
 

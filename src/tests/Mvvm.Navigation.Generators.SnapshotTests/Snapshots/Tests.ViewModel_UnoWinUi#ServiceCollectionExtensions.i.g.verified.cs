@@ -7,11 +7,12 @@ namespace Mvvm.Navigation
 {
     public static partial class ServiceCollectionExtensions
     {
-        static partial void AddViewsAndViewModelsInternal(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
+        static partial void AddViewsAndViewModels(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {
             _ = services
                     .AddSingleton<global::H.Generators.IntegrationTests.MainViewModel>()
-                    .AddTransient<IViewFor<global::H.Generators.IntegrationTests.MainViewModel>, global::H.Generators.IntegrationTests.MainPage>()
+                    .AddTransient<global::H.Generators.IntegrationTests.MainPage>()
+                    .AddTransient<IViewFor<global::H.Generators.IntegrationTests.MainViewModel>, global::H.Generators.IntegrationTests.MainPage>(static x => x.GetRequiredService<global::H.Generators.IntegrationTests.MainPage>())
                 ;
         }
     }

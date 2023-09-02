@@ -7,19 +7,28 @@ internal static partial class Sources
     public static string GenerateServiceCollectionExtensionsDeclaration()
     {
         return @" 
+using Microsoft.Extensions.DependencyInjection;
+
 #nullable enable
 
 namespace Mvvm.Navigation
 {
     public static partial class ServiceCollectionExtensions
     {
-        static partial void AddViewsAndViewModelsInternal(
+        static partial void AddViewsAndViewModels(
             global::Microsoft.Extensions.DependencyInjection.IServiceCollection services);
 
-        public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection AddViewsAndViewModels(
+        public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection AddMvvmNavigation(
             this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {
-            AddViewsAndViewModelsInternal(services);
+            services = services ?? throw new global::System.ArgumentNullException(nameof(services));
+
+            _ = services
+                    .AddSingleton<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>()
+                    .AddSingleton<global::Mvvm.Navigation.IResolver, global::Mvvm.Navigation.Resolver>()
+                ;
+
+            AddViewsAndViewModels(services);
 
             return services;
         }
@@ -38,12 +47,13 @@ namespace Mvvm.Navigation
 {{
     public static partial class ServiceCollectionExtensions
     {{
-        static partial void AddViewsAndViewModelsInternal(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
+        static partial void AddViewsAndViewModels(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {{
             _ = services
 {views.Select(property => @$"
                     .AddSingleton<{property.ViewModelType}>()
-                    .AddTransient<IViewFor<{property.ViewModelType}>, {property.ViewType}>()
+                    .AddTransient<{property.ViewType}>()
+                    .AddTransient<IViewFor<{property.ViewModelType}>, {property.ViewType}>(static x => x.GetRequiredService<{property.ViewType}>())
 ").Inject()}
                 ;
         }}

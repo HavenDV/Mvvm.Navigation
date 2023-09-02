@@ -24,10 +24,7 @@ public class App : Application
             .CreateDefaultBuilder()
             .ConfigureServices(static services =>
             {
-                services
-                    .AddMvvmNavigation()
-                    .AddViewsAndViewModels()
-                    ;
+                services.AddMvvmNavigation();
             })
             .Build();
 

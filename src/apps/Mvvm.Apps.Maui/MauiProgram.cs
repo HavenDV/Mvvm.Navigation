@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Maui;
 
@@ -12,7 +11,6 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .AddMvvmNavigation()
-            .AddViewsAndViewModels()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -27,8 +25,6 @@ public static class MauiProgram
         
         Ioc.Default.ConfigureServices(app.Services);
 
-        return app
-            .UseMvvmNavigation()
-            ;
+        return app;
     }
 }
