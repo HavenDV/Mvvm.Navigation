@@ -124,13 +124,25 @@ public partial class Navigator<T>
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public IViewFor Resolve(Type type)
+    {
+        type = type ?? throw new ArgumentNullException(nameof(type));
+        
+        return Resolver.Resolve(type);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="viewModel"></param>
     /// <returns></returns>
     public IViewFor Resolve(object viewModel)
     {
         viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
         
-        return Resolver.Resolve(viewModel.GetType());
+        return Resolve(viewModel.GetType());
     }
     
     /// <summary>

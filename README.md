@@ -25,7 +25,7 @@ registers this in your DI container.
 - Allows forward/backward navigation like in Chrome
 
 ## Usage
-Add `.AddMvvmNavigation()` call to your Host builder:
+Add `.AddMvvmNavigation()` call to your Host builder or `IServiceCollection`:
 ```cs
 public sealed partial class App
 {
@@ -38,7 +38,7 @@ public sealed partial class App
     }
 }
 ```
-Add ViewFor attribute:
+Add ViewFor attribute to your views:
 ```cs
 using Mvvm.Navigation;
 

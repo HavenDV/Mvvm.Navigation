@@ -7,6 +7,7 @@ namespace Mvvm.Navigation;
 /// 
 /// </summary>
 [AttachedDependencyProperty<object, ContentControl>("ViewModel")]
+[AttachedDependencyProperty<Type, ContentControl>("ViewModelType")]
 [AttachedDependencyProperty<Navigator<ObservableObject>, ContentControl>("Navigator")]
 public partial class Properties
 {
@@ -26,7 +27,7 @@ public partial class Properties
         {
             try
             {
-                var viewFor = Resolve(contentControl, e);
+                var viewFor = Resolve(contentControl, e.GetType());
 
                 contentControl.Content = viewFor;
             }
@@ -37,11 +38,33 @@ public partial class Properties
         }
     }
     
-    static partial void OnViewModelChanged(ContentControl contentControl, object? oldValue, object? newValue)
+    static partial void OnViewModelChanged(ContentControl contentControl, object? newValue)
     {
         try
         {
-            contentControl.Content = Resolve(contentControl, newValue!);
+            if (newValue == null)
+            {
+                return;
+            }
+
+            contentControl.Content = Resolve(contentControl, newValue.GetType());
+        }
+        catch (Exception exception)
+        {
+            SetException(contentControl, exception);
+        }
+    }
+    
+    static partial void OnViewModelTypeChanged(ContentControl contentControl, Type? newValue)
+    {
+        try
+        {
+            if (newValue == null)
+            {
+                return;
+            }
+            
+            contentControl.Content = Resolve(contentControl, newValue);
         }
         catch (Exception exception)
         {
@@ -59,9 +82,9 @@ public partial class Properties
         };
     }
 
-    private static Content Resolve(ContentControl contentControl, object newValue)
+    private static Content Resolve(ContentControl contentControl, Type type)
     {
         // ReSharper disable once SuspiciousTypeConversion.Global
-        return (Content)GetNavigator(contentControl)!.Resolve(newValue);
+        return (Content)GetNavigator(contentControl)!.Resolve(type);
     }
 }
