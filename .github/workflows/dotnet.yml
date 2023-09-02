@@ -10,8 +10,30 @@ jobs:
     uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
     with:
       os: windows-latest
+      project-path:
+        /target:libs\Mvvm_Navigation_Core
+        /target:libs\Mvvm_Navigation_Uno
+        /target:libs\Mvvm_Navigation_Uno_WinUI
+        /target:libs\Mvvm_Navigation_WinUI
+        /target:libs\Mvvm_Navigation_Wpf
+        /target:libs\Mvvm_Navigation_Maui
+        /target:libs\Mvvm_Navigation_Avalonia
+      workloads: maui android ios maccatalyst macos
+      install-tizen: true
+      generate-build-number: false
+      conventional-commits-publish-conditions: false
+    secrets:
+      nuget-key: ${{ secrets.NUGET_KEY }}
+      
+  build-test-publish-uwp:
+    name: Build, test and publish
+    uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
+    with:
+      os: windows-latest
+      project-path:
+        /target:libs\Mvvm_Navigation_Uwp
       use-msbuild: true
-      workloads: maui
+      workloads: maui android ios maccatalyst macos
       install-tizen: true
       windows-sdk-version: 18362
       generate-build-number: false
