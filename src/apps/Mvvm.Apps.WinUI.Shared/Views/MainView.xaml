@@ -20,22 +20,24 @@
             >
             <Button
                 Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
-                CommandParameter="viewModels:BlueViewModel"
-                Content="File"
+                CommandParameter="{mvvm:Type Type=viewModels:BlueViewModel}"
+                Content="Blue"
                 />
             <Button
                 Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
-                CommandParameter="viewModels:RedViewModel"
-                Content="Message"
+                CommandParameter="{mvvm:Type Type=viewModels:RedViewModel}"
+                Content="Red"
                 />
             <Button
                 Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
-                CommandParameter="viewModels:GreenViewModel"
-                Content="Web"
+                CommandParameter="{mvvm:Type Type=viewModels:GreenViewModel}"
+                Content="Green"
                 />
         </StackPanel>
         <ContentControl
             Grid.Column="1"
+            Width="500"
+            Height="500"
             mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
             >
             <TextBlock

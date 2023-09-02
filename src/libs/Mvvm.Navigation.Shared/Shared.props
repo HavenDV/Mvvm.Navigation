@@ -52,5 +52,11 @@
         <Compile Remove="$(MSBuildThisFileDirectory)**\net\**\*.cs" />
         <None Include="$(MSBuildThisFileDirectory)**\net\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     </ItemGroup>
+    <ItemGroup Condition="'$(UseMaui)' == 'true' OR '$(UseWPF)' == 'true' OR '$(UseAvalonia)' == 'true'">
+        <Compile Remove="$(MSBuildThisFileDirectory)**\**\*.WinRT.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\**\*.WinRT.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+        <Compile Remove="$(MSBuildThisFileDirectory)**\WinRT\**\*.cs" />
+        <None Include="$(MSBuildThisFileDirectory)**\WinRT\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
 
 </Project>

@@ -35,10 +35,7 @@ public class App : Application
             // parameter
             //rootFrame.Navigate(typeof(MainView), args.Arguments);
             
-            rootFrame.Content = new MainView
-            {
-                ViewModel = Ioc.Default.GetRequiredService<MainViewModel>(),
-            };
+            rootFrame.Content = Ioc.Default.GetRequiredService<MainView>();
         }
 
 		// Ensure the current window is active
