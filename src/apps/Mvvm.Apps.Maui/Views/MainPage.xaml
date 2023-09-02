@@ -4,29 +4,44 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:mvvm="clr-namespace:Mvvm.Navigation;assembly=Mvvm.Navigation.Maui"
     xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    >
 
-    <Grid>
-        <StackLayout Orientation="Horizontal">
-            <StackLayout>
-                <Button
-                    Command="{Binding Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:BlueViewModel}"
-                    Text="File" />
-                <Button
-                    Command="{Binding Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:RedViewModel}"
-                    Text="Message" />
-                <Button
-                    Command="{Binding Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:GreenViewModel}"
-                    Text="Web" />
-            </StackLayout>
-        </StackLayout>
+    <Grid ColumnDefinitions="Auto,*">
+        <VerticalStackLayout
+            Grid.Column="0"
+            Margin="10"
+            Spacing="5"
+            >
+            <Button
+                Command="{Binding Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:BlueViewModel}"
+                Text="Blue"
+                WidthRequest="100"
+                />
+            <Button
+                Command="{Binding Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:RedViewModel}"
+                Text="Red"
+                WidthRequest="100"
+                />
+            <Button
+                Command="{Binding Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:GreenViewModel}"
+                Text="Green"
+                WidthRequest="100"
+                />
+        </VerticalStackLayout>
         <ContentView
-            HeightRequest="555"
-            WidthRequest="555"
-            mvvm:Properties.Navigator="{Binding Navigator}" />
+            Grid.Column="1"
+            mvvm:Properties.Navigator="{Binding Navigator}"
+            >
+            <Label
+                Text="Select color"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                />
+        </ContentView>
     </Grid>
 
 </ContentPage>

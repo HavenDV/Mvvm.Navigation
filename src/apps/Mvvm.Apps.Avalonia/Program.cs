@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.ReactiveUI;
 
 namespace Mvvm.Apps;
 
@@ -22,7 +21,6 @@ internal class Program
             .Configure<App>()
             .UsePlatformDetect()
             .LogToTrace()
-            .UseReactiveUI()
             ;
     }
 }

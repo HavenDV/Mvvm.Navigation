@@ -11,27 +11,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     >
 
-    <Grid>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel>
-                <Button
-                    Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:BlueViewModel}"
-                    Content="File"
-                    />
-                <Button
-                    Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:RedViewModel}"
-                    Content="Message"
-                    />
-                <Button
-                    Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
-                    CommandParameter="{x:Type viewModels:GreenViewModel}"
-                    Content="Web"
-                    />
-            </StackPanel>
+    <Grid ColumnDefinitions="Auto,*">
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Column="0"
+            Margin="10"
+            Spacing="5"
+            >
+            <Button
+                Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:BlueViewModel}"
+                Content="File"
+                />
+            <Button
+                Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:RedViewModel}"
+                Content="Message"
+                />
+            <Button
+                Command="{x:Bind ViewModel.Navigator.NavigateByTypeCommand}"
+                CommandParameter="{x:Type viewModels:GreenViewModel}"
+                Content="Web"
+                />
         </StackPanel>
-        <Frame mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}" />
+        <ContentControl
+            Grid.Column="1"
+            mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
+            >
+            <TextBlock
+                Text="Select color"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                />
+        </ContentControl>
     </Grid>
 
 </Page>

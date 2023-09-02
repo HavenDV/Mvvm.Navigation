@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Mvvm.Apps.Maui;
 
@@ -21,10 +20,6 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		var app = builder.Build();
-        
-        Ioc.Default.ConfigureServices(app.Services);
-
-        return app;
+        return builder.Build();
     }
 }
