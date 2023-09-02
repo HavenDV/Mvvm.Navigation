@@ -7,7 +7,7 @@ namespace H.Generators.IntegrationTests
     {
         public global::H.Generators.IntegrationTests.MainViewModel ViewModel
         {
-            get => (global::H.Generators.IntegrationTests.MainViewModel)DataContext;
+            get => DataContext as global::H.Generators.IntegrationTests.MainViewModel ?? throw new global::System.ArgumentNullException(nameof(DataContext));
             set => DataContext = value;
         }
     }

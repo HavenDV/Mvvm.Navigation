@@ -58,4 +58,19 @@ public partial class MainPage : UserControl;
 
 public class MainViewModel;", framework);
     }
+    
+    [DataTestMethod]
+    [DataRow(Framework.Wpf)]
+    [DataRow(Framework.Uno)]
+    [DataRow(Framework.UnoWinUi)]
+    [DataRow(Framework.Maui)]
+    [DataRow(Framework.Avalonia)]
+    public Task ViewModelAndConstructor(Framework framework)
+    {
+        return CheckSourceAsync(GetHeader(framework, "Controls") + @"
+[ViewFor<MainViewModel>(ViewModel = true, Constructor = true)]
+public partial class MainPage : UserControl;
+
+public class MainViewModel;", framework);
+    }
 }

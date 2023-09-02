@@ -17,6 +17,13 @@ namespace {data.ViewNamespace}
         {{
             InitializeComponent();
         }}
+{(data.ViewModel ? @$"
+        public {data.ViewClassName}({data.ViewModelType} viewModel)
+        {{
+            InitializeComponent();
+
+            ViewModel = viewModel;
+        }}" : " ")}
     }}
 }}".RemoveBlankLinesWhereOnlyWhitespaces();
     }

@@ -3,6 +3,11 @@ namespace H.Generators;
 public enum ServiceLifetime
 {
     /// <summary>
+    /// Disables DI generation for this class.
+    /// </summary>
+    None,
+    
+    /// <summary>
     /// Specifies that a single instance of the service will be created.
     /// </summary>
     Singleton,
