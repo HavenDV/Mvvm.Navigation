@@ -49,6 +49,8 @@ namespace Mvvm.Navigation
     {{
         static partial void AddViewsAndViewModels(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {{
+            services = services ?? throw new global::System.ArgumentNullException(nameof(services));
+
             _ = services
 {views.Select(property => @$"
                     .AddSingleton<{property.ViewModelType}>()

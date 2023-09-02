@@ -21,7 +21,7 @@ namespace {data.ViewNamespace}
     {{
         public {data.ViewModelType} ViewModel
         {{
-            get => ({data.ViewModelType}){dataContext};
+            get => {dataContext} as {data.ViewModelType} ?? throw new global::System.ArgumentNullException(nameof({dataContext}));
             set => {dataContext} = value;
         }}
     }}

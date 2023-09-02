@@ -15,6 +15,8 @@ namespace Mvvm.Navigation
     {
         public static global::Microsoft.Extensions.Hosting.IHostBuilder AddMvvmNavigation(this global::Microsoft.Extensions.Hosting.IHostBuilder builder)
         {
+            builder = builder ?? throw new global::System.ArgumentNullException(nameof(builder));
+
             return builder.ConfigureServices(static (_, services) => services.AddMvvmNavigation());
         }
     }
