@@ -5,5 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  
+
+  <Sdk Name="ViHo.PackAsAnalyzer" Version="1.0.1" />
+
 </Project>
