@@ -22,4 +22,9 @@ public static class MyServiceCollectionExtensions
     {
         return builder.AddMvvmNavigation();
     }
+    
+    public static HostApplicationBuilder My(this HostApplicationBuilder builder)
+    {
+        return builder.AddMvvmNavigation();
+    }
 }

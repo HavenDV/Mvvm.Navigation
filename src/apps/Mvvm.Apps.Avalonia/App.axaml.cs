@@ -14,7 +14,7 @@ public class App : Application
     #region Properties
 
     private IHost Host { get; } = Microsoft.Extensions.Hosting.Host
-        .CreateDefaultBuilder()
+        .CreateApplicationBuilder()
         .AddMvvmNavigation()
         .Build();
 

@@ -4,7 +4,7 @@
     Title: ,
     Severity: Error,
     WarningLevel: 0,
-    Location: : (25,15)-(25,22),
+    Location: : (30,15)-(30,22),
     Description: ,
     HelpLink: https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1929),
     MessageFormat: '{0}' does not contain a definition for '{1}' and the best extension method overload '{2}' requires a receiver of type '{3}',

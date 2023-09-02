@@ -50,6 +50,11 @@ public static class MyServiceCollectionExtensions
     {{
         return builder.AddMvvmNavigation();
     }}
+    
+    public static global::Microsoft.Extensions.Hosting.HostApplicationBuilder My(this global::Microsoft.Extensions.Hosting.HostApplicationBuilder builder)
+    {{
+        return builder.AddMvvmNavigation();
+    }}
 {(framework == Framework.Maui ? @"
     
     public static global::Microsoft.Maui.Hosting.MauiAppBuilder My(this global::Microsoft.Maui.Hosting.MauiAppBuilder builder)
@@ -135,7 +140,7 @@ public partial class MainPage
             Framework.Maui => FrameworkReferenceAssemblies.Net70Maui,
             _ => throw new NotImplementedException(),
         }).AddPackages(ImmutableArray.Create(
-            new PackageIdentity("Microsoft.Extensions.Hosting.Abstractions", "7.0.0"),
+            new PackageIdentity("Microsoft.Extensions.Hosting", "7.0.1"),
             new PackageIdentity("CommunityToolkit.Mvvm", "8.2.1")));
         var references = await referenceAssemblies.ResolveAsync(null, cancellationToken);
         var compilation = (Compilation)CSharpCompilation.Create(
