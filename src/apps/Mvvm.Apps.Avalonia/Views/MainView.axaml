@@ -1,19 +1,18 @@
 <Window
+    Icon="/Assets/avalonia-logo.ico"
+    RequestedThemeVariant="Dark"
+    Title="Mvvm.Apps.Avalonia"
+    d:DesignHeight="400"
+    d:DesignWidth="400"
+    mc:Ignorable="d"
     x:Class="Mvvm.Apps.Views.MainView"
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
-    xmlns:mvvm="clr-namespace:Mvvm.Navigation;assembly=Mvvm.Navigation.Avalonia"
     xmlns:designTime="clr-namespace:Mvvm.Apps.ViewModels.DesignTime;assembly=Mvvm.Apps.Core.DesignTime"
-    Icon="/Assets/avalonia-logo.ico"
-    Title="Mvvm.Apps.Avalonia"
-    RequestedThemeVariant="Dark"
-    mc:Ignorable="d"
-    d:DesignWidth="400"
-    d:DesignHeight="400"
-    >
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="clr-namespace:Mvvm.Navigation;assembly=Mvvm.Navigation.Avalonia"
+    xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.DataContext>
         <designTime:MainViewModel />
     </Design.DataContext>
@@ -22,38 +21,30 @@
         <StackPanel
             Grid.Column="0"
             Margin="10"
-            Orientation="Horizontal"
-            >
+            Orientation="Horizontal">
             <StackPanel>
                 <Button
                     Command="{Binding Navigator.NavigateByTypeCommand}"
                     CommandParameter="{x:Type viewModels:BlueViewModel}"
                     Content="Blue"
-                    Width="100"
-                    />
+                    Width="100" />
                 <Button
                     Command="{Binding Navigator.NavigateByTypeCommand}"
                     CommandParameter="{x:Type viewModels:RedViewModel}"
                     Content="Red"
-                    Width="100"
-                    />
+                    Width="100" />
                 <Button
                     Command="{Binding Navigator.NavigateByTypeCommand}"
                     CommandParameter="{x:Type viewModels:GreenViewModel}"
                     Content="Green"
-                    Width="100"
-                    />
+                    Width="100" />
             </StackPanel>
         </StackPanel>
-        <ContentControl
-            Grid.Column="1"
-            mvvm:Properties.Navigator="{Binding Navigator}"
-            >
+        <ContentControl Grid.Column="1" mvvm:Properties.Navigator="{Binding Navigator}">
             <Label
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
                 Content="Select color"
-                />
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
         </ContentControl>
     </Grid>
 

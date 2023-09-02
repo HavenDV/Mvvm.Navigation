@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 
 #pragma warning disable 8618
 
@@ -15,6 +16,18 @@ public partial class Navigator<T>
 {
     #region Properties
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [IgnoreDataMember]
+    private IResolver Resolver { get; }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [IgnoreDataMember]
+    private IServiceProvider ServiceProvider { get; }
+    
     /// <summary>
     /// Gets the current navigation stack, the last element in the
     /// collection being the currently visible ViewModel.
@@ -36,6 +49,21 @@ public partial class Navigator<T>
 
     #endregion
 
+    #region Constructors
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="resolver"></param>
+    /// <param name="serviceProvider"></param>
+    public Navigator(IResolver resolver, IServiceProvider serviceProvider)
+    {
+        Resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+        ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+    }
+
+    #endregion
+    
     #region Events
 
     /// <summary>
@@ -91,6 +119,30 @@ public partial class Navigator<T>
         NavigateForwardCommand.NotifyCanExecuteChanged();
         
         OnCurrentChanged(Current!);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="viewModel"></param>
+    /// <returns></returns>
+    public IViewFor Resolve(object viewModel)
+    {
+        viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        
+        return Resolver.Resolve(viewModel.GetType());
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="viewModel"></param>
+    /// <returns></returns>
+    public IViewFor<T> Resolve(T viewModel)
+    {
+        viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        
+        return (IViewFor<T>)Resolve((object)viewModel);
     }
     
     /// <summary>
@@ -162,8 +214,9 @@ public partial class Navigator<T>
         type = type ?? throw new ArgumentNullException(nameof(type));
 
         var viewModel = (T)(
-            Ioc.Default.GetService(type) ??
+            ServiceProvider.GetService(type) ??
             throw new InvalidOperationException("The requested service type was not registered."));
+        //var viewModel = (T)ServiceProvider.GetRequiredService(type);
 
         return Navigate(viewModel, reset);
     }
@@ -176,7 +229,7 @@ public partial class Navigator<T>
     /// <returns></returns>
     public T Navigate<TViewModel>(bool reset = false) where TViewModel : class, T
     {
-        var viewModel = Ioc.Default.GetRequiredService<TViewModel>();
+        var viewModel = ServiceProvider.GetRequiredService<TViewModel>();
 
         return Navigate(viewModel, reset);
     }

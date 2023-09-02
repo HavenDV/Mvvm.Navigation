@@ -1,3 +1,5 @@
-﻿namespace Mvvm.Apps.ViewModels.DesignTime;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 
-public class MainViewModel() : ViewModels.MainViewModel(new Navigator<ObservableObject>());
+namespace Mvvm.Apps.ViewModels.DesignTime;
+
+public class MainViewModel() : ViewModels.MainViewModel(new Navigator<ObservableObject>(new Resolver(Ioc.Default), Ioc.Default));

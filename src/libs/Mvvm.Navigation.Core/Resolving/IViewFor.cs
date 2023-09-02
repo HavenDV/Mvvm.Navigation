@@ -12,5 +12,4 @@ public interface IViewFor;
 /// Implement this interface on your Views to support Routing and Binding.
 /// </summary>
 /// <typeparam name="T">The type of ViewModel.</typeparam>
-public interface IViewFor<in T> : IViewFor
-    where T : class;
+public interface IViewFor<in T> : IViewFor;

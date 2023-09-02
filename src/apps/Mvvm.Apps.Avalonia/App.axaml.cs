@@ -4,7 +4,6 @@ using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Mvvm.Apps.ViewModels;
 using Mvvm.Apps.Views;
 using Mvvm.Navigation;
 
@@ -14,18 +13,18 @@ public class App : Application
 {
     #region Properties
 
-    private IHost? AppHost { get; set; }
+    private IHost Host { get; } = Microsoft.Extensions.Hosting.Host
+        .CreateDefaultBuilder()
+        .AddMvvmNavigation()
+        .Build();
 
     #endregion
 
     public override void Initialize()
     {
-        AppHost = Host
-            .CreateDefaultBuilder()
-            .AddMvvmNavigation()
-            .Build();
-
-        Ioc.Default.ConfigureServices(AppHost.Services);
+#if DEBUG
+        Ioc.Default.ConfigureServices(Host.Services);
+#endif
         
         AvaloniaXamlLoader.Load(this);
     }
@@ -34,7 +33,7 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = AppHost?.Services.GetRequiredService<MainView>();
+            desktop.MainWindow = Host.Services.GetRequiredService<MainView>();
         }
 
         base.OnFrameworkInitializationCompleted();
