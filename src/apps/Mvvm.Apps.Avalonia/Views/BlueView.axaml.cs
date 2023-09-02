@@ -5,14 +5,9 @@ using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Views;
 
-[ViewFor<BlueViewModel>]
+[ViewFor<BlueViewModel>(ViewModel = true, Constructor = true)]
 public partial class BlueView : UserControl
 {
-    public BlueView()
-    {
-        InitializeComponent();
-    }
-
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);

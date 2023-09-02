@@ -22,10 +22,7 @@ public class App : Application
     {
         AppHost = Host
             .CreateDefaultBuilder()
-            .ConfigureServices(static services =>
-            {
-                services.AddMvvmNavigation();
-            })
+            .AddMvvmNavigation()
             .Build();
 
         Ioc.Default.ConfigureServices(AppHost.Services);
@@ -37,10 +34,7 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainView
-            {
-                DataContext = AppHost?.Services.GetRequiredService<MainViewModel>(),
-            };
+            desktop.MainWindow = AppHost?.Services.GetRequiredService<MainView>();
         }
 
         base.OnFrameworkInitializationCompleted();

@@ -32,13 +32,7 @@ public sealed partial class AppHead : App
                 context.ClearProviders();
 #endif
             })
-            .ConfigureServices(static services =>
-            {
-                services
-                    .AddMvvmNavigation()
-                    .AddViewsAndViewModels()
-                    ;
-            })
+            .AddMvvmNavigation()
             .Build();
 
         Ioc.Default.ConfigureServices(AppHost.Services);

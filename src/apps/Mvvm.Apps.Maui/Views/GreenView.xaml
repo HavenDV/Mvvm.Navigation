@@ -1,6 +1,6 @@
 ﻿<ContentView
     BackgroundColor="Green"
-    x:Class="Mvvm.Apps.Maui.GreenView"
+    x:Class="Mvvm.Apps.Views.GreenView"
     x:DataType="{x:Type viewModels:GreenViewModel}"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"

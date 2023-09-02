@@ -1,11 +1,13 @@
-﻿namespace Mvvm.Apps.Maui;
+﻿using Mvvm.Apps.Views;
 
-public partial class App : Application
+namespace Mvvm.Apps;
+
+public partial class App
 {
-	public App()
+	public App(MainView mainView)
 	{
 		InitializeComponent();
 
-		MainPage = new NavigationPage(new MainPage());
+        MainPage = mainView;
 	}
 }

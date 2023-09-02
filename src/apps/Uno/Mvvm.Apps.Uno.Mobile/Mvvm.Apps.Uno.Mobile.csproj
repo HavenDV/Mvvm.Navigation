@@ -70,13 +70,5 @@
 		<ProjectReference Include="..\Mvvm.Apps.Uno\Mvvm.Apps.Uno.csproj" />
 	</ItemGroup>
 	<Import Project="..\Mvvm.Apps.Uno.Base\base.props" />
-
-	<Import Project="../../../libs/Mvvm.Navigation.Uno.WinUI/Mvvm.Navigation.Uno.WinUI.props" />
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
-						  OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-		<ProjectReference Include="..\..\..\libs\Mvvm.Navigation.Uno.WinUI\Mvvm.Navigation.Uno.WinUI.csproj" />
-	</ItemGroup>
 	
 </Project>

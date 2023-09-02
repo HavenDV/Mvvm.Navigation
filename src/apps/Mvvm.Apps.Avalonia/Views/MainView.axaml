@@ -6,34 +6,55 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:Mvvm.Apps.ViewModels;assembly=Mvvm.Apps.Core"
     xmlns:mvvm="clr-namespace:Mvvm.Navigation;assembly=Mvvm.Navigation.Avalonia"
+    xmlns:designTime="clr-namespace:Mvvm.Apps.ViewModels.DesignTime;assembly=Mvvm.Apps.Core.DesignTime"
     Icon="/Assets/avalonia-logo.ico"
     Title="Mvvm.Apps.Avalonia"
+    RequestedThemeVariant="Dark"
     mc:Ignorable="d"
-    d:DesignWidth="800"
-    d:DesignHeight="450"
+    d:DesignWidth="400"
+    d:DesignHeight="400"
     >
+    <Design.DataContext>
+        <designTime:MainViewModel />
+    </Design.DataContext>
 
-    <Grid>
-        <StackPanel Orientation="Horizontal">
+    <Grid ColumnDefinitions="Auto,*">
+        <StackPanel
+            Grid.Column="0"
+            Margin="10"
+            Orientation="Horizontal"
+            >
             <StackPanel>
                 <Button
                     Command="{Binding Navigator.NavigateByTypeCommand}"
                     CommandParameter="{x:Type viewModels:BlueViewModel}"
-                    Content="File"
+                    Content="Blue"
+                    Width="100"
                     />
                 <Button
                     Command="{Binding Navigator.NavigateByTypeCommand}"
                     CommandParameter="{x:Type viewModels:RedViewModel}"
-                    Content="Message"
+                    Content="Red"
+                    Width="100"
                     />
                 <Button
                     Command="{Binding Navigator.NavigateByTypeCommand}"
                     CommandParameter="{x:Type viewModels:GreenViewModel}"
-                    Content="Web"
+                    Content="Green"
+                    Width="100"
                     />
             </StackPanel>
         </StackPanel>
-        <ContentControl mvvm:Properties.Navigator="{Binding Navigator}" />
+        <ContentControl
+            Grid.Column="1"
+            mvvm:Properties.Navigator="{Binding Navigator}"
+            >
+            <Label
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="Select color"
+                />
+        </ContentControl>
     </Grid>
 
 </Window>

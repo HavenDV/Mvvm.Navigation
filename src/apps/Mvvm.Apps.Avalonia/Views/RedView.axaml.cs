@@ -5,14 +5,9 @@ using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Views;
 
-[ViewFor<RedViewModel>]
+[ViewFor<RedViewModel>(ViewModel = true, Constructor = true)]
 public partial class RedView : UserControl
 {
-    public RedView()
-    {
-        InitializeComponent();
-    }
-
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);

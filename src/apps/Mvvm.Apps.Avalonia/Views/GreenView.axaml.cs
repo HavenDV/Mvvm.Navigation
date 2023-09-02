@@ -5,14 +5,9 @@ using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Views;
 
-[ViewFor<GreenViewModel>]
+[ViewFor<GreenViewModel>(ViewModel = true, Constructor = true)]
 public partial class GreenView : UserControl
 {
-    public GreenView()
-    {
-        InitializeComponent();
-    }
-
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);

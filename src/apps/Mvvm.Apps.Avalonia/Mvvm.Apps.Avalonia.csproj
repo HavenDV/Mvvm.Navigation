@@ -23,7 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
                       OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
+    <ProjectReference Include="..\Mvvm.Apps.Core.DesignTime\Mvvm.Apps.Core.DesignTime.csproj" />
     <ProjectReference Include="..\..\libs\Mvvm.Navigation.Avalonia\Mvvm.Navigation.Avalonia.csproj" />
   </ItemGroup>
 

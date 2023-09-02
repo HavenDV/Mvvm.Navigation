@@ -31,11 +31,7 @@
                     />
             </StackPanel>
         </StackPanel>
-        <Frame
-            Height="555"
-            Width="555"
-            mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
-            />
+        <Frame mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}" />
     </Grid>
 
 </Page>
