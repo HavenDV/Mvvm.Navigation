@@ -38,6 +38,25 @@ using Mvvm.Navigation;
 //[assembly:MapViews(viewsNamespace: nameof(H.Generators.IntegrationTests), viewModelsNamespace: nameof(H.Generators.IntegrationTests))]
 
 namespace H.Generators.IntegrationTests;
+
+public static class MyServiceCollectionExtensions
+{{
+    public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection My(this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
+    {{
+        return services.AddMvvmNavigation();
+    }}
+    
+    public static global::Microsoft.Extensions.Hosting.IHostBuilder My(this global::Microsoft.Extensions.Hosting.IHostBuilder builder)
+    {{
+        return builder.AddMvvmNavigation();
+    }}
+{(framework == Framework.Maui ? @"
+    
+    public static global::Microsoft.Maui.Hosting.MauiAppBuilder My(this global::Microsoft.Maui.Hosting.MauiAppBuilder builder)
+    {
+        return builder.AddMvvmNavigation();
+    }" : string.Empty)}
+}}
 ";
     }
 
@@ -108,7 +127,9 @@ namespace H.Generators.IntegrationTests;
             Framework.Avalonia => FrameworkReferenceAssemblies.Net70Avalonia,
             Framework.Maui => FrameworkReferenceAssemblies.Net70Maui,
             _ => throw new NotImplementedException(),
-        }).AddPackages(ImmutableArray.Create(new PackageIdentity("Microsoft.Extensions.DependencyInjection.Abstractions", "7.0.0")));
+        }).AddPackages(ImmutableArray.Create(
+            new PackageIdentity("Microsoft.Extensions.Hosting.Abstractions", "7.0.0"),
+            new PackageIdentity("CommunityToolkit.Mvvm", "8.2.1")));
         var references = await referenceAssemblies.ResolveAsync(null, cancellationToken);
         var compilation = (Compilation)CSharpCompilation.Create(
             assemblyName: "Tests",

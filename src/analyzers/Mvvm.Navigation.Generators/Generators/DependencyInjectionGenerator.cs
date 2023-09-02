@@ -23,6 +23,9 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
             context.AddSource(
                 hintName: "ServiceCollectionExtensions.d.g.cs",
                 source: Sources.GenerateServiceCollectionExtensionsDeclaration());
+            context.AddSource(
+                hintName: "HostBuilderExtensions.g.cs",
+                source: Sources.GenerateHostBuilderExtensions());
         });
         
         var framework = context.DetectFramework();
