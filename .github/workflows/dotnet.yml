@@ -4,6 +4,12 @@ on:
     branches:
       - main
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-test-publish:
     name: Build, test and publish
@@ -27,14 +33,3 @@ jobs:
       conventional-commits-publish-conditions: false
     secrets:
       nuget-key: ${{ secrets.NUGET_KEY }}
-
-  WebAssembly:
-    uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
-    with:
-      os: windows-latest
-      project-path: src/apps/Mvvm.Apps.Uno.WebAssembly
-      additional-dotnet-version: 6.0.x
-      deploy-web-assembly-path: src/apps/Mvvm.Apps.Uno.WebAssembly/bin/Release/net7.0/dist
-      generate-build-number: false
-      conventional-commits-publish-conditions: false
-      workloads: maui

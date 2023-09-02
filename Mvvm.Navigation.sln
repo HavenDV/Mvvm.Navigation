@@ -21,7 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		LICENSE = LICENSE
 		.github\workflows\pull-request.yml = .github\workflows\pull-request.yml
-		README.md = README.md
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\workflows\github-pages.yml = .github\workflows\github-pages.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Uwp", "src\libs\Mvvm.Navigation.Uwp\Mvvm.Navigation.Uwp.csproj", "{16A17957-6DE3-4874-B0B6-08404C23FBBE}"

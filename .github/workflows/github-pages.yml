@@ -1,0 +1,53 @@
+﻿name: Build, test and publish
+on:
+  push:
+    branches:
+      - main
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+  
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: windows-latest
+    env:
+      # Disable the .NET logo in the console output.
+      DOTNET_NOLOGO: true
+      # Disable the .NET first time experience to skip caching NuGet packages and speed up the build.
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      # Disable sending .NET CLI telemetry to Microsoft.
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install workloads
+        run: dotnet workload install maui
+          
+      - name: Build using dotnet
+        run: dotnet build
+          src/apps/Mvvm.Apps.Uno.WebAssembly
+          --configuration Release
+          --nologo
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          # Upload entire repository
+          path: 'src/apps/Mvvm.Apps.Uno.WebAssembly/bin/Release/net7.0/dist'
