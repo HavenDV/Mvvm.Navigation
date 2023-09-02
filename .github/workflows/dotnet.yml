@@ -27,5 +27,4 @@ jobs:
       additional-dotnet-version: 6.0.x
       deploy-web-assembly-path: src/apps/Uno/Mvvm.Apps.Uno.WebAssembly/bin/Release/net7.0/dist
       generate-build-number: false
-      conventional-commits-publish-conditions: false
       workloads: maui
