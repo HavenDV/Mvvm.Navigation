@@ -79,6 +79,6 @@
 		<ProjectReference Include="..\Mvvm.Apps.Uno\Mvvm.Apps.Uno.csproj" />
 	</ItemGroup>
 	
-	<Import Project="..\Mvvm.Apps.Uno.Base\base.props" />
+	<Import Project="..\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.props" />
 	
 </Project>

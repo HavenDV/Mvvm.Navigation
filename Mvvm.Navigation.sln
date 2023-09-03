@@ -67,8 +67,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Navigation.Generators.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Uno", "Uno", "{E0DB62E9-38FB-4706-8E05-10CF403CDD1A}"
 	ProjectSection(SolutionItems) = preProject
-		src\apps\Uno\Mvvm.Apps.Uno.Base\base.props = src\apps\Uno\Mvvm.Apps.Uno.Base\base.props
 		src\apps\Uno\Directory.Build.targets = src\apps\Uno\Directory.Build.targets
+		src\apps\Uno\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.props = src\apps\Uno\Mvvm.Apps.Uno.Shared\Mvvm.Apps.Uno.Shared.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mvvm.Apps.Uno", "src\apps\Uno\Mvvm.Apps.Uno\Mvvm.Apps.Uno.csproj", "{D7D29B49-E040-4BBA-B43D-5A249CC25103}"
