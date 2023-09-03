@@ -5,7 +5,7 @@ using Mvvm.Navigation;
 
 namespace Mvvm.Apps.Views;
 
-[ViewFor<BlueViewModel>(ViewModel = true, Constructor = true)]
+[ViewFor<BlueViewModel>(ViewModel = true, InitializeComponent = true)]
 public partial class BlueView : UserControl
 {
     private void InitializeComponent()

@@ -13,6 +13,8 @@ global using System.Windows;
 global using System.Windows.Data;
 global using System.Windows.Media;
 global using System.Windows.Controls;
+global using UserControl = System.Windows.Controls.UserControl;
+global using Page = System.Windows.Window;
 #elif HAS_WINUI
 global using Microsoft.UI;
 global using Microsoft.UI.Xaml;

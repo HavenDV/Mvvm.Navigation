@@ -1,4 +1,4 @@
 ﻿namespace Mvvm.Apps.Views;
 
-[ViewFor<RedViewModel>(ViewModel = true, Constructor = true)]
+[ViewFor<RedViewModel>(ViewModel = true, InitializeComponent = true)]
 public partial class RedView;

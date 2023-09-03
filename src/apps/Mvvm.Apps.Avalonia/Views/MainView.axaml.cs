@@ -16,15 +16,6 @@ public partial class MainView : Window
         this.AttachDevTools();
 #endif
     }
-    
-    public MainView(MainViewModel viewModel)
-    {
-        InitializeComponent();
-        ViewModel = viewModel;
-#if DEBUG
-        this.AttachDevTools();
-#endif
-    }
 
     private void InitializeComponent()
     {
