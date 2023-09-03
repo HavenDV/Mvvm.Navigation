@@ -25,34 +25,13 @@ public partial class Properties
 
         void NewValueOnCurrentChanged(object? sender, ObservableObject e)
         {
-            try
-            {
-                var viewFor = Resolve(contentControl, e.GetType());
-
-                contentControl.Content = viewFor;
-            }
-            catch (Exception exception)
-            {
-                SetException(contentControl, exception);
-            }
+            SetViewModel(contentControl, e);
         }
     }
     
     static partial void OnViewModelChanged(ContentControl contentControl, object? newValue)
     {
-        try
-        {
-            if (newValue == null)
-            {
-                return;
-            }
-
-            contentControl.Content = Resolve(contentControl, newValue.GetType());
-        }
-        catch (Exception exception)
-        {
-            SetException(contentControl, exception);
-        }
+        SetViewModelType(contentControl, newValue?.GetType());
     }
     
     static partial void OnViewModelTypeChanged(ContentControl contentControl, Type? newValue)
@@ -61,30 +40,23 @@ public partial class Properties
         {
             if (newValue == null)
             {
+                // Other possibilities:
+                // throw Exception
+                // set empty content to contentControl
                 return;
             }
-            
-            contentControl.Content = Resolve(contentControl, newValue);
+
+            var navigator = GetNavigator(contentControl) ?? throw new InvalidOperationException("Navigator is null.");
+            contentControl.Content = (Content)navigator.Resolve(newValue);
         }
         catch (Exception exception)
         {
-            SetException(contentControl, exception);
-        }
-    }
-
-    private static void SetException(ContentControl contentControl, Exception exception)
-    {
-        Debug.WriteLine($"Mvvm.Navigation resolving exception: {exception}");
+            Debug.WriteLine($"Mvvm.Navigation resolving exception: {exception}");
                 
-        contentControl.Content = new TextControl
-        {
-            Text = exception.Message,
-        };
-    }
-
-    private static Content Resolve(ContentControl contentControl, Type type)
-    {
-        // ReSharper disable once SuspiciousTypeConversion.Global
-        return (Content)GetNavigator(contentControl)!.Resolve(type);
+            contentControl.Content = new TextControl
+            {
+                Text = exception.Message,
+            };
+        }
     }
 }
