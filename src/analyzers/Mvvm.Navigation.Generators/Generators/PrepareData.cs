@@ -15,8 +15,9 @@ public static class PrepareData
             attribute.ConstructorArguments.ElementAtOrDefault(1).Value as ITypeSymbol;
         var viewModelType = viewModelTypeSymbol?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) ?? string.Empty;
         var shortViewModelType = viewModelTypeSymbol?.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat) ?? string.Empty;
-        var constructor = attribute.GetNamedArgument("Constructor").ToBoolean();
+        var initializeComponent = attribute.GetNamedArgument("InitializeComponent").ToBoolean();
         var viewModel = attribute.GetNamedArgument("ViewModel").ToBoolean();
+        var viewModelConstructor = attribute.GetNamedArgument("ViewModelConstructor").ToBoolean(defaultValue: viewModel);
 
         var fullClassName = classSymbol.ToString();
         var @namespace = fullClassName.Substring(0, fullClassName.LastIndexOf('.'));
@@ -30,7 +31,8 @@ public static class PrepareData
             ViewNamespace: @namespace,
             ViewModelType: viewModelType,
             ShortViewModelType: shortViewModelType,
-            Constructor: constructor,
+            ViewModelConstructor: viewModelConstructor,
+            InitializeComponent: initializeComponent,
             ViewModel: viewModel,
             ViewLifetime: ServiceLifetime.Transient,
             ViewModelLifetime: ServiceLifetime.Singleton);

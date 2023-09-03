@@ -35,10 +35,10 @@ public class MainViewModel;", framework);
     [DataRow(Framework.UnoWinUi)]
     [DataRow(Framework.Maui)]
     [DataRow(Framework.Avalonia)]
-    public Task Constructor(Framework framework)
+    public Task InitializeComponent(Framework framework)
     {
         return CheckSourceAsync(GetHeader(framework, "Controls") + @"
-[ViewFor<MainViewModel>(Constructor = true)]
+[ViewFor<MainViewModel>(InitializeComponent = true)]
 public partial class MainPage : UserControl;
 
 public class MainViewModel;", framework);
@@ -53,7 +53,7 @@ public class MainViewModel;", framework);
     public Task ViewModel(Framework framework)
     {
         return CheckSourceAsync(GetHeader(framework, "Controls") + @"
-[ViewFor<MainViewModel>(ViewModel = true)]
+[ViewFor<MainViewModel>(ViewModel = true, InitializeComponent = true)]
 public partial class MainPage : UserControl;
 
 public class MainViewModel;", framework);
@@ -65,10 +65,10 @@ public class MainViewModel;", framework);
     [DataRow(Framework.UnoWinUi)]
     [DataRow(Framework.Maui)]
     [DataRow(Framework.Avalonia)]
-    public Task ViewModelAndConstructor(Framework framework)
+    public Task ViewModelWithoutConstructor(Framework framework)
     {
         return CheckSourceAsync(GetHeader(framework, "Controls") + @"
-[ViewFor<MainViewModel>(ViewModel = true, Constructor = true)]
+[ViewFor<MainViewModel>(ViewModel = true, ViewModelConstructor = false)]
 public partial class MainPage : UserControl;
 
 public class MainViewModel;", framework);

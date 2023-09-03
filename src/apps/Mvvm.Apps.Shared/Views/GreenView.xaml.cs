@@ -1,4 +1,10 @@
 ﻿namespace Mvvm.Apps.Views;
 
-[ViewFor<GreenViewModel>(ViewModel = true, Constructor = true)]
-public partial class GreenView;
+[ViewFor<GreenViewModel>(ViewModel = true)]
+public partial class GreenView : UserControl
+{
+    public GreenView()
+    {
+        InitializeComponent();
+    }
+}

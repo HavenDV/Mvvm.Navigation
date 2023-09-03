@@ -1,4 +1,10 @@
 ﻿namespace Mvvm.Apps.Views;
 
-[ViewFor<BlueViewModel>(ViewModel = true, Constructor = true)]
-public partial class BlueView;
+[ViewFor<BlueViewModel>(ViewModel = true)]
+public partial class BlueView : UserControl
+{
+    public BlueView()
+    {
+        InitializeComponent();
+    }
+}

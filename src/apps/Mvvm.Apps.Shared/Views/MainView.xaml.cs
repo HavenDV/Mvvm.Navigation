@@ -1,4 +1,10 @@
 ﻿namespace Mvvm.Apps.Views;
 
-[ViewFor<MainViewModel>(ViewModel = true, Constructor = true)]
-public partial class MainView;
+[ViewFor<MainViewModel>(ViewModel = true)]
+public partial class MainView : Page
+{
+    public MainView()
+    {
+        InitializeComponent();
+    }
+}

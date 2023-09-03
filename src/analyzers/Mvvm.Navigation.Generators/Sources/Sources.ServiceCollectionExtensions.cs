@@ -54,7 +54,7 @@ namespace Mvvm.Navigation
             _ = services
 {views.Select(data => @$"
                     .AddSingleton<{data.ViewModelType}>()
-{(data is { Constructor: true, ViewModel: true } ? @$" 
+{(data is { ViewModelConstructor: true } ? @$" 
                     .AddTransient<{data.ViewType}>(static x => new {data.ViewType}(x.GetRequiredService<{data.ViewModelType}>()))" : @$" 
                     .AddTransient<{data.ViewType}>()")}
                     .AddTransient<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>())

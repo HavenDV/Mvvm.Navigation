@@ -1,4 +1,4 @@
-﻿//HintName: H.Generators.IntegrationTests.MainPage.Constructor.g.cs
+﻿//HintName: H.Generators.IntegrationTests.MainPage.Constructors.g.cs
 #nullable enable
 
 namespace H.Generators.IntegrationTests
@@ -10,10 +10,8 @@ namespace H.Generators.IntegrationTests
             InitializeComponent();
         }
 
-        public MainPage(global::H.Generators.IntegrationTests.MainViewModel viewModel)
+        public MainPage(global::H.Generators.IntegrationTests.MainViewModel viewModel) : this()
         {
-            InitializeComponent();
-
             ViewModel = viewModel;
         }
     }

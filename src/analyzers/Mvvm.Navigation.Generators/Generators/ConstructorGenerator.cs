@@ -44,7 +44,7 @@ public class ConstructorGenerator : IIncrementalGenerator
         var (_, attribute, _, classSymbol) = tuple;
 
         var data = attribute.GetViewForData(framework, classSymbol);
-        if (!data.Constructor)
+        if (data is { ViewModelConstructor: false, InitializeComponent: false })
         {
             return null;
         }
@@ -56,8 +56,8 @@ public class ConstructorGenerator : IIncrementalGenerator
         ViewForData data)
     {
         return new FileWithName(
-            Name: $"{data.ViewFullName}.Constructor.g.cs",
-            Text: Sources.GenerateConstructor(data));
+            Name: $"{data.ViewFullName}.Constructors.g.cs",
+            Text: Sources.GenerateConstructors(data));
     }
 
     #endregion

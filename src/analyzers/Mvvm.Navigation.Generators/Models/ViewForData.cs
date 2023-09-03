@@ -8,7 +8,8 @@ public readonly record struct ViewForData(
     string ViewNamespace,
     string ViewModelType,
     string ShortViewModelType,
-    bool Constructor,
+    bool ViewModelConstructor,
     bool ViewModel,
+    bool InitializeComponent,
     ServiceLifetime ViewLifetime,
     ServiceLifetime ViewModelLifetime);

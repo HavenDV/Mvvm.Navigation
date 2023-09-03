@@ -1,4 +1,4 @@
-﻿//HintName: H.Generators.IntegrationTests.MainPage.Constructor.g.cs
+﻿//HintName: H.Generators.IntegrationTests.MainPage.Constructors.g.cs
 #nullable enable
 
 namespace H.Generators.IntegrationTests

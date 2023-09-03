@@ -4,7 +4,7 @@ namespace H.Generators;
 
 internal static partial class Sources
 {
-    public static string GenerateConstructor(ViewForData data)
+    public static string GenerateConstructors(ViewForData data)
     {
         return @$" 
 #nullable enable
@@ -13,15 +13,14 @@ namespace {data.ViewNamespace}
 {{
     public partial class {data.ViewClassName}
     {{
+{(data is { InitializeComponent: true } ? @$" 
         public {data.ViewClassName}()
         {{
             InitializeComponent();
-        }}
-{(data.ViewModel ? @$"
-        public {data.ViewClassName}({data.ViewModelType} viewModel)
+        }}" : " ")}
+{(data is { ViewModelConstructor: true } ? @$"
+        public {data.ViewClassName}({data.ViewModelType} viewModel) : this()
         {{
-            InitializeComponent();
-
             ViewModel = viewModel;
         }}" : " ")}
     }}
