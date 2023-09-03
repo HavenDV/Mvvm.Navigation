@@ -15,7 +15,6 @@
 		<IsIOS>false</IsIOS>
 		<IsMac>false</IsMac>
 		<IsMacCatalyst>false</IsMacCatalyst>
-		<IsWinAppSdk>false</IsWinAppSdk>
 	</PropertyGroup>
 
 	<Choose>
@@ -41,13 +40,6 @@
 			<PropertyGroup>
 				<IsMacCatalyst>true</IsMacCatalyst>
 				<SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
-			</PropertyGroup>
-		</When>
-		<When Condition="$(TargetFramework.Contains('windows10'))">
-			<PropertyGroup>
-				<IsWinAppSdk>true</IsWinAppSdk>
-				<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
-				<TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
 			</PropertyGroup>
 		</When>
 	</Choose>

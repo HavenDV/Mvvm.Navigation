@@ -24,6 +24,10 @@
     <!-- <SelfContained>true</SelfContained> -->
   </PropertyGroup>
 
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+  
   <!-- 
 		Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
 		Tools extension to be activated for this project even if the Windows App SDK Nuget
@@ -45,6 +49,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.25936-preview" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
   </ItemGroup>
 
   <Import Project="../../libs/Mvvm.Navigation.WinUI/Mvvm.Navigation.WinUI.props" />
