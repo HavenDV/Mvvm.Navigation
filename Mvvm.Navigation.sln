@@ -70,7 +70,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Uno", "Uno", "{E0DB62E9-38FB-4706-8E05-10CF403CDD1A}"
 	ProjectSection(SolutionItems) = preProject
 		src\apps\Uno\Mvvm.Apps.Uno.Base\base.props = src\apps\Uno\Mvvm.Apps.Uno.Base\base.props
-		src\apps\Uno\Directory.Build.props = src\apps\Uno\Directory.Build.props
 		src\apps\Uno\Directory.Build.targets = src\apps\Uno\Directory.Build.targets
 	EndProjectSection
 EndProject
