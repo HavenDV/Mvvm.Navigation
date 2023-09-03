@@ -18,6 +18,7 @@ public class ViewForAttribute : Attribute
 
     /// <summary>
     /// Will generate you an additional constructor and change the DI code so your Views will be initialized automatically with your ViewModel.
+    /// Default: ViewModel value. 
     /// </summary>
     public bool ViewModelConstructor { get; set; }
 
@@ -30,6 +31,12 @@ public class ViewForAttribute : Attribute
     /// Will generate default InitializeComponent() constructor.
     /// </summary>
     public bool InitializeComponent { get; set; }
+
+    /// <summary>
+    /// Will register activation.
+    /// Default: ViewModel value. 
+    /// </summary>
+    public bool Activation { get; set; }
 
     /// <summary>
     /// 

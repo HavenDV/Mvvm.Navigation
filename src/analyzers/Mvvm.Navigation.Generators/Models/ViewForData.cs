@@ -11,5 +11,6 @@ public readonly record struct ViewForData(
     bool ViewModelConstructor,
     bool ViewModel,
     bool InitializeComponent,
+    bool Activation,
     ServiceLifetime ViewLifetime,
     ServiceLifetime ViewModelLifetime);

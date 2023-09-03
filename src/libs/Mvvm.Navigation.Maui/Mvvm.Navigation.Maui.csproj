@@ -7,7 +7,7 @@
     <UseMaui>true</UseMaui>
     <SignAssembly>false</SignAssembly>
     <DefineConstants>$(DefineConstants);HAS_MAUI</DefineConstants>
-    <NoWarn>$(NoWarn);CA5394;CA1822;CA1724;CA1031;CS8826;CA1052</NoWarn>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1724;CA1031;CS8826;CA1052;CA1724</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Label="AssemblyInfo">

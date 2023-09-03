@@ -22,6 +22,9 @@ namespace {data.ViewNamespace}
         public {data.ViewClassName}({data.ViewModelType} viewModel) : this()
         {{
             ViewModel = viewModel;
+{(data is { Activation: true } ? @$" 
+            global::Mvvm.Navigation.Activation.Register(viewModel, this);
+ " : " ")}
         }}" : " ")}
     }}
 }}".RemoveBlankLinesWhereOnlyWhitespaces();

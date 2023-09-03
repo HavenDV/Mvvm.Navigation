@@ -13,6 +13,7 @@ namespace H.Generators.IntegrationTests
         public MainPage(global::H.Generators.IntegrationTests.MainViewModel viewModel) : this()
         {
             ViewModel = viewModel;
+            global::Mvvm.Navigation.Activation.Register(viewModel, this);
         }
     }
 }

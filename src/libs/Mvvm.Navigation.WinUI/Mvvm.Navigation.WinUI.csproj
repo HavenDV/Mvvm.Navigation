@@ -5,7 +5,7 @@
     <UseWinUI>true</UseWinUI>
     <DefineConstants>$(DefineConstants);HAS_WINUI</DefineConstants>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <NoWarn>$(NoWarn);CA5394;CA1822;CA1052;CA1031</NoWarn>
+    <NoWarn>$(NoWarn);CA5394;CA1822;CA1052;CA1031;CA1724</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

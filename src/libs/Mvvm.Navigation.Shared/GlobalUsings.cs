@@ -4,6 +4,8 @@ global using DependencyPropertyGenerator;
 #if HAS_AVALONIA
 global using Avalonia;
 global using Avalonia.Controls;
+global using Avalonia.Interactivity;
+global using FrameworkElement = Avalonia.Controls.Control;
 global using ContentControl = Avalonia.Controls.ContentControl;
 global using ContentPage = Avalonia.Controls.Window;
 global using TextControl = Avalonia.Controls.TextBlock;
@@ -28,6 +30,8 @@ global using ContentControl = Microsoft.Maui.Controls.ContentView;
 global using ContentPage = Microsoft.Maui.Controls.ContentPage;
 global using TextControl = Microsoft.Maui.Controls.Label;
 global using Content = Microsoft.Maui.Controls.View;
+global using FrameworkElement = Microsoft.Maui.Controls.VisualElement;
+global using RoutedEventArgs = System.EventArgs;
 #else
 global using Windows.UI.Xaml;
 global using Windows.UI.Xaml.Controls;
