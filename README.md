@@ -19,11 +19,12 @@ registers this in your DI container.
 ## 🔥Features🔥
 - Uses DI to resolve your view from view model.
 - Generates an extension method for you with all your Views and ViewModels to register them in DI.
-- Supports automatic mapping between View and ViewModel based on a global attribute.
-- Allows case-by-case, attribute-based control for Views.
 - Does not contain custom controls, everything happens based on the attached dependency property and does not limit the user.
 - Allows forward/backward navigation like in Chrome.
 - Allows you to receive activation/deactivation events - just implement IActivatableViewModel for your ViewModel.
+- Allows you to generate a typed ViewModel property via an attribute, bound to your BindingContext and initialized from DI.
+- ~~ Supports automatic mapping between View and ViewModel based on a global attribute. ~~
+- Allows case-by-case, attribute-based control for Views.
 
 ## Usage
 Add `.AddMvvmNavigation()` call to your Host builder or `IServiceCollection`:
