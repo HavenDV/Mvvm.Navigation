@@ -48,6 +48,9 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
             .CollectAsEquatableArray()
             .SelectAndReportExceptions(GetSourceCode, context, Id)
             .AddSource(context);
+        framework
+            .SelectAndReportExceptions(GetFrameworkSpecificSourceCode, context, Id)
+            .AddSource(context);
     }
 
     private static ViewForData? PrepareData(
@@ -68,19 +71,22 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
             return ImmutableArray.Create<FileWithName>();
         }
 
-        var files = new List<FileWithName>
+        return ImmutableArray.Create(new FileWithName(
+            Name: "ServiceCollectionExtensions.i.g.cs",
+            Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray())));
+    }
+
+    private static EquatableArray<FileWithName> GetFrameworkSpecificSourceCode(
+        Framework framework)
+    {
+        if (framework is Framework.Maui)
         {
-            new(Name: "ServiceCollectionExtensions.i.g.cs",
-                Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray())),
-        };
-        if (values.First().Framework is Framework.Maui)
-        {
-            files.Add(new FileWithName(
+            return ImmutableArray.Create(new FileWithName(
                 Name: "MauiAppBuilderExtensions.g.cs",
                 Text: Sources.GenerateMauiAppBuilderExtensions()));
         }
 
-        return files.ToImmutableArray();
+        return ImmutableArray.Create<FileWithName>();
     }
 
     #endregion
