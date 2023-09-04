@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using H.Generators.Extensions;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace H.Generators;
 
@@ -27,27 +28,85 @@ public class GlobalGenerator : IIncrementalGenerator
             .SelectMany(static (context, _) => context.Attributes
                 .Select(x => (
                     context.SemanticModel,
+                    context.TargetNode,
+                    context.TargetSymbol,
                     AttributeData: x)))
             .Combine(framework)
             .SelectAndReportExceptions(PrepareData, context, Id)
-            .WhereNotNull()
             .SelectAndReportExceptions(GetSourceCode, context, Id)
             .AddSource(context);
     }
 
-    private static ViewForData? PrepareData(
+    private static EquatableArray<ViewForData> PrepareData(
         Framework framework,
-        (SemanticModel SemanticModel, AttributeData AttributeData) tuple)
+        (SemanticModel SemanticModel, SyntaxNode TargetNode, ISymbol TargetSymbol, AttributeData AttributeData) tuple)
     {
-        var (_, attribute) = tuple;
+        var (semanticModel, targetNode, _, attribute) = tuple;
+        var data = attribute.GetMapViewsData(framework, (CompilationUnitSyntax)targetNode);
+        var viewsVisitor = new NamespaceSymbolsVisitor
+        {
+            Namespace = data.ViewsNamespace,
+        };
+        viewsVisitor.Visit(semanticModel.Compilation.GlobalNamespace);
+        var viewModelsVisitor = new NamespaceSymbolsVisitor
+        {
+            Namespace = data.ViewModelsNamespace,
+        };
+        viewModelsVisitor.Visit(semanticModel.Compilation.GlobalNamespace);
 
-        return null;
+        var pairs = Matcher.Match(viewsVisitor.OutputSymbols, viewModelsVisitor.OutputSymbols);
+        
+        var initializeComponent = attribute.GetNamedArgument(nameof(MapViewsData.InitializeComponent)).ToBoolean();
+        var viewModel = attribute.GetNamedArgument(nameof(MapViewsData.ViewModel)).ToBoolean();
+        var viewModelConstructor = attribute.GetNamedArgument(nameof(MapViewsData.ViewModelConstructor)).ToBoolean(defaultValue: viewModel);
+        var activation = attribute.GetNamedArgument(nameof(MapViewsData.Activation)).ToBoolean(defaultValue: viewModel);
+        
+        return pairs
+            .Select(x => Prepare.GetViewForData(
+                framework: framework,
+                viewSymbol: x.View,
+                viewModelSymbol: x.ViewModel,
+                viewModelConstructor: viewModelConstructor,
+                initializeComponent: initializeComponent,
+                activation: activation,
+                viewModel: viewModel))
+            .ToImmutableArray();
     }
 
     private static EquatableArray<FileWithName> GetSourceCode(
-        ViewForData data)
+        EquatableArray<ViewForData> values)
     {
-        return new List<FileWithName>().ToImmutableArray();
+        if (values.IsEmpty)
+        {
+            return ImmutableArray.Create<FileWithName>();
+        }
+
+        var files = new List<FileWithName>();
+        foreach (var data in values)
+        {
+            if (data is not { ViewModelConstructor: false, InitializeComponent: false })
+            {
+                files.Add(new FileWithName(
+                    Name: $"{data.ViewFullName}.Constructors.g.cs",
+                    Text: Sources.GenerateConstructors(data)));
+            }
+            if (data is { ViewModel: true })
+            {
+                files.Add(new FileWithName(
+                    Name: $"{data.ViewFullName}.ViewModel.g.cs",
+                    Text: Sources.GenerateViewModel(data)));
+            }
+            
+            files.Add(new FileWithName(
+                Name: $"{data.ViewFullName}.IViewFor.{data.ShortViewModelType}.g.cs",
+                Text: Sources.GenerateIViewFor(data)));
+        }
+        
+        files.Add(new FileWithName(
+            Name: "ServiceCollectionExtensions.i.g.cs",
+            Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray())));
+        
+        return files.ToImmutableArray();
     }
 
     #endregion

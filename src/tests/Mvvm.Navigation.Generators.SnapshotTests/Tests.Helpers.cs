@@ -12,6 +12,7 @@ public partial class Tests : VerifyBase
     private static string GetHeader(
         Framework framework,
         bool nullable,
+        bool mapViews,
         params string[] values)
     {
         var prefix = framework switch
@@ -35,7 +36,11 @@ using Mvvm.Navigation;
 
 #nullable {(nullable ? "enable" : "disable")}
 
-//[assembly:MapViews(viewsNamespace: nameof(H.Generators.IntegrationTests), viewModelsNamespace: nameof(H.Generators.IntegrationTests))]
+{(mapViews ? @"[assembly:MapViews(
+    viewsNamespace: nameof(H.Generators.IntegrationTests),
+    viewModelsNamespace: nameof(H.Generators.IntegrationTests),
+    ViewModel = true,
+    InitializeComponent = true)]" : string.Empty)}
 
 namespace H.Generators.IntegrationTests;
 
@@ -76,7 +81,7 @@ public partial class MainPage
         Framework framework,
         params string[] values)
     {
-        return GetHeader(framework, true, values);
+        return GetHeader(framework, nullable: true, mapViews: false, values);
     }
 
     private static Dictionary<string, string> GetGlobalOptions(Framework framework)

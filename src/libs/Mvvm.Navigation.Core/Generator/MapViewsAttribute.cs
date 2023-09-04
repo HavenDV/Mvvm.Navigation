@@ -22,14 +22,26 @@ public class MapViewsAttribute : Attribute
     public string ViewModelsNamespace { get; }
 
     /// <summary>
-    /// Will generate you a constructor with a call to InitializeComponent inside.
+    /// Will generate you an additional constructor and change the DI code so your Views will be initialized automatically with your ViewModel.
+    /// Default: ViewModel value. 
     /// </summary>
-    public bool Constructor { get; set; }
+    public bool ViewModelConstructor { get; set; }
 
     /// <summary>
     /// Will generate you a ViewModel property with the type of your ViewModel, which will refer to the BindingContext/DataContext.
     /// </summary>
     public bool ViewModel { get; set; }
+
+    /// <summary>
+    /// Will generate default InitializeComponent() constructor.
+    /// </summary>
+    public bool InitializeComponent { get; set; }
+
+    /// <summary>
+    /// Will register activation.
+    /// Default: ViewModel value. 
+    /// </summary>
+    public bool Activation { get; set; }
 
     /// <summary>
     /// 

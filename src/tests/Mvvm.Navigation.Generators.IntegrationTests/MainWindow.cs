@@ -3,6 +3,10 @@ using Avalonia.Controls;
 
 #nullable enable
 
+// [assembly:MapViews(
+//     viewsNamespace: nameof(H.Generators.IntegrationTests),
+//     viewModelsNamespace: nameof(H.Generators.IntegrationTests))]
+
 // ReSharper disable UnusedParameterInPartialMethod
 // ReSharper disable RedundantExtendsListEntry
 // ReSharper disable UnusedType.Global
