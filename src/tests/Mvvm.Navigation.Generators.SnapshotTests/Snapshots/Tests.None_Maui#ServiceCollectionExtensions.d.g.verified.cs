@@ -16,7 +16,7 @@ namespace Mvvm.Navigation
             services = services ?? throw new global::System.ArgumentNullException(nameof(services));
 
             _ = services
-                    .AddSingleton<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>()
+                    .AddTransient<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>()
                     .AddSingleton<global::Mvvm.Navigation.IResolver, global::Mvvm.Navigation.Resolver>()
                 ;
 
