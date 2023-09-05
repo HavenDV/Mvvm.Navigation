@@ -23,12 +23,12 @@ registers this in your DI container.
 - Allows forward/backward navigation like in Chrome.
 - Allows you to receive activation/deactivation events - just implement IActivatableViewModel for your ViewModel.
 - Allows you to generate a typed ViewModel property via an attribute, bound to your BindingContext and initialized from DI.
-- ~~ Supports automatic mapping between View and ViewModel based on a global attribute. ~~
+- Supports automatic mapping between View and ViewModel based on a global attribute.
 - Allows case-by-case, attribute-based control for Views.
 
 ## Usage
-Add `.AddMvvmNavigation()` call to your Host builder or `IServiceCollection`:
-```cs
+1. Add `.AddMvvmNavigation()` call to your Host builder or `IServiceCollection`:
+```csharp
 public sealed partial class App
 {
     public App()
@@ -40,18 +40,24 @@ public sealed partial class App
     }
 }
 ```
-Add ViewFor attribute to your views:
-```cs
+2. Add ViewFor attribute to your views:
+```csharp
 using Mvvm.Navigation;
 
 [ViewFor<MainViewModel>]
 public partial class MainPage : UserControl;
 ```
-Add Navigator to your ViewModel:
+or assembly level attribute(nameof behavior is ignored and the full namespace is taken):
+```csharp
+[assembly:MapViews(
+    viewsNamespace: nameof(MyNamespace.Views),
+    viewModelsNamespace: nameof(MyNamespace.ViewModels))]
+```
+3. Add Navigator to your ViewModel:
 ```csharp
 public Navigator<ObservableObject> Navigator { get; }
 ```
-Add commands to your views(or just use Navigator from ViewModel):
+4. Add commands to your views(or just use Navigator from ViewModel):
 ```xml
 <Grid>
     <Button
