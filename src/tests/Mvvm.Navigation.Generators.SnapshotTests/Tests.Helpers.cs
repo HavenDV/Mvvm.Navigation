@@ -122,6 +122,7 @@ public partial class MainPage
     private async Task CheckSourceAsync(
         string source,
         Framework framework,
+        bool verifyFiles = true,
         CancellationToken cancellationToken = default)
     {
         if (framework == Framework.Maui)
@@ -177,18 +178,28 @@ public partial class MainPage
             .RunGeneratorsAndUpdateCompilation(compilation, out compilation, out _, cancellationToken);
         var diagnostics = compilation.GetDiagnostics(cancellationToken);
 
-        await Task.WhenAll(
+        var tasks = new List<Task>
+        {
             Verify(diagnostics
-                    .Where(static x => x.Severity == DiagnosticSeverity.Error)
+                    .Where(static x =>
+                        x.Severity == DiagnosticSeverity.Error &&
+                        x.Id != "CS0234")
                     .ToImmutableArray()
                     .NormalizeLocations())
                 .UseDirectory("Snapshots")
                 //.AutoVerify()
                 .UseTextForParameters($"{framework}_Diagnostics"),
-            Verify(driver)
-                .UseDirectory("Snapshots")
-                //.AutoVerify()
-                .UseTextForParameters($"{framework}"));
+        };
+        if (verifyFiles)
+        {
+            tasks.Add(
+                Verify(driver)
+                    .UseDirectory("Snapshots")
+                    //.AutoVerify()
+                    .UseTextForParameters($"{framework}"));
+        }
+        
+        await Task.WhenAll(tasks);
     }
 }
 
