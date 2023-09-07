@@ -77,6 +77,7 @@ If you have the same task, then the changes are as follows:
 - Replace ReactiveUserControl with UserControl
 - Replace ReactiveWindow with Window
 - Replace RoutedViewHost and ViewModelViewHost with ContentControl
+- Use `mvvm:Properties.ViewModel`/`mvvm:Properties.Navigator` attached dependency properties.
 
 ## Support
 Priority place for bugs: https://github.com/HavenDV/Mvvm.Navigation/issues  
