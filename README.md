@@ -68,6 +68,16 @@ public Navigator<ObservableObject> Navigator { get; }
 </Grid>
 ```
 
+## Base
+The library was written as a replacement for ReactiveUI in a real project, 
+and inherits some concepts from it, excluding reactivity.  
+If you have the same task, then the changes are as follows:
+- Replace RoutingState with Navigator
+- Replace IScreen with INavigable
+- Replace ReactiveUserControl with UserControl
+- Replace ReactiveWindow with Window
+- Replace RoutedViewHost and ViewModelViewHost with ContentControl
+
 ## Support
 Priority place for bugs: https://github.com/HavenDV/Mvvm.Navigation/issues  
 Priority place for ideas and general questions: https://github.com/HavenDV/Mvvm.Navigation/discussions  
