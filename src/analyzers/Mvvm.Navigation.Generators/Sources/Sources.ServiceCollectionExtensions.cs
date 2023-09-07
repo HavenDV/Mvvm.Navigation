@@ -51,15 +51,14 @@ namespace Mvvm.Navigation
         {{
             services = services ?? throw new global::System.ArgumentNullException(nameof(services));
 
-            _ = services
 {views.Select(data => @$"
+            _ = services
                     .AddSingleton<{data.ViewModelType}>()
 {(data is { ViewModelConstructor: true } ? @$" 
                     .AddTransient<{data.ViewType}>(static x => new {data.ViewType}(x.GetRequiredService<{data.ViewModelType}>()))" : @$" 
                     .AddTransient<{data.ViewType}>()")}
-                    .AddTransient<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>())
+                    .AddTransient<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>());
 ").Inject()}
-                ;
         }}
     }}
 }}".RemoveBlankLinesWhereOnlyWhitespaces();

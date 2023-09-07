@@ -87,4 +87,28 @@ public partial class MainPage : UserControl;
 
 public class MainViewModel;", framework);
     }
+    
+    [DataTestMethod]
+    [DataRow(Framework.Wpf)]
+    [DataRow(Framework.Uno)]
+    [DataRow(Framework.UnoWinUi)]
+    [DataRow(Framework.Maui)]
+    [DataRow(Framework.Avalonia)]
+    public Task MapViews_1000(Framework framework)
+    {
+        var main = GetHeader(framework, nullable: true, mapViews: true, "Controls");
+        foreach (var i in Enumerable.Range(0, 1000))
+        {
+            main += $@"
+public partial class Main{i}Page : UserControl
+{{
+    private void InitializeComponent()
+    {{
+    }}
+}}
+public class Main{i}ViewModel;";
+        }
+        
+        return CheckSourceAsync(main, framework, verifyFiles: false);
+    }
 }
