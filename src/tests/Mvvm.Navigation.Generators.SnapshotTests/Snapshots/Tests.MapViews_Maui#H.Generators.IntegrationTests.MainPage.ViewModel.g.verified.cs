@@ -5,9 +5,9 @@ namespace H.Generators.IntegrationTests
 {
     public partial class MainPage
     {
-        public global::H.Generators.IntegrationTests.MainViewModel ViewModel
+        public global::H.Generators.IntegrationTests.MainViewModel? ViewModel
         {
-            get => BindingContext as global::H.Generators.IntegrationTests.MainViewModel ?? throw new global::System.ArgumentNullException(nameof(BindingContext));
+            get => BindingContext as global::H.Generators.IntegrationTests.MainViewModel;
             set => BindingContext = value;
         }
     }

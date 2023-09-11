@@ -19,9 +19,9 @@ namespace {data.ViewNamespace}
 {{
     public partial class {data.ViewClassName}
     {{
-        public {data.ViewModelType} ViewModel
+        public {data.ViewModelType}? ViewModel
         {{
-            get => {dataContext} as {data.ViewModelType} ?? throw new global::System.ArgumentNullException(nameof({dataContext}));
+            get => {dataContext} as {data.ViewModelType};
             set => {dataContext} = value;
         }}
     }}
