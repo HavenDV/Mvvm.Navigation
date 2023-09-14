@@ -12,7 +12,10 @@ public static class Activation
     /// <param name="frameworkElement"></param>
     public static void Register(this object viewModel, FrameworkElement frameworkElement)
     {
-        if (viewModel is not IActivatableViewModel activatableViewModel)
+        var activatableViewModel = viewModel as IActivatable;
+        var activatableView = frameworkElement as IActivatable;
+        if (activatableViewModel == null &&
+            activatableView == null)
         {
             return;
         }
@@ -25,11 +28,14 @@ public static class Activation
 
         void Loaded(object? sender, RoutedEventArgs e)
         {
-            activatableViewModel.Activate();
+            activatableViewModel?.Activate();
+            activatableView?.Activate();
         }
         void Unloaded(object? sender, RoutedEventArgs e)
         {
-            activatableViewModel.Deactivate();
+            activatableViewModel?.Deactivate();
+            activatableView?.Deactivate();
+            
             frameworkElement.Loaded -= Loaded;
             frameworkElement.Unloaded -= Unloaded;
         }

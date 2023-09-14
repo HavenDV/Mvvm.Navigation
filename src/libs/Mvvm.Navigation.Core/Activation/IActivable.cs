@@ -3,7 +3,7 @@ namespace Mvvm.Navigation;
 /// <summary>
 /// 
 /// </summary>
-public interface IActivatableViewModel
+public interface IActivatable
 {
     /// <summary>
     /// 
