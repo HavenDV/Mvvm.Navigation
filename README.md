@@ -67,6 +67,7 @@ public Navigator<ObservableObject> Navigator { get; }
     <ContentControl mvvm:Properties.Navigator="{Binding Navigator}"/>
 </Grid>
 ```
+Tip: you can use `CommandParameter="{mvvm:Type Type=viewModels:BlueViewModel}"` for WinUI/UWP/Uno platforms.
 
 ## Base
 The library was written as a replacement for ReactiveUI in a real project, 
