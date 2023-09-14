@@ -5,7 +5,7 @@ namespace Mvvm.Navigation;
 /// <inheritdoc />
 public class Resolver(IServiceProvider serviceProvider) : IResolver
 {
-    private IServiceProvider ServiceProvider { get; } =  serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+    private IServiceProvider ServiceProvider { get; } = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
     /// <inheritdoc />
     public IViewFor Resolve(Type type)

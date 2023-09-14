@@ -20,7 +20,7 @@ public partial class Navigator<T>
     /// 
     /// </summary>
     [IgnoreDataMember]
-    private IResolver Resolver { get; }
+    public IResolver Resolver { get; }
     
     /// <summary>
     /// 

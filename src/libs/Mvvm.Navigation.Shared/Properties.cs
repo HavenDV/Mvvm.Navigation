@@ -9,6 +9,7 @@ namespace Mvvm.Navigation;
 [AttachedDependencyProperty<object, ContentControl>("ViewModel")]
 [AttachedDependencyProperty<Type, ContentControl>("ViewModelType")]
 [AttachedDependencyProperty<Navigator<ObservableObject>, ContentControl>("Navigator")]
+[AttachedDependencyProperty<IResolver, ContentControl>("Resolver")]
 public partial class Properties
 {
     static partial void OnNavigatorChanged(ContentControl contentControl, Navigator<ObservableObject>? oldValue, Navigator<ObservableObject>? newValue)
@@ -46,8 +47,11 @@ public partial class Properties
                 return;
             }
 
-            var navigator = GetNavigator(contentControl) ?? throw new InvalidOperationException("Navigator is null.");
-            contentControl.Content = (Content)navigator.Resolve(newValue);
+            var resolver =
+                GetNavigator(contentControl)?.Resolver ??
+                GetResolver(contentControl) ??
+                throw new InvalidOperationException("IResolver is not specified. Get it from DI and bind it.");
+            contentControl.Content = (Content)resolver.Resolve(newValue);
         }
         catch (Exception exception)
         {
