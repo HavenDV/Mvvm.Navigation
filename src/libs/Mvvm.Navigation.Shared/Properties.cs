@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace Mvvm.Navigation;
 
@@ -50,7 +51,8 @@ public partial class Properties
             var resolver =
                 GetNavigator(contentControl)?.Resolver ??
                 GetResolver(contentControl) ??
-                throw new InvalidOperationException("IResolver is not specified. Get it from DI and bind it.");
+                TryGetServiceFromIocDefault<IResolver>() ??
+                throw new InvalidOperationException("IResolver is not specified. Get it from DI and bind it or set up Ioc.Default.ConfigureServices.");
             contentControl.Content = (Content)resolver.Resolve(newValue);
         }
         catch (Exception exception)
@@ -61,6 +63,18 @@ public partial class Properties
             {
                 Text = exception.Message,
             };
+        }
+    }
+
+    private static T? TryGetServiceFromIocDefault<T>() where T : class
+    {
+        try
+        {
+            return Ioc.Default.GetService<T>();
+        }
+        catch (InvalidOperationException)
+        {
+            return null;
         }
     }
 }
