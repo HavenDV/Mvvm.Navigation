@@ -13,16 +13,26 @@ namespace {data.ViewNamespace}
 {{
     public partial class {data.ViewClassName}
     {{
+        partial void BeforeInitializeComponent();
+        partial void AfterInitializeComponent();
+
 {(data is { InitializeComponent: true } ? @$" 
         public {data.ViewClassName}()
         {{
+            BeforeInitializeComponent();
             InitializeComponent();
+            AfterInitializeComponent();
         }}" : " ")}
 {(data is { ViewModelConstructor: true } ? @$"
-        public {data.ViewClassName}({data.ViewModelType} viewModel) : this()
+        public {data.ViewClassName}({data.ViewModelType} viewModel)
         {{
             ViewModel = viewModel;
-{(data is { Activation: true } ? @$" 
+
+            BeforeInitializeComponent();
+            InitializeComponent();
+            AfterInitializeComponent();
+
+{(data is { Activation: true } ? @" 
             global::Mvvm.Navigation.Activation.Register(viewModel, this);
  " : " ")}
         }}" : " ")}
