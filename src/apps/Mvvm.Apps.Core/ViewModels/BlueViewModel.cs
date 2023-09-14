@@ -1,6 +1,6 @@
 ﻿namespace Mvvm.Apps.ViewModels;
 
-public class BlueViewModel : ObservableObject, IActivatableViewModel
+public class BlueViewModel : ObservableObject, IActivatable
 {
     public void Activate()
     {
