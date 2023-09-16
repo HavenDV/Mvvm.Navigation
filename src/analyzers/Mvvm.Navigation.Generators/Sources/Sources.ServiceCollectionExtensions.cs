@@ -18,16 +18,19 @@ namespace Mvvm.Navigation
         static partial void AddViewsAndViewModels(
             global::Microsoft.Extensions.DependencyInjection.IServiceCollection services);
 
+        static partial void AddGlobalViewsAndViewModels(
+            global::Microsoft.Extensions.DependencyInjection.IServiceCollection services);
+
         public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection AddMvvmNavigation(
             this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {
             services = services ?? throw new global::System.ArgumentNullException(nameof(services));
 
             _ = services
-                    .AddTransient<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>()
-                    .AddSingleton<global::Mvvm.Navigation.IResolver, global::Mvvm.Navigation.Resolver>()
-                ;
+                .AddTransient<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>()
+                .AddSingleton<global::Mvvm.Navigation.IResolver, global::Mvvm.Navigation.Resolver>();
 
+            AddGlobalViewsAndViewModels(services);
             AddViewsAndViewModels(services);
 
             return services;
@@ -36,7 +39,9 @@ namespace Mvvm.Navigation
 }".RemoveBlankLinesWhereOnlyWhitespaces();
     }
     
-    public static string GenerateServiceCollectionExtensionsImplementation(IReadOnlyCollection<ViewForData> views)
+    public static string GenerateServiceCollectionExtensionsImplementation(
+        IReadOnlyCollection<ViewForData> views,
+        string? prefix = null)
     {
         return @$" 
 using Microsoft.Extensions.DependencyInjection;
@@ -47,17 +52,17 @@ namespace Mvvm.Navigation
 {{
     public static partial class ServiceCollectionExtensions
     {{
-        static partial void AddViewsAndViewModels(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
+        static partial void Add{prefix}ViewsAndViewModels(global::Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {{
             services = services ?? throw new global::System.ArgumentNullException(nameof(services));
 
 {views.Select(data => @$"
             _ = services
-                    .AddSingleton<{data.ViewModelType}>()
+                .AddSingleton<{data.ViewModelType}>()
 {(data is { ViewModelConstructor: true } ? @$" 
-                    .AddTransient<{data.ViewType}>(static x => new {data.ViewType}(x.GetRequiredService<{data.ViewModelType}>()))" : @$" 
-                    .AddTransient<{data.ViewType}>()")}
-                    .AddTransient<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>());
+                .AddTransient<{data.ViewType}>(static x => new {data.ViewType}(x.GetRequiredService<{data.ViewModelType}>()))" : @$" 
+                .AddTransient<{data.ViewType}>()")}
+                .AddTransient<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>());
 ").Inject()}
         }}
     }}

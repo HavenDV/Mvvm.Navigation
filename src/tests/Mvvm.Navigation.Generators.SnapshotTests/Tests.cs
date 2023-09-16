@@ -94,6 +94,23 @@ public class MainViewModel;", framework);
     [DataRow(Framework.UnoWinUi)]
     [DataRow(Framework.Maui)]
     [DataRow(Framework.Avalonia)]
+    public Task MapViewsAndViewFor(Framework framework)
+    {
+        return CheckSourceAsync(GetHeader(framework, nullable: true, mapViews: true, "Controls") + @"
+public partial class MainPage : UserControl;
+
+[ViewFor<MainViewModel>]
+public partial class SecondMainPage : UserControl;
+
+public class MainViewModel;", framework);
+    }
+    
+    [DataTestMethod]
+    [DataRow(Framework.Wpf)]
+    [DataRow(Framework.Uno)]
+    [DataRow(Framework.UnoWinUi)]
+    [DataRow(Framework.Maui)]
+    [DataRow(Framework.Avalonia)]
     public Task MapViews_1000(Framework framework)
     {
         var main = GetHeader(framework, nullable: true, mapViews: true, "Controls");

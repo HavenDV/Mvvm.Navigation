@@ -104,7 +104,7 @@ public class GlobalGenerator : IIncrementalGenerator
         
         files.Add(new FileWithName(
             Name: "ServiceCollectionExtensions.i.g.cs",
-            Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray())));
+            Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray(), prefix: "Global")));
         
         return files.ToImmutableArray();
     }
