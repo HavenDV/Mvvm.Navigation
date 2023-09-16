@@ -3,6 +3,7 @@ using H.Generators.Tests.Extensions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Testing;
 using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
 
 namespace H.Generators.SnapshotTests;
 
@@ -123,6 +124,7 @@ public partial class MainPage
         string source,
         Framework framework,
         bool verifyFiles = true,
+        [CallerMemberName]string? callerName = null,
         CancellationToken cancellationToken = default)
     {
         if (framework == Framework.Maui)
@@ -186,7 +188,7 @@ public partial class MainPage
                         x.Id != "CS0234")
                     .ToImmutableArray()
                     .NormalizeLocations())
-                .UseDirectory("Snapshots")
+                .UseDirectory($"Snapshots/{callerName}/{framework:G}")
                 //.AutoVerify()
                 .UseTextForParameters($"{framework}_Diagnostics"),
         };
@@ -194,7 +196,7 @@ public partial class MainPage
         {
             tasks.Add(
                 Verify(driver)
-                    .UseDirectory("Snapshots")
+                    .UseDirectory($"Snapshots/{callerName}/{framework:G}")
                     //.AutoVerify()
                     .UseTextForParameters($"{framework}"));
         }
