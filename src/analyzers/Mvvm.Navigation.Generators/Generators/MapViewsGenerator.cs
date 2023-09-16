@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace H.Generators;
 
 [Generator]
-public class GlobalGenerator : IIncrementalGenerator
+public class MapViewsGenerator : IIncrementalGenerator
 {
     #region Constants
 

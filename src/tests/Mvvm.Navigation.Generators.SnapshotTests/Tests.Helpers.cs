@@ -170,7 +170,7 @@ public partial class MainPage
                         new ConstructorGenerator(),
                         new DependencyInjectionGenerator(),
                         new ViewModelGenerator(),
-                        new GlobalGenerator(),
+                        new MapViewsGenerator(),
                     }
                     .Select(GeneratorExtensions.AsSourceGenerator)
                     .ToArray(),
