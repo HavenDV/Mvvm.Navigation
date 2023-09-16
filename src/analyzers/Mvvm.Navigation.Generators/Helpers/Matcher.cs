@@ -14,7 +14,9 @@ public static class Matcher
             .Select(static x => (Name: x.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat), ViewModel: x))
             .Where(static x => x.Name.Contains("ViewModel"))
             .ToDictionary(static x => x.Name, static x => x.ViewModel);
-        foreach (var view in views)
+        foreach (var view in views
+            .Where(static view => !view.GetAttributes()
+                .Any(static x => x.AttributeClass?.MetadataName is "ViewForAttribute" or "ViewForAttribute`1")))
         {
             var viewName = view.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
             if (viewName.Contains("ViewModel"))

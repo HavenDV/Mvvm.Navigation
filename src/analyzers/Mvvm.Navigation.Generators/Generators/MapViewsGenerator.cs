@@ -10,7 +10,7 @@ public class MapViewsGenerator : IIncrementalGenerator
 {
     #region Constants
 
-    private const string Id = "GG";
+    private const string Id = "MVG";
 
     #endregion
 
@@ -103,8 +103,9 @@ public class MapViewsGenerator : IIncrementalGenerator
         }
         
         files.Add(new FileWithName(
-            Name: "ServiceCollectionExtensions.i.g.cs",
-            Text: Sources.GenerateServiceCollectionExtensionsImplementation(values.AsImmutableArray(), prefix: "Global")));
+            Name: "MapViewsServiceCollectionExtensions.i.g.cs",
+            Text: Sources.GenerateServiceCollectionExtensionsImplementation(
+                values.AsImmutableArray(), prefix: "Mapped")));
         
         return files.ToImmutableArray();
     }

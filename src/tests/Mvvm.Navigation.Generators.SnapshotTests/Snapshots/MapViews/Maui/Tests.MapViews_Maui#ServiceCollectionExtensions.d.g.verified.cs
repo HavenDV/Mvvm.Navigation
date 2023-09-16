@@ -10,7 +10,7 @@ namespace Mvvm.Navigation
         static partial void AddViewsAndViewModels(
             global::Microsoft.Extensions.DependencyInjection.IServiceCollection services);
 
-        static partial void AddGlobalViewsAndViewModels(
+        static partial void AddMappedViewsAndViewModels(
             global::Microsoft.Extensions.DependencyInjection.IServiceCollection services);
 
         public static global::Microsoft.Extensions.DependencyInjection.IServiceCollection AddMvvmNavigation(
@@ -22,7 +22,7 @@ namespace Mvvm.Navigation
                 .AddTransient<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>()
                 .AddSingleton<global::Mvvm.Navigation.IResolver, global::Mvvm.Navigation.Resolver>();
 
-            AddGlobalViewsAndViewModels(services);
+            AddMappedViewsAndViewModels(services);
             AddViewsAndViewModels(services);
 
             return services;
