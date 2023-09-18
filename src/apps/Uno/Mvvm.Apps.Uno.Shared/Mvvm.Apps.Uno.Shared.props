@@ -1,6 +1,6 @@
 <Project>
 	<ItemGroup>
-		<PackageReference Include="Uno.Resizetizer" Version="1.1.2" />
+		<PackageReference Include="Uno.Resizetizer" Version="1.1.3" />
 	</ItemGroup>
 
 	<ItemGroup>
