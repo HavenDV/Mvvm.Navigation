@@ -31,6 +31,14 @@
 		<PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" Version="4.10.13" />
 	</ItemGroup>
 
+	<!-- https://github.com/xamarin/xamarin-macios/issues/15897 -->
+	<Target Name="_SetPublishFolderTypeNoneOnDocFileItems" BeforeTargets="_ComputePublishLocation">
+		<ItemGroup>
+			<ResolvedFileToPublish Update="@(ResolvedFileToPublish)" Condition="'%(ResolvedFileToPublish.Extension)' == '.xml' And '%(ResolvedFileToPublish.PublishFolderType)' == ''" PublishFolderType="None" />
+			<ResolvedFileToPublish Update="@(ResolvedFileToPublish)" Condition="'%(ResolvedFileToPublish.Extension)' == '.uprimarker' And '%(ResolvedFileToPublish.PublishFolderType)' == ''" PublishFolderType="None" />
+		</ItemGroup>
+	</Target>
+
 	<Choose>
 		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 			<PropertyGroup>
