@@ -12,16 +12,21 @@
     Height="600"
     mc:Ignorable="d"
     Background="{StaticResource MaterialDesignPaper}"
-    d:DataContext="{d:DesignInstance {x:Type designTime:MainViewModel}, IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance {x:Type designTime:MainViewModel},
+                                     IsDesignTimeCreatable=True}"
     >
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Column="0" Margin="10" Orientation="Vertical">
+
+        <StackPanel
+            Grid.Column="0"
+            Margin="10"
+            Orientation="Vertical"
+            >
             <Button
                 Command="{Binding Navigator.NavigateByTypeCommand}"
                 CommandParameter="{x:Type viewModels:BlueViewModel}"
@@ -40,8 +45,17 @@
                 Content="Web"
                 Margin="0,0,0,5"
                 />
+            <Button
+                Command="{Binding SetViewModelExplicitlyCommand}"
+                Content="Random"
+                Margin="0,0,0,5"
+                />
         </StackPanel>
-        <ContentControl Grid.Column="1" mvvm:Properties.Navigator="{Binding Navigator}">
+        <ContentControl
+            Grid.Column="1"
+            mvvm:Properties.Navigator="{Binding Navigator}"
+            mvvm:Properties.ViewModel="{Binding ViewModel, Mode=TwoWay}"
+            >
             <TextBlock
                 Text="Select color"
                 Foreground="{StaticResource MaterialDesignBody}"

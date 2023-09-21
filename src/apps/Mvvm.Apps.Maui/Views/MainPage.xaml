@@ -31,10 +31,16 @@
                 Text="Green"
                 WidthRequest="100"
                 />
+            <Button
+                Command="{Binding SetViewModelExplicitlyCommand}"
+                Text="Random"
+                WidthRequest="100"
+                />
         </VerticalStackLayout>
         <ContentView
             Grid.Column="1"
             mvvm:Properties.Navigator="{Binding Navigator}"
+            mvvm:Properties.ViewModel="{Binding ViewModel, Mode=TwoWay}"
             >
             <Label
                 Text="Select color"

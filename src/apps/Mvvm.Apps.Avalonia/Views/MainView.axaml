@@ -42,10 +42,16 @@
                 Content="Green"
                 Width="100"
                 />
+            <Button
+                Command="{Binding SetViewModelExplicitlyCommand}"
+                Content="Random"
+                Width="100"
+                />
         </StackPanel>
         <ContentControl
             Grid.Column="1"
             mvvm:Properties.Navigator="{Binding Navigator}"
+            mvvm:Properties.ViewModel="{Binding ViewModel, Mode=TwoWay}"
             >
             <Label
                 Content="Select color"

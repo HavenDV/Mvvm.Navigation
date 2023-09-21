@@ -33,12 +33,17 @@
                 CommandParameter="{mvvm:Type Type=viewModels:GreenViewModel}"
                 Content="Green"
                 />
+            <Button
+                Command="{x:Bind ViewModel.SetViewModelExplicitlyCommand}"
+                Content="Random"
+                />
         </StackPanel>
         <ContentControl
             Grid.Column="1"
             Width="500"
             Height="500"
             mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
+            mvvm:Properties.ViewModel="{x:Bind ViewModel.ViewModel, Mode=OneWay}"
             >
             <TextBlock
                 Text="Select color"
