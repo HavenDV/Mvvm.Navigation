@@ -7,8 +7,8 @@ namespace Mvvm.Navigation;
 /// <summary>
 /// 
 /// </summary>
-[AttachedDependencyProperty<object, ContentControl>("ViewModel")]
-[AttachedDependencyProperty<Type, ContentControl>("ViewModelType")]
+[AttachedDependencyProperty<object, ContentControl>("ViewModel", DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[AttachedDependencyProperty<Type, ContentControl>("ViewModelType", DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [AttachedDependencyProperty<Navigator<ObservableObject>, ContentControl>("Navigator")]
 [AttachedDependencyProperty<IResolver, ContentControl>("Resolver")]
 public partial class Properties
