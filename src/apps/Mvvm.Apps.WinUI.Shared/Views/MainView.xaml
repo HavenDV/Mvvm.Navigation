@@ -13,9 +13,9 @@
 
     <Grid ColumnDefinitions="Auto,*">
         <StackPanel
-            Orientation="Vertical"
             Grid.Column="0"
             Margin="10"
+            Orientation="Vertical"
             Spacing="5"
             >
             <Button
@@ -40,14 +40,14 @@
         </StackPanel>
         <ContentControl
             Grid.Column="1"
-            Width="500"
-            Height="500"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
             mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
             mvvm:Properties.ViewModel="{x:Bind ViewModel.ViewModel, Mode=OneWay}"
             >
             <TextBlock
-                Text="Select color"
                 HorizontalAlignment="Center"
+                Text="Select color"
                 VerticalAlignment="Center"
                 />
         </ContentControl>
