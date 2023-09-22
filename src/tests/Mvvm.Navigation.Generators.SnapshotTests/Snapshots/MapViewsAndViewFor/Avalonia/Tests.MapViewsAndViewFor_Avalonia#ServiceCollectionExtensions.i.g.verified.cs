@@ -14,7 +14,8 @@ namespace Mvvm.Navigation
             _ = services
                 .AddSingleton<global::H.Generators.IntegrationTests.MainViewModel>()
                 .AddTransient<global::H.Generators.IntegrationTests.SecondMainPage>()
-                .AddTransient<IViewFor<global::H.Generators.IntegrationTests.MainViewModel>, global::H.Generators.IntegrationTests.SecondMainPage>(static x => x.GetRequiredService<global::H.Generators.IntegrationTests.SecondMainPage>());
+                .AddTransient<IViewFor<global::H.Generators.IntegrationTests.MainViewModel>, global::H.Generators.IntegrationTests.SecondMainPage>(static x => x.GetRequiredService<global::H.Generators.IntegrationTests.SecondMainPage>())
+                ;
         }
     }
 }

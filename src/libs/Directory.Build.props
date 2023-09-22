@@ -23,7 +23,7 @@ $(PACKAGE_RELEASE_NOTES)
   </PropertyGroup>
 
   <PropertyGroup Label="Nuget">
-    <Version>1.2.6</Version>
+    <Version>1.2.7</Version>
     <PackageReleaseNotes>$(PACKAGE_RELEASE_NOTES)</PackageReleaseNotes>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>

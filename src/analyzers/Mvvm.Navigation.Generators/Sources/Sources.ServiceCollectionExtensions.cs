@@ -58,11 +58,14 @@ namespace Mvvm.Navigation
 
 {views.Select(data => @$"
             _ = services
-                .Add{data.ViewModelLifetime:G}<{data.ViewModelType}>()
+{(data.ViewModelLifetime is ServiceLifetime.None ? " " : @$" 
+                .Add{data.ViewModelLifetime:G}<{data.ViewModelType}>()")}
+{(data.ViewLifetime is ServiceLifetime.None ? " " : @$" 
 {(data is { ViewModelConstructor: true } ? @$" 
                 .Add{data.ViewLifetime:G}<{data.ViewType}>(static x => new {data.ViewType}(x.GetRequiredService<{data.ViewModelType}>()))" : @$" 
                 .Add{data.ViewLifetime:G}<{data.ViewType}>()")}
-                .Add{data.ViewLifetime:G}<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>());
+                .Add{data.ViewLifetime:G}<IViewFor<{data.ViewModelType}>, {data.ViewType}>(static x => x.GetRequiredService<{data.ViewType}>())")}
+                ;
 ").Inject()}
         }}
     }}
