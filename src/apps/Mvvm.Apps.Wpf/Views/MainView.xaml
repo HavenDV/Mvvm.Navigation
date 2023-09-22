@@ -30,19 +30,19 @@
             <Button
                 Command="{Binding Navigator.NavigateByTypeCommand}"
                 CommandParameter="{x:Type viewModels:BlueViewModel}"
-                Content="File"
+                Content="Blue"
                 Margin="0,0,0,5"
                 />
             <Button
                 Command="{Binding Navigator.NavigateByTypeCommand}"
                 CommandParameter="{x:Type viewModels:RedViewModel}"
-                Content="Message"
+                Content="Red"
                 Margin="0,0,0,5"
                 />
             <Button
                 Command="{Binding Navigator.NavigateByTypeCommand}"
                 CommandParameter="{x:Type viewModels:GreenViewModel}"
-                Content="Web"
+                Content="Green"
                 Margin="0,0,0,5"
                 />
             <Button
