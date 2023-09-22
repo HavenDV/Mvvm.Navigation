@@ -12,8 +12,8 @@
 		Version="1.0.0.0" />
 
 	<Properties>
-		<DisplayName>test</DisplayName>
-		<PublisherDisplayName>test</PublisherDisplayName>
+		<DisplayName>Mvvm.Apps.Uno</DisplayName>
+		<PublisherDisplayName>Mvvm.Apps.Uno</PublisherDisplayName>
 	</Properties>
 
 	<Dependencies>
