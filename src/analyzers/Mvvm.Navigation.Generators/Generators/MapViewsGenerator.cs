@@ -54,22 +54,21 @@ public class MapViewsGenerator : IIncrementalGenerator
         };
         viewModelsVisitor.Visit(semanticModel.Compilation.GlobalNamespace);
 
-        var pairs = Matcher.Match(viewsVisitor.OutputSymbols, viewModelsVisitor.OutputSymbols);
-        
-        var initializeComponent = attribute.GetNamedArgument(nameof(MapViewsData.InitializeComponent)).ToBoolean();
-        var viewModel = attribute.GetNamedArgument(nameof(MapViewsData.ViewModel)).ToBoolean();
-        var viewModelConstructor = attribute.GetNamedArgument(nameof(MapViewsData.ViewModelConstructor)).ToBoolean(defaultValue: viewModel);
-        var activation = attribute.GetNamedArgument(nameof(MapViewsData.Activation)).ToBoolean(defaultValue: viewModel);
+        var pairs = Matcher.Match(
+            viewsVisitor.OutputSymbols,
+            viewModelsVisitor.OutputSymbols);
         
         return pairs
             .Select(x => Prepare.GetViewForData(
                 framework: framework,
                 viewSymbol: x.View,
                 viewModelSymbol: x.ViewModel,
-                viewModelConstructor: viewModelConstructor,
-                initializeComponent: initializeComponent,
-                activation: activation,
-                viewModel: viewModel))
+                viewModelConstructor: data.ViewModelConstructor,
+                initializeComponent: data.InitializeComponent,
+                activation: data.Activation,
+                viewModel: data.ViewModel,
+                viewLifetime: data.ViewLifetime,
+                viewModelLifetime: data.ViewModelLifetime))
             .ToImmutableArray();
     }
 

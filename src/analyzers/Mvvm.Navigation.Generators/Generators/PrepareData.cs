@@ -13,7 +13,9 @@ public static class Prepare
         bool viewModelConstructor,
         bool initializeComponent,
         bool activation,
-        bool viewModel)
+        bool viewModel,
+        ServiceLifetime viewLifetime,
+        ServiceLifetime viewModelLifetime)
     {
         var viewType = viewSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
         var viewModelType = viewModelSymbol?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) ?? string.Empty;
@@ -35,8 +37,8 @@ public static class Prepare
             InitializeComponent: initializeComponent,
             Activation: activation,
             ViewModel: viewModel,
-            ViewLifetime: ServiceLifetime.Transient,
-            ViewModelLifetime: ServiceLifetime.Singleton);
+            ViewLifetime: viewLifetime,
+            ViewModelLifetime: viewModelLifetime);
     }
     
     public static ViewForData GetViewForData(this AttributeData attribute, Framework framework, INamedTypeSymbol classSymbol)
@@ -51,6 +53,11 @@ public static class Prepare
         var viewModelConstructor = attribute.GetNamedArgument(nameof(ViewForData.ViewModelConstructor)).ToBoolean(defaultValue: viewModel);
         var activation = attribute.GetNamedArgument(nameof(ViewForData.Activation)).ToBoolean(defaultValue: viewModel);
 
+        var viewLifetime = attribute.GetNamedArgument(nameof(ViewForData.ViewLifetime))
+            .ToEnum<ServiceLifetime>() ?? ServiceLifetime.Transient;
+        var viewModelLifetime = attribute.GetNamedArgument(nameof(ViewForData.ViewModelLifetime))
+            .ToEnum<ServiceLifetime>() ?? ServiceLifetime.Singleton;
+
         return GetViewForData(
             framework: framework,
             viewSymbol: classSymbol,
@@ -58,7 +65,9 @@ public static class Prepare
             viewModelConstructor: viewModelConstructor,
             initializeComponent: initializeComponent,
             activation: activation,
-            viewModel: viewModel);
+            viewModel: viewModel,
+            viewLifetime: viewLifetime,
+            viewModelLifetime: viewModelLifetime);
     }
     
     public static MapViewsData GetMapViewsData(this AttributeData attribute, Framework framework, CompilationUnitSyntax compilationUnitSyntax)
@@ -78,6 +87,11 @@ public static class Prepare
         var viewModelConstructor = attribute.GetNamedArgument(nameof(MapViewsData.ViewModelConstructor)).ToBoolean(defaultValue: viewModel);
         var activation = attribute.GetNamedArgument(nameof(MapViewsData.Activation)).ToBoolean(defaultValue: viewModel);
 
+        var viewLifetime = attribute.GetNamedArgument(nameof(MapViewsData.ViewLifetime))
+            .ToEnum<ServiceLifetime>() ?? ServiceLifetime.Transient;
+        var viewModelLifetime = attribute.GetNamedArgument(nameof(MapViewsData.ViewModelLifetime))
+            .ToEnum<ServiceLifetime>() ?? ServiceLifetime.Singleton;
+
         return new MapViewsData(
             Framework: framework,
             ViewsNamespace: viewsNamespace,
@@ -86,7 +100,7 @@ public static class Prepare
             InitializeComponent: initializeComponent,
             Activation: activation,
             ViewModel: viewModel,
-            ViewLifetime: ServiceLifetime.Transient,
-            ViewModelLifetime: ServiceLifetime.Singleton);
+            ViewLifetime: viewLifetime,
+            ViewModelLifetime: viewModelLifetime);
     }
 }
