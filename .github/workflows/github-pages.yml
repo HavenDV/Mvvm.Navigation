@@ -40,7 +40,7 @@ jobs:
       - name: Build using dotnet
         run: dotnet build
           src/apps/Mvvm.Apps.Uno
-          --targetframework net7.0-webassembly
+          --framework net7.0-webassembly
           --configuration Release
           --nologo
         
