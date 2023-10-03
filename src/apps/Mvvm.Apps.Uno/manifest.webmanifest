@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "Mvvm.Apps",
+  "display": "standalone",
+  "name": "Mvvm.Apps",
+  "short_name": "Mvvm.Apps",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}

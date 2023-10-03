@@ -1,0 +1,19 @@
+<Project Sdk="H.Uno.Sdk/0.9.8">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-skia;net7.0-webassembly</TargetFrameworks> <!-- net7.0-ios;net7.0-maccatalyst; -->
+		<TargetFrameworks Condition="'$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+	</PropertyGroup>
+
+	<Import Project="../../libs/Mvvm.Navigation.Uno.WinUI/Mvvm.Navigation.Uno.WinUI.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
+						  OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\Mvvm.Apps.Core\Mvvm.Apps.Core.csproj" />
+		<ProjectReference Include="..\..\libs\Mvvm.Navigation.Uno.WinUI\Mvvm.Navigation.Uno.WinUI.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\Mvvm.Apps.Shared\Mvvm.Apps.Shared.props" />
+	
+</Project>

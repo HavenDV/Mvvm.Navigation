@@ -15,7 +15,7 @@ global using System.Windows.Media;
 global using System.Windows.Controls;
 global using UserControl = System.Windows.Controls.UserControl;
 global using Page = System.Windows.Window;
-#elif HAS_WINUI
+#elif HAS_WINUI || HAS_UNO
 global using Microsoft.UI;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Data;
