@@ -39,7 +39,8 @@ jobs:
           
       - name: Build using dotnet
         run: dotnet build
-          src/apps/Uno/Mvvm.Apps.Uno.WebAssembly
+          src/apps/Mvvm.Apps.Uno
+          --targetframework net7.0-webassembly
           --configuration Release
           --nologo
         
@@ -50,4 +51,4 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
-          path: 'src/apps/Uno/Mvvm.Apps.Uno.WebAssembly/bin/Release/net7.0/dist'
+          path: 'src/apps/Mvvm.Apps.Uno/bin/Release/net7.0-webassembly/dist'
