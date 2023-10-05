@@ -16,14 +16,6 @@ global using System.Windows.Controls;
 global using UserControl = System.Windows.Controls.UserControl;
 global using Page = System.Windows.Window;
 #elif HAS_WINUI || HAS_UNO
-global using Microsoft.UI;
-global using Microsoft.UI.Xaml;
-global using Microsoft.UI.Xaml.Data;
-global using Microsoft.UI.Xaml.Media;
-global using Microsoft.UI.Xaml.Navigation;
-global using Microsoft.UI.Xaml.Controls;
-global using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
-global using ApplicationExecutionState = Windows.ApplicationModel.Activation.ApplicationExecutionState;
 #else
 global using Windows.UI;
 global using Windows.UI.Xaml;

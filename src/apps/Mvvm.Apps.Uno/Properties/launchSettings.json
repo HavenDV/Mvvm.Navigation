@@ -8,10 +8,13 @@
     }
   },
   "profiles": {
-    "Mvvm.Apps.Windows (Package)": {
+    "Project": {
+      "commandName": "Project"
+    },
+    "Windows (Package)": {
       "commandName": "MsixPackage"
     },
-    "Mvvm.Apps.Wasm": {
+    "WebAssembly": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

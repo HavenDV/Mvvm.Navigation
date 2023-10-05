@@ -1,6 +1,10 @@
 using System;
 using GLib;
+#if __UNO5__
+using Uno.UI.Runtime.Skia.Gtk;
+#else
 using Uno.UI.Runtime.Skia;
+#endif
 
 namespace Mvvm.Apps.Skia.Gtk;
 
