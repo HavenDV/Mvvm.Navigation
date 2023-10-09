@@ -1,4 +1,4 @@
-<Project Sdk="H.Uno.Sdk/0.9.8">
+<Project Sdk="H.Uno.Sdk/0.17.2">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-skia;net7.0-webassembly</TargetFrameworks> <!-- net7.0-ios;net7.0-maccatalyst; -->
