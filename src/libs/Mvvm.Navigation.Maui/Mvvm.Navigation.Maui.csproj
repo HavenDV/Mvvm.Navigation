@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.0-rc.2.9373" />
-    <PackageReference Include="DependencyPropertyGenerator" Version="1.3.2">
+    <PackageReference Include="DependencyPropertyGenerator" Version="1.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

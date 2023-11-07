@@ -13,7 +13,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" Version="4.3.1" />
-        <PackageReference Include="H.Generators.Extensions" PrivateAssets="all" Version="1.19.0" />
+        <PackageReference Include="H.Generators.Extensions" PrivateAssets="all" Version="1.20.0" />
     </ItemGroup>
 
 
