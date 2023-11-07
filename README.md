@@ -18,6 +18,7 @@ registers this in your DI container.
   
 ## 🔥Features🔥
 - Uses DI to resolve your view from view model.
+- Generates constructors for your views(optional).
 - Generates an extension method for you with all your Views and ViewModels to register them in DI.
 - Does not contain custom controls, everything happens based on the attached dependency property and does not limit the user.
 - Allows forward/backward navigation like in Chrome.
