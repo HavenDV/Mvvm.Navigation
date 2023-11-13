@@ -26,6 +26,7 @@ jobs:
         /target:libs\Mvvm_Navigation_Maui
         /target:libs\Mvvm_Navigation_Avalonia
       use-msbuild: true
+      use-latest-msbuild: true
       workloads: maui android ios maccatalyst macos
       install-tizen: true
       windows-sdk-version: 18362
