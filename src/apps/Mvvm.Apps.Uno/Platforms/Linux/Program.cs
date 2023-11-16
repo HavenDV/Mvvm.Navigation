@@ -1,9 +1,5 @@
 using Windows.UI.Core;
-#if __UNO5__
 using Uno.UI.Runtime.Skia.Linux.FrameBuffer;
-#else
-using Uno.UI.Runtime.Skia;
-#endif
 
 namespace Mvvm.Apps.Skia.Linux.Framebuffer;
 
