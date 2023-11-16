@@ -23,7 +23,7 @@ jobs:
       #use-msbuild: true
       #install-latest-msbuild: true
       workloads: maui
-      #install-tizen: true
+      install-tizen: true
       #windows-sdk-version: 18362
       generate-build-number: false
       conventional-commits-publish-conditions: false

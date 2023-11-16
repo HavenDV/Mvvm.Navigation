@@ -12,5 +12,6 @@ jobs:
       os: windows-latest
       project-path: Mvvm.Navigation.NuGet.slnf
       workloads: maui
+      install-tizen: true
       generate-build-number: false
       conventional-commits-publish-conditions: false

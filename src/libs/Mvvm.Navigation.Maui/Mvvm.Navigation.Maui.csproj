@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net8.0-android;net8.0-ios;net8.0-maccatalyst;net8.0-windows10.0.19041.0</TargetFrameworks>
-<!--    <TargetFrameworks Condition="'$(TF_BUILD)' == 'true'">$(TargetFrameworks);net7.0-tizen</TargetFrameworks>-->
+    <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+    <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <UseMaui>true</UseMaui>
     <SignAssembly>false</SignAssembly>
