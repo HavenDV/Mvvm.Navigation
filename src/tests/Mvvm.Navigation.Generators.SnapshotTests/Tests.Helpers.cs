@@ -140,12 +140,12 @@ public partial class MainPage
         {
             Framework.None => ReferenceAssemblies.NetFramework.Net48.Wpf,
             Framework.Wpf => ReferenceAssemblies.NetFramework.Net48.Wpf,
-            Framework.Uwp => FrameworkReferenceAssemblies.Net70Uwp,
-            Framework.WinUi => FrameworkReferenceAssemblies.Net70WinUi,
-            Framework.Uno => FrameworkReferenceAssemblies.Net70Uno,
-            Framework.UnoWinUi => FrameworkReferenceAssemblies.Net70UnoWinUi,
-            Framework.Avalonia => FrameworkReferenceAssemblies.Net70Avalonia,
-            Framework.Maui => FrameworkReferenceAssemblies.Net70Maui,
+            Framework.Uwp => FrameworkReferenceAssemblies.Net80Uwp,
+            Framework.WinUi => FrameworkReferenceAssemblies.Net80WinUi,
+            Framework.Uno => FrameworkReferenceAssemblies.Net80Uno,
+            Framework.UnoWinUi => FrameworkReferenceAssemblies.Net80UnoWinUi,
+            Framework.Avalonia => FrameworkReferenceAssemblies.Net80Avalonia,
+            Framework.Maui => FrameworkReferenceAssemblies.Net80Maui,
             _ => throw new NotImplementedException(),
         }).AddPackages(ImmutableArray.Create(
             new PackageIdentity("Microsoft.Extensions.Hosting", "7.0.1"),
