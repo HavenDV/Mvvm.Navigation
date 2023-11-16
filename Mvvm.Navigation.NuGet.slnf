@@ -6,7 +6,7 @@
       "src\\libs\\Mvvm.Navigation.Core\\Mvvm.Navigation.Core.csproj",
       "src\\libs\\Mvvm.Navigation.Avalonia\\Mvvm.Navigation.Avalonia.csproj",
       "src\\libs\\Mvvm.Navigation.Uno\\Mvvm.Navigation.Uno.csproj",
-      "src\\libs\\Mvvm.Navigation.Uno.WinUI\\MMvvm.Navigation.Uno.WinUI.csproj",
+      "src\\libs\\Mvvm.Navigation.Uno.WinUI\\Mvvm.Navigation.Uno.WinUI.csproj",
       "src\\libs\\Mvvm.Navigation.WinUI\\Mvvm.Navigation.WinUI.csproj",
       "src\\libs\\Mvvm.Navigation.Maui\\Mvvm.Navigation.Maui.csproj",
       "src\\libs\\Mvvm.Navigation.Wpf\\Mvvm.Navigation.Wpf.csproj"
