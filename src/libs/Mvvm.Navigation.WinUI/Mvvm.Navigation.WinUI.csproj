@@ -5,7 +5,7 @@
     <UseWinUI>true</UseWinUI>
     <DefineConstants>$(DefineConstants);HAS_WINUI</DefineConstants>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <EnableMsixTooling>true</EnableMsixTooling>
     <NoWarn>$(NoWarn);CA5394;CA1822;CA1052;CA1031;CA1724</NoWarn>
   </PropertyGroup>
 

@@ -1,7 +1,7 @@
 <Project Sdk="MSBuild.Sdk.Extras/3.0.44">
 
   <PropertyGroup>
-    <TargetFrameworks>uap10.0.18362</TargetFrameworks>
+    <TargetFramework>uap10.0.18362</TargetFramework>
     <DefineConstants>$(DefineConstants);HAS_UWP</DefineConstants>
     <NoWarn>$(NoWarn);CA1822;CA1052;CA1031;CA1724</NoWarn>
   </PropertyGroup>
