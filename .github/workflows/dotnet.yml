@@ -16,8 +16,7 @@ jobs:
     uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
     with:
       os: windows-latest
-      project-path:
-        src/libs/*/*.csproj
+      project-path: Mvvm.Navigation.NuGet.slnf
         
 #        /target:libs\Mvvm_Navigation_Core
 #        /target:libs\Mvvm_Navigation_Uno
