@@ -9,7 +9,9 @@
       "src\\libs\\Mvvm.Navigation.Uno.WinUI\\Mvvm.Navigation.Uno.WinUI.csproj",
       "src\\libs\\Mvvm.Navigation.WinUI\\Mvvm.Navigation.WinUI.csproj",
       "src\\libs\\Mvvm.Navigation.Maui\\Mvvm.Navigation.Maui.csproj",
-      "src\\libs\\Mvvm.Navigation.Wpf\\Mvvm.Navigation.Wpf.csproj"
+      "src\\libs\\Mvvm.Navigation.Wpf\\Mvvm.Navigation.Wpf.csproj",
+      "src\\tests\\Mvvm.Navigation.Generators.IntegrationTests\\Mvvm.Navigation.Generators.IntegrationTests.csproj",
+      "src\\tests\\Mvvm.Navigation.Generators.SnapshotTests\\Mvvm.Navigation.Generators.SnapshotTests.csproj"
     ]
   }
 }
