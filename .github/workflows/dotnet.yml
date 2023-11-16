@@ -15,7 +15,7 @@ jobs:
     name: Build, test and publish
     uses: HavenDV/workflows/.github/workflows/dotnet_build-test-publish.yml@main
     with:
-      #os: windows-latest
+      os: windows-latest
       project-path:
         src/libs/Mvvm.Navigation.Core/Mvvm.Navigation.Core.csproj
         src/libs/Mvvm.Navigation.Uno/Mvvm.Navigation.Uno.csproj
