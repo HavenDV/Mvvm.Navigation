@@ -1,4 +1,4 @@
-<Project Sdk="H.Uno.Sdk/0.22.0">
+<Project Sdk="H.Uno.Sdk/0.23.0">
 
 	<PropertyGroup>
 		<!-- net8.0-ios;net8.0-maccatalyst; -->
