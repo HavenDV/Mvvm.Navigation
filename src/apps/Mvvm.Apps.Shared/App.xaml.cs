@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mvvm.Apps.Views;
+using Uno.UI;
 #if !HAS_WPF
 using Uno.Resizetizer;
 #endif
@@ -52,6 +53,10 @@ public sealed partial class App : Application
         MainWindow = new Window();
 #else
         MainWindow = Microsoft.UI.Xaml.Window.Current;
+#endif
+        
+#if DEBUG
+        MainWindow.EnableHotReload();
 #endif
         
         if (MainWindow.Content is not Frame frame)
