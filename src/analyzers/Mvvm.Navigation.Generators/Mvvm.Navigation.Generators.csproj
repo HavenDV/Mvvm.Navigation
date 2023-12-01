@@ -6,6 +6,10 @@
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <NoWarn>$(NoWarn);CA1014;CA1308;CA1031</NoWarn>
     </PropertyGroup>
+    
+    <ItemGroup Label="Usings">
+        <Using Include="H.Generators.Extensions" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="IsExternalInit" Version="1.0.3">
@@ -13,7 +17,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" Version="4.3.1" />
-        <PackageReference Include="H.Generators.Extensions" PrivateAssets="all" Version="1.20.0" />
+        <PackageReference Include="H.Generators.Extensions" PrivateAssets="all" Version="1.22.0" />
     </ItemGroup>
 
 </Project>
