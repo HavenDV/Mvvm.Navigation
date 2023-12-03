@@ -14,7 +14,12 @@ using Avalonia.Controls;
 
 namespace H.Generators.IntegrationTests;
 
-[ViewFor<MainViewModel>]
-public partial class MainPage : UserControl;
+[ViewFor<MainViewModel>(ViewModel = true)]
+public partial class MainPage : UserControl
+{
+    public void InitializeComponent()
+    {
+    }
+}
 
 public class MainViewModel;

@@ -6,7 +6,7 @@
         <DefineConstants>$(DefineConstants);HAS_AVALONIA</DefineConstants>
     </PropertyGroup>
 
-    <Import Project="../../libs/Mvvm.Navigation.Maui/Mvvm.Navigation.Maui.props" />
+    <Import Project="../../libs/Mvvm.Navigation.Avalonia/Mvvm.Navigation.Avalonia.props" />
     
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
@@ -22,9 +22,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
-                          OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-        <ProjectReference Include="..\..\libs\Mvvm.Navigation.Core\Mvvm.Navigation.Core.csproj" />
+        <ProjectReference 
+            Include="..\..\analyzers\Mvvm.Navigation.Generators\Mvvm.Navigation.Generators.csproj"
+            OutputItemType="Analyzer"
+            ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\..\libs\Mvvm.Navigation.Avalonia\Mvvm.Navigation.Avalonia.csproj" />
     </ItemGroup>
-
+        
 </Project>
