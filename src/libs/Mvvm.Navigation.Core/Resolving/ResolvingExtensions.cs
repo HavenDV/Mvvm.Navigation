@@ -24,6 +24,21 @@ public static class ServiceProviderResolveExtensions
     /// Returns a view for a view model type.
     /// </summary>
     /// <param name="serviceProvider">The service provider used to resolve views.</param>
+    /// <param name="viewModel"></param>
+    /// <returns></returns>
+    public static IViewFor ResolveViewFor(
+        this IServiceProvider serviceProvider,
+        object viewModel)
+    {
+        viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        
+        return serviceProvider.ResolveViewFor(viewModel.GetType());
+    }
+    
+    /// <summary>
+    /// Returns a view for a view model type.
+    /// </summary>
+    /// <param name="serviceProvider">The service provider used to resolve views.</param>
     /// <returns></returns>
     public static IViewFor<T> ResolveViewFor<T>(
         this IServiceProvider serviceProvider)

@@ -11,7 +11,7 @@ namespace Mvvm.Navigation;
 [AttachedDependencyProperty<Type, ContentControl>("ViewModelType", DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [AttachedDependencyProperty<Navigator<ObservableObject>, ContentControl>("Navigator")]
 [AttachedDependencyProperty<IServiceProvider, ContentControl>("ServiceProvider")]
-public partial class Properties
+public static partial class Properties
 {
     static partial void OnNavigatorChanged(ContentControl contentControl, Navigator<ObservableObject>? oldValue, Navigator<ObservableObject>? newValue)
     {
