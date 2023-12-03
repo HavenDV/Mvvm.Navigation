@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,18 +14,12 @@ namespace Mvvm.Navigation;
 public partial class Navigator<T>
 {
     #region Properties
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [IgnoreDataMember]
-    public IResolver Resolver { get; }
     
     /// <summary>
     /// 
     /// </summary>
     [IgnoreDataMember]
-    private IServiceProvider ServiceProvider { get; }
+    public IServiceProvider ServiceProvider { get; }
     
     /// <summary>
     /// Gets the current navigation stack, the last element in the
@@ -54,14 +47,13 @@ public partial class Navigator<T>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="resolver"></param>
     /// <param name="serviceProvider"></param>
-    public Navigator(IResolver resolver, IServiceProvider serviceProvider)
+    /// <exception cref="ArgumentNullException"></exception>
+    public Navigator(IServiceProvider serviceProvider)
     {
-        Resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
     }
-
+    
     #endregion
     
     #region Events
@@ -121,16 +113,18 @@ public partial class Navigator<T>
         OnCurrentChanged(Current!);
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
+    /// <inheritdoc cref="ServiceProviderResolveExtensions.ResolveViewFor"/>
     public IViewFor Resolve(Type type)
     {
         type = type ?? throw new ArgumentNullException(nameof(type));
         
-        return Resolver.Resolve(type);
+        return ServiceProvider.ResolveViewFor(type);
+    }
+    
+    /// <inheritdoc cref="ServiceProviderResolveExtensions.ResolveViewFor{T}"/>
+    public IViewFor<TViewModel> Resolve<TViewModel>() where TViewModel : class, T
+    {
+        return ServiceProvider.ResolveViewFor<TViewModel>();
     }
     
     /// <summary>
@@ -239,11 +233,11 @@ public partial class Navigator<T>
     /// <param name="reset"></param>
     /// <typeparam name="TViewModel"></typeparam>
     /// <returns></returns>
-    public T Navigate<TViewModel>(bool reset = false) where TViewModel : class, T
+    public TViewModel Navigate<TViewModel>(bool reset = false) where TViewModel : class, T
     {
         var viewModel = ServiceProvider.GetRequiredService<TViewModel>();
 
-        return Navigate(viewModel, reset);
+        return (TViewModel)Navigate(viewModel, reset)!;
     }
     
     /// <summary>

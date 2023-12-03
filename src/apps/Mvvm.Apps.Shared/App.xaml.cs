@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mvvm.Apps.Views;
-using Uno.UI;
 #if !HAS_WPF
+using Uno.UI;
 using Uno.Resizetizer;
 #endif
 

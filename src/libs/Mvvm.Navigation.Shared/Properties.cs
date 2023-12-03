@@ -10,7 +10,7 @@ namespace Mvvm.Navigation;
 [AttachedDependencyProperty<object, ContentControl>("ViewModel", DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [AttachedDependencyProperty<Type, ContentControl>("ViewModelType", DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [AttachedDependencyProperty<Navigator<ObservableObject>, ContentControl>("Navigator")]
-[AttachedDependencyProperty<IResolver, ContentControl>("Resolver")]
+[AttachedDependencyProperty<IServiceProvider, ContentControl>("ServiceProvider")]
 public partial class Properties
 {
     static partial void OnNavigatorChanged(ContentControl contentControl, Navigator<ObservableObject>? oldValue, Navigator<ObservableObject>? newValue)
@@ -48,12 +48,12 @@ public partial class Properties
                 return;
             }
 
-            var resolver =
-                GetNavigator(contentControl)?.Resolver ??
-                GetResolver(contentControl) ??
-                TryGetServiceFromIocDefault<IResolver>() ??
-                throw new InvalidOperationException("IResolver is not specified. Get it from DI and bind it or set up Ioc.Default.ConfigureServices.");
-            contentControl.Content = (Content)resolver.Resolve(newValue);
+            var serviceProvider =
+                GetNavigator(contentControl)?.ServiceProvider ??
+                GetServiceProvider(contentControl) ??
+                Ioc.Default ??
+                throw new InvalidOperationException("ServiceProvider is not specified. Get it from DI and bind it or set up Ioc.Default.ConfigureServices.");
+            contentControl.Content = (Content)serviceProvider.ResolveViewFor(newValue);
         }
         catch (Exception exception)
         {
@@ -63,18 +63,6 @@ public partial class Properties
             {
                 Text = exception.Message,
             };
-        }
-    }
-
-    private static T? TryGetServiceFromIocDefault<T>() where T : class
-    {
-        try
-        {
-            return Ioc.Default.GetService<T>();
-        }
-        catch (InvalidOperationException)
-        {
-            return null;
         }
     }
 }

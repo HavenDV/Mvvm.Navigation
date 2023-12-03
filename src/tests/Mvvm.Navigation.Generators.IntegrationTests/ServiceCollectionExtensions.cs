@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 // ReSharper disable UnusedType.Global
 // ReSharper disable IdentifierTypo
 
-namespace H.Generators.IntegrationTests;
+namespace Mvvm.Navigation.IntegrationTests;
 
 public static class MyServiceCollectionExtensions
 {

@@ -1,5 +1,5 @@
-﻿using Mvvm.Navigation;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 #nullable enable
 
@@ -12,7 +12,7 @@ using Avalonia.Controls;
 // ReSharper disable UnusedType.Global
 // ReSharper disable IdentifierTypo
 
-namespace H.Generators.IntegrationTests;
+namespace Mvvm.Navigation.IntegrationTests;
 
 [ViewFor<MainViewModel>(ViewModel = true)]
 public partial class MainPage : UserControl
@@ -22,4 +22,4 @@ public partial class MainPage : UserControl
     }
 }
 
-public class MainViewModel;
+public class MainViewModel : ObservableObject;
