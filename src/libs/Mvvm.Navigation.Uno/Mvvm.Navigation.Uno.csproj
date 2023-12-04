@@ -4,6 +4,7 @@
     <TargetFrameworks>net8.0;net8.0-android;net8.0-ios;net8.0-maccatalyst;net8.0-windows10.0.19041</TargetFrameworks>
     <DefineConstants>$(DefineConstants);HAS_UNO</DefineConstants>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
     <SignAssembly>false</SignAssembly>
     <NoWarn>$(NoWarn);CA1822;CA1052;CA1031;CA1724</NoWarn>
   </PropertyGroup>
