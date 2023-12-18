@@ -113,7 +113,7 @@ public partial class Navigator<T>
         OnCurrentChanged(Current!);
     }
     
-    /// <inheritdoc cref="ServiceProviderResolveExtensions.ResolveViewFor"/>
+    /// <inheritdoc cref="ServiceProviderResolveExtensions.ResolveViewFor(IServiceProvider, Type)"/>
     public IViewFor Resolve(Type type)
     {
         type = type ?? throw new ArgumentNullException(nameof(type));
