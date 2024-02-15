@@ -15,7 +15,7 @@ public
 #if !HAS_AVALONIA
     static 
 #endif
-    partial class Properties
+    partial class Navigation
 {
     static partial void OnNavigatorChanged(ContentControl contentControl, Navigator<ObservableObject>? oldValue, Navigator<ObservableObject>? newValue)
     {

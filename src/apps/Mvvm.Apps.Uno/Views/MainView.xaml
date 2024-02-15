@@ -42,8 +42,8 @@
             Grid.Column="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
-            mvvm:Properties.Navigator="{x:Bind ViewModel.Navigator}"
-            mvvm:Properties.ViewModel="{x:Bind ViewModel.ViewModel, Mode=OneWay}"
+            mvvm:Navigation.Navigator="{x:Bind ViewModel.Navigator}"
+            mvvm:Navigation.ViewModel="{x:Bind ViewModel.ViewModel, Mode=OneWay}"
             >
             <TextBlock
                 HorizontalAlignment="Center"

@@ -54,6 +54,22 @@ or assembly level attribute(nameof behavior is ignored and the full namespace is
     viewsNamespace: nameof(MyNamespace.Views),
     viewModelsNamespace: nameof(MyNamespace.ViewModels))]
 ```
+or in .csproj:
+```xml
+<ItemGroup Label="Navigation">
+    <AssemblyAttribute Include="Mvvm.Navigation.MapViews">
+        <_Parameter1>nameof(MyNamespace.Views)</_Parameter1>
+        <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+        <_Parameter2>nameof(MyNamespace.ViewModels)</_Parameter2>
+        <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
+        <ViewLifetime>Mvvm.Navigation.ServiceLifetime.Transient</ViewLifetime>
+        <ViewLifetime_IsLiteral>true</ViewLifetime_IsLiteral>
+        <ViewModelLifetime>Mvvm.Navigation.ServiceLifetime.Scoped</ViewModelLifetime>
+        <ViewModelLifetime_IsLiteral>true</ViewModelLifetime_IsLiteral>
+    </AssemblyAttribute>
+</ItemGroup>
+```
+Default lifetime is `ServiceLifetime.Transient` for View and `ServiceLifetime.Scoped` for ViewModel.
 3. Add Navigator to your ViewModel:
 ```csharp
 public Navigator<ObservableObject> Navigator { get; }
@@ -65,7 +81,7 @@ public Navigator<ObservableObject> Navigator { get; }
         Command="{Binding Navigator.NavigateByTypeCommand}"
         CommandParameter="{x:Type viewModels:BlueViewModel}"
         />
-    <ContentControl mvvm:Properties.Navigator="{Binding Navigator}"/>
+    <ContentControl mvvm:Navigation.Navigator="{Binding Navigator}"/>
 </Grid>
 ```
 Tip: you can use `CommandParameter="{mvvm:Type Type=viewModels:BlueViewModel}"` for WinUI/UWP/Uno platforms.
@@ -79,7 +95,7 @@ If you have the same task, then the changes are as follows:
 - Replace ReactiveUserControl with UserControl
 - Replace ReactiveWindow with Window
 - Replace RoutedViewHost and ViewModelViewHost with ContentControl
-- Use `mvvm:Properties.ViewModel` and `mvvm:Properties.ServiceProvider`/`mvvm:Properties.Navigator`(includes ServiceProvider) attached dependency properties.
+- Use `mvvm:Navigation.ViewModel` and `mvvm:Navigation.ServiceProvider`/`mvvm:Navigation.Navigator`(includes ServiceProvider) attached dependency properties.
 
 ## Support
 Priority place for bugs: https://github.com/HavenDV/Mvvm.Navigation/issues  

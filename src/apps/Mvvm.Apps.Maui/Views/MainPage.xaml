@@ -39,12 +39,12 @@
         </VerticalStackLayout>
         <ContentView
             Grid.Column="1"
-            mvvm:Properties.Navigator="{Binding Navigator}"
-            mvvm:Properties.ViewModel="{Binding ViewModel, Mode=TwoWay}"
+            mvvm:Navigation.Navigator="{Binding Navigator}"
+            mvvm:Navigation.ViewModel="{Binding ViewModel, Mode=TwoWay}"
             >
             <Label
-                Text="Select color"
                 HorizontalTextAlignment="Center"
+                Text="Select color"
                 VerticalTextAlignment="Center"
                 />
         </ContentView>

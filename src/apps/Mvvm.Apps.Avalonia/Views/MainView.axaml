@@ -50,8 +50,8 @@
         </StackPanel>
         <ContentControl
             Grid.Column="1"
-            mvvm:Properties.Navigator="{Binding Navigator}"
-            mvvm:Properties.ViewModel="{Binding ViewModel, Mode=TwoWay}"
+            mvvm:Navigation.Navigator="{Binding Navigator}"
+            mvvm:Navigation.ViewModel="{Binding ViewModel, Mode=TwoWay}"
             >
             <Label
                 Content="Select color"
