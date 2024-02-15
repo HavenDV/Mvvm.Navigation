@@ -27,7 +27,7 @@ namespace Mvvm.Navigation
             services = services ?? throw new global::System.ArgumentNullException(nameof(services));
 
             _ = services
-                .AddTransient<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>();
+                .AddScoped<global::Mvvm.Navigation.Navigator<global::CommunityToolkit.Mvvm.ComponentModel.ObservableObject>>();
 
             AddMappedViewsAndViewModels(services);
             AddViewsAndViewModels(services);

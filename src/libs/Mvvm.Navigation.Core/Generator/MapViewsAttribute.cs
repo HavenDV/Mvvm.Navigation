@@ -46,12 +46,12 @@ public class MapViewsAttribute : Attribute
     /// <summary>
     /// 
     /// </summary>
-    public ServiceLifetime ViewLifetime { get; set; } = ServiceLifetime.Singleton;
+    public ServiceLifetime ViewLifetime { get; set; } = ServiceLifetime.Transient;
 
     /// <summary>
     /// 
     /// </summary>
-    public ServiceLifetime ViewModelLifetime { get; set; } = ServiceLifetime.Singleton;
+    public ServiceLifetime ViewModelLifetime { get; set; } = ServiceLifetime.Scoped;
 
     /// <summary>
     /// 
