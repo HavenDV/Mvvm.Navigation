@@ -81,7 +81,7 @@ public Navigator<ObservableObject> Navigator { get; }
         Command="{Binding Navigator.NavigateByTypeCommand}"
         CommandParameter="{x:Type viewModels:BlueViewModel}"
         />
-    <ContentControl mvvm:Navigation.Navigator="{Binding Navigator}"/>
+    <ContentControl Content="{Binding Navigator.CurrentView}"/>
 </Grid>
 ```
 Tip: you can use `CommandParameter="{mvvm:Type Type=viewModels:BlueViewModel}"` for WinUI/UWP/Uno platforms.
@@ -95,7 +95,8 @@ If you have the same task, then the changes are as follows:
 - Replace ReactiveUserControl with UserControl
 - Replace ReactiveWindow with Window
 - Replace RoutedViewHost and ViewModelViewHost with ContentControl
-- Use `mvvm:Navigation.ViewModel` and `mvvm:Navigation.ServiceProvider`/`mvvm:Navigation.Navigator`(includes ServiceProvider) attached dependency properties.
+- Use `mvvm:Navigation.ViewModel` and `mvvm:Navigation.Navigator`(includes ServiceProvider) attached dependency properties.
+- Or just bind like this `<ContentControl Content="{Binding Navigator.CurrentView}"/>`
 
 ## Support
 Priority place for bugs: https://github.com/HavenDV/Mvvm.Navigation/issues  

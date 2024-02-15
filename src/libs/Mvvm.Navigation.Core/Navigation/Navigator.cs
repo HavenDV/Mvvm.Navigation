@@ -1,17 +1,23 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
 #pragma warning disable 8618
 
+// ReSharper disable once CheckNamespace
 namespace Mvvm.Navigation;
 
 /// <summary>
 /// Navigator manages the ViewModel Stack and allows ViewModels to navigate to other ViewModels.
 /// </summary>
+#if NET6_0_OR_GREATER
+[System.Diagnostics.CodeAnalysis.RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+[System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("If some of the generic arguments are annotated (either with DynamicallyAccessedMembersAttribute, or generic constraints), trimming can't validate that the requirements of those annotations are met.")]
+#endif
 [DataContract]
-public partial class Navigator<T>
+public partial class Navigator<T> : ObservableObject
 {
     #region Properties
     
@@ -38,7 +44,14 @@ public partial class Navigator<T>
     /// Gets the current view model.
     /// </summary>
     [IgnoreDataMember]
-    public T? Current => BackStack.LastOrDefault();
+    public T? CurrentViewModel => BackStack.LastOrDefault();
+
+    /// <summary>
+    /// Gets the current view model.
+    /// </summary>
+    [IgnoreDataMember]
+    [ObservableProperty]
+    private IViewFor? _currentView;
 
     #endregion
 
@@ -56,23 +69,6 @@ public partial class Navigator<T>
     
     #endregion
     
-    #region Events
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public event EventHandler<T>? CurrentChanged;
-
-    /// <summary>
-    /// A helper method to raise the CurrentChanged event.
-    /// </summary>
-    protected virtual void OnCurrentChanged(T value)
-    {
-        CurrentChanged?.Invoke(this, value);
-    }
-
-    #endregion
-
     #region Methods
 
     private bool CanExecuteNavigateBack => BackStack.Count > 1;
@@ -91,7 +87,8 @@ public partial class Navigator<T>
         NavigateBackCommand.NotifyCanExecuteChanged();
         NavigateForwardCommand.NotifyCanExecuteChanged();
 
-        OnCurrentChanged(Current!);
+        this.OnPropertyChanged(nameof(CurrentViewModel));
+        CurrentView = ServiceProvider.ResolveViewFor(CurrentViewModel!);
     }
 
     private bool CanExecuteNavigateForward => ForwardStack.Count > 0;
@@ -110,7 +107,8 @@ public partial class Navigator<T>
         NavigateBackCommand.NotifyCanExecuteChanged();
         NavigateForwardCommand.NotifyCanExecuteChanged();
         
-        OnCurrentChanged(Current!);
+        this.OnPropertyChanged(nameof(CurrentViewModel));
+        CurrentView = ServiceProvider.ResolveViewFor(CurrentViewModel!);
     }
     
     /// <inheritdoc cref="ServiceProviderResolveExtensions.ResolveViewFor(IServiceProvider, Type)"/>
@@ -173,9 +171,10 @@ public partial class Navigator<T>
         NavigateBackCommand.NotifyCanExecuteChanged();
         NavigateForwardCommand.NotifyCanExecuteChanged();
         
-        OnCurrentChanged(Current!);
+        this.OnPropertyChanged(nameof(CurrentViewModel));
+        CurrentView = ServiceProvider.ResolveViewFor(CurrentViewModel!);
 
-        return Current!;
+        return CurrentViewModel!;
     }
 
     /// <summary>

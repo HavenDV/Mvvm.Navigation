@@ -1,6 +1,8 @@
-using System.Diagnostics;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
+
+// ReSharper disable PartialMethodParameterNameMismatch
+// ReSharper disable RedundantCast
 
 namespace Mvvm.Navigation;
 
@@ -10,7 +12,6 @@ namespace Mvvm.Navigation;
 [AttachedDependencyProperty<object, ContentControl>("ViewModel", DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [AttachedDependencyProperty<Type, ContentControl>("ViewModelType", DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [AttachedDependencyProperty<Navigator<ObservableObject>, ContentControl>("Navigator")]
-[AttachedDependencyProperty<IServiceProvider, ContentControl>("ServiceProvider")]
 public
 #if !HAS_AVALONIA
     static 
@@ -21,52 +22,38 @@ public
     {
         if (oldValue != null)
         {
-            oldValue.CurrentChanged -= NewValueOnCurrentChanged;
+            oldValue.PropertyChanged -= OnPropertyChanged;
         }
         if (newValue != null)
         {
-            newValue.CurrentChanged += NewValueOnCurrentChanged;
+            newValue.PropertyChanged += OnPropertyChanged;
         }
         return;
 
-        void NewValueOnCurrentChanged(object? sender, ObservableObject e)
+        void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            SetViewModel(contentControl, e);
+            if (e.PropertyName == nameof(Navigator<ObservableObject>.CurrentView))
+            {
+                contentControl.Content = newValue?.CurrentView as Content;
+            }
         }
     }
     
     static partial void OnViewModelChanged(ContentControl contentControl, object? newValue)
     {
-        SetViewModelType(contentControl, newValue?.GetType());
+        if (GetNavigator(contentControl) is { } navigator &&
+            newValue?.GetType() is { } type)
+        {
+            navigator.NavigateByType(type);
+        }
     }
     
     static partial void OnViewModelTypeChanged(ContentControl contentControl, Type? newValue)
     {
-        try
+        if (GetNavigator(contentControl) is { } navigator &&
+            newValue != null)
         {
-            if (newValue == null)
-            {
-                // Other possibilities:
-                // throw Exception
-                // set empty content to contentControl
-                return;
-            }
-
-            var serviceProvider =
-                GetNavigator(contentControl)?.ServiceProvider ??
-                GetServiceProvider(contentControl) ??
-                Ioc.Default ??
-                throw new InvalidOperationException("ServiceProvider is not specified. Get it from DI and bind it or set up Ioc.Default.ConfigureServices.");
-            contentControl.Content = (Content)serviceProvider.ResolveViewFor(newValue);
-        }
-        catch (Exception exception)
-        {
-            Debug.WriteLine($"Mvvm.Navigation resolving exception: {exception}");
-                
-            contentControl.Content = new TextControl
-            {
-                Text = exception.Message,
-            };
+            navigator.NavigateByType(newValue);
         }
     }
 }
