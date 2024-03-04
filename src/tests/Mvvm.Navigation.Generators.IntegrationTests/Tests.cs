@@ -20,8 +20,8 @@ public class Tests
             .BuildServiceProvider();
         var navigator = new Navigator<ObservableObject>(serviceProvider);
         
-        Properties.SetNavigator(window, navigator);
-        Properties.GetNavigator(window).Should().NotBeNull();
+        Navigation.SetNavigator(window, navigator);
+        Navigation.GetNavigator(window).Should().NotBeNull();
         //
         // Properties.SetViewModel(window, new MainViewModel());
         // Properties.GetViewModel(window).Should().NotBeNull();
@@ -43,13 +43,14 @@ public class Tests
         var serviceProvider = new ServiceCollection()
             .AddMvvmNavigation()
             .BuildServiceProvider();
+        var navigator = new Navigator<ObservableObject>(serviceProvider);
         
-        Properties.SetServiceProvider(window, serviceProvider);
-        Properties.GetServiceProvider(window).Should().Be(serviceProvider);
+        Navigation.SetNavigator(window, navigator);
+        Navigation.GetNavigator(window).Should().NotBeNull();
         
         var viewModel = new MainViewModel();
-        Properties.SetViewModel(window, viewModel);
-        Properties.GetViewModel(window).Should().Be(viewModel);
+        Navigation.SetViewModel(window, viewModel);
+        Navigation.GetViewModel(window).Should().Be(viewModel);
         
         window.Content.Should().BeOfType<MainPage>();
     }
@@ -64,12 +65,13 @@ public class Tests
         var serviceProvider = new ServiceCollection()
             .AddMvvmNavigation()
             .BuildServiceProvider();
+        var navigator = new Navigator<ObservableObject>(serviceProvider);
         
-        Properties.SetServiceProvider(window, serviceProvider);
-        Properties.GetServiceProvider(window).Should().Be(serviceProvider);
+        Navigation.SetNavigator(window, navigator);
+        Navigation.GetNavigator(window).Should().NotBeNull();
         
-        Properties.SetViewModelType(window, typeof(MainViewModel));
-        Properties.GetViewModelType(window).Should().Be(typeof(MainViewModel));
+        Navigation.SetViewModelType(window, typeof(MainViewModel));
+        Navigation.GetViewModelType(window).Should().Be(typeof(MainViewModel));
         
         window.Content.Should().BeOfType<MainPage>();
     }
