@@ -18,7 +18,7 @@ public class MapViewsGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        var framework = context.DetectFramework();
+        var framework = context.TryDetectFramework();
         
         context.SyntaxProvider
             .ForAttributeWithMetadataName(

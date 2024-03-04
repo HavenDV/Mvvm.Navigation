@@ -16,7 +16,7 @@ public class InterfaceGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        var framework = context.DetectFramework();
+        var framework = context.TryDetectFramework();
 
         context.SyntaxProvider
             .ForAttributeWithMetadataName("Mvvm.Navigation.ViewForAttribute")

@@ -27,7 +27,7 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
                 source: Sources.GenerateHostBuilderExtensions());
         });
         
-        var framework = context.DetectFramework();
+        var framework = context.TryDetectFramework();
 
         context.SyntaxProvider
             .ForAttributeWithMetadataName("Mvvm.Navigation.ViewForAttribute")
