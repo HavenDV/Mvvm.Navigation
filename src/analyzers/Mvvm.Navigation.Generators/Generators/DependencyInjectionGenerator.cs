@@ -17,16 +17,6 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterPostInitializationOutput(static context =>
-        {
-            context.AddSource(
-                hintName: "ServiceCollectionExtensions.d.g.cs",
-                source: Sources.GenerateServiceCollectionExtensionsDeclaration());
-            context.AddSource(
-                hintName: "HostBuilderExtensions.g.cs",
-                source: Sources.GenerateHostBuilderExtensions());
-        });
-        
         var framework = context.TryDetectFramework();
 
         context.SyntaxProvider
@@ -78,14 +68,24 @@ public class DependencyInjectionGenerator : IIncrementalGenerator
     private static EquatableArray<FileWithName> GetFrameworkSpecificSourceCode(
         Framework framework)
     {
+        var files = new List<FileWithName>();
+        if (framework is not Framework.None)
+        {
+            files.Add(new FileWithName(
+                Name: "ServiceCollectionExtensions.d.g.cs",
+                Text: Sources.GenerateServiceCollectionExtensionsDeclaration()));
+            files.Add(new FileWithName(
+                Name: "HostBuilderExtensions.g.cs",
+                Text: Sources.GenerateHostBuilderExtensions()));
+        }
         if (framework is Framework.Maui)
         {
-            return ImmutableArray.Create(new FileWithName(
+            files.Add(new FileWithName(
                 Name: "MauiAppBuilderExtensions.g.cs",
                 Text: Sources.GenerateMauiAppBuilderExtensions()));
         }
 
-        return ImmutableArray.Create<FileWithName>();
+        return files.ToImmutableArray();
     }
 
     #endregion
