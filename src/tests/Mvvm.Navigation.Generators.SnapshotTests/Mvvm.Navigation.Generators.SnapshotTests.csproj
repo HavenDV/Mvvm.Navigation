@@ -6,8 +6,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-        <PackageReference Include="MSTest.TestAdapter" Version="3.6.0" />
-        <PackageReference Include="MSTest.TestFramework" Version="3.6.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.6.1" />
+        <PackageReference Include="MSTest.TestFramework" Version="3.6.1" />
         <PackageReference Include="FluentAssertions" Version="6.12.1" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.MSTest" Version="1.1.2" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
