@@ -11,7 +11,7 @@
   <Import Project="../../libs/Mvvm.Navigation.Wpf/Mvvm.Navigation.Wpf.props" />
 
   <ItemGroup>
-    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.2.0" />
   </ItemGroup>
   
   <ItemGroup>
