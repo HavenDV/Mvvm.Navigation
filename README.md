@@ -1,5 +1,11 @@
 # [Mvvm.Navigation](https://github.com/HavenDV/Mvvm.Navigation/) 
 
+> [!IMPORTANT]
+> This project is retired and no longer maintained. Its NuGet packages are
+> deprecated, but existing versions remain available for restore. New projects
+> should use their UI framework's maintained navigation facilities or keep the
+> required navigation behavior in application-owned code.
+
 [![CI/CD](https://github.com/HavenDV/Mvvm.Navigation/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/HavenDV/Mvvm.Navigation/actions/workflows/dotnet.yml)
 [![License: MIT](https://img.shields.io/github/license/HavenDV/Mvvm.Navigation)](https://github.com/HavenDV/Mvvm.Navigation/blob/main/LICENSE.txt)
 [![Discord](https://img.shields.io/discord/988253265550532680?label=Discord&logo=discord&logoColor=white&color=d82679)](https://discord.gg/g8u2t9dKgE)
